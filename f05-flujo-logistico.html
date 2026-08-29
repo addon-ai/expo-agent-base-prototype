@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1-02 · Flujo logístico y máquina de estados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f05-box{border-left:2px solid var(--alert-bd);padding:9px 0 9px 13px;margin-bottom:12px}
+.f05-box.warn{border-left-color:var(--gold-bd)}
+.f05-box h4{font-size:13px;font-weight:600;margin-bottom:4px}
+.f05-box p{font-size:12px;color:var(--slate);line-height:1.5}
+.f05-box p+p{margin-top:5px}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F1-02</span>
+      <span class="ftitle">Flujo logístico y máquina de estados</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Validada (1 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st done"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st now"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-flujo</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿Qué proceso me aplica y qué sigue después de transmitir?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-flujo</span><span class="who-time">10:55</span></div>
+        <div class="msg">
+          <p>Con marítimo, fuera del lugar de embarque, sin tránsito y sin depósito habilitado, aplica el <b>Proceso 02 — Aéreo, marítimo y fluvial, fuera del lugar de embarque, sin tránsito, sin depósito habilitado</b> del Manual.</p>
+          <p>Después de la autorización de embarque: traslado al puerto, aviso de ingreso del responsable del lugar, selectividad de la DIAN, y si sale automática, manifiesto y firma del DEX.</p>
+          <p>Ten en cuenta que selectividad e inspección ocurren del lado de la DIAN. Los detectamos por consulta periódica, no los controlamos.</p>
+          <div class="evid"><span class="chip">Manual Cap. 3 · Proceso 02</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">elicitar_variables</span> → 4 de 4 completas<br>
+              <span class="n">determinar_proceso</span> → Proceso 02<br>
+              <span class="n">verificar_prerrequisitos</span> → 1 pendiente<br>
+              <span class="n">proyectar_hitos</span> → 5 hitos<br>
+              <span class="t">mcp-declaraciones · RAG-02 manual-salida-v42</span>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Qué pasa si el cliente se echa para atrás cuando ya radiqué?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-flujo</span><span class="who-time">11:20</span></div>
+        <div class="msg">
+          <p>La operación pasa a <b>Cancelada</b> (E-13). Con la SAE ya radicada, el desistimiento se gestiona ante la DIAN; no basta con dejar de trabajar el expediente.</p>
+          <p>También hay que retirar la carga del terminal y <b>liquidar los gastos causados</b> en FT-05: el desistimiento no borra el almacenaje ni la movilización que ya ocurrieron.</p>
+          <p>Por eso la confirmación en firme del cliente antes de radicar no es burocracia: es el control de E-13.</p>
+          <div class="evid"><span class="chip">§17.1 Estados</span><span class="chip">E-13</span><span class="chip">Manual Cap. 3</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">detectar_desistimiento</span> → posterior a radicación<br>
+              <span class="n">transicionar_estado</span> → Cancelada<br>
+              <span class="n">gestionar_desistimiento</span> → ante DIAN, pendiente<br>
+              <span class="n">liquidar_gastos_causados</span> → remite a FT-05<br>
+              <span class="t">mcp-declaraciones · mcp-costos</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta qué sigue o cambia una variable…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Proceso</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Hitos</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Estados</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Elicitar variables</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Determinar proceso</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Verificar prerrequisitos</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Proyectar hitos</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Detectar desvíos</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact"><div class="band"><span>Manual Cap. 3</span></div><div class="art-body">
+          <div class="art-hd">
+            <div><div class="art-title">Proceso aplicable</div><div class="art-sub">27 procesos · Manual V 4.2 pp. 8-34</div></div>
+            <div class="art-sub">Proceso 02 aplicable</div>
+          </div>
+          <div class="vars"><span class="var">modalidad <b>marítimo</b></span><span class="var">ubicación <b>fuera del lugar de embarque</b></span><span class="var">tránsito <b>no</b></span><span class="var">inspección <b>sin depósito habilitado</b></span></div>
+          <div class="flowgrid"><div class="fl"><div class="fl-n">01</div><div class="fl-t">Con tránsito · depósito habilitado</div></div><div class="fl hit"><div class="fl-n">02</div><div class="fl-t">Sin tránsito · sin depósito habilitado</div></div><div class="fl"><div class="fl-n">03</div><div class="fl-t">Depósito de transformación</div></div><div class="fl"><div class="fl-n">04</div><div class="fl-t">Inspección en lugar de embarque</div></div><div class="fl"><div class="fl-n">05</div><div class="fl-t">Destino final zona franca</div></div><div class="fl"><div class="fl-n">06</div><div class="fl-t">Zona secundaria</div></div><div class="fl"><div class="fl-n">07</div><div class="fl-t">Zona secundaria · ALTEX</div></div><div class="fl"><div class="fl-n">08</div><div class="fl-t">Dentro del lugar de embarque</div></div><div class="fl"><div class="fl-n">…</div><div class="fl-t">09 a 27</div></div></div>
+          <div class="note"><b>Cada flujograma del Cap. 3 es un proceso: 27 procesos.</b> Comparten un mismo tronco de ciclo de vida y se distinguen por los valores de cuatro variables. Reembarque (11-14), Urabá (15-17) y viajero (23) tienen ciclo propio.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>Proyección</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Hitos siguientes</div><div class="art-sub">Proceso 02</div></div></div>
+          <div class="tl"><div class="tl-i done"><div class="tl-t">Completado</div><div class="tl-n">SAE validada</div></div><div class="tl-i now"><div class="tl-t">Actual</div><div class="tl-n">Transmisión a MUISCA</div><div class="tl-d">Bloqueada por BLOQ-VOBO-01</div></div><div class="tl-i"><div class="tl-t">Siguiente</div><div class="tl-n">Autorización de embarque</div><div class="tl-d">Estado observado, del lado de la DIAN</div></div><div class="tl-i"><div class="tl-t">Después</div><div class="tl-n">Aviso de ingreso al puerto</div><div class="tl-d">Lo registra el responsable del lugar de embarque</div></div><div class="tl-i"><div class="tl-t">Después</div><div class="tl-n">Selectividad</div><div class="tl-d">Automática o inspección física/documental</div></div><div class="tl-i"><div class="tl-t">Cierre</div><div class="tl-n">Manifiesto 1165 y firma del DEX</div></div></div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>§17.1</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Estados de la operación</div><div class="art-sub">22 estados · lo que la DIAN observa y lo que gobierna la agencia</div></div></div>
+          <table class="grid"><tr><th>Estado</th><th>Se alcanza cuando</th><th>Evidencia</th><th>Quién lo mueve</th><th></th></tr>
+          <tr><td>Solicitada</td><td>el cliente pide el servicio</td><td>correo o portal FT-06</td><td>comercial</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>Aceptada</td><td>la agencia confirma el encargo</td><td>aceptación registrada F1-01</td><td>operación</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>En preparación documental</td><td>se abre el expediente</td><td>checklist iniciado</td><td>operación</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>En espera del cliente</td><td>falta dato o documento del exportador</td><td>solicitud pendiente en FT-06</td><td>exportador</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>En espera de visto bueno</td><td>trámite de VoBo sin resolver</td><td>radicado en entidad</td><td>entidad VoBo</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>Documentación completa</td><td>checklist al 100%</td><td>expediente FT-03</td><td>operación</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>SAE radicada</td><td>se transmite a MUISCA</td><td>NumEnvio generado</td><td>declarante</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>SAE aceptada</td><td>MUISCA valida sin rechazo</td><td>acuse de aceptación</td><td>MUISCA</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>SAE rechazada</td><td>MUISCA devuelve novedad</td><td>código de rechazo (F3-03)</td><td>MUISCA</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>En tránsito a puerto</td><td>la carga sale al lugar de embarque</td><td>booking confirmado</td><td>transportador</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>Ingresada a zona primaria</td><td>se registra el aviso de ingreso</td><td>reporte del lugar de embarque</td><td>responsable del lugar</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>Canal asignado</td><td>se resuelve la selectividad</td><td>canal en MUISCA</td><td>DIAN</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>En inspección</td><td>canal físico o documental activo</td><td>acta en curso</td><td>DIAN</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>Con hallazgo</td><td>la inspección reporta novedad</td><td>acta con observación</td><td>DIAN</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>En corrección</td><td>se subsana el hallazgo</td><td>Concepto 02 en FE-03</td><td>declarante</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>Retenida</td><td>acto administrativo de retención</td><td>resolución de retención</td><td>DIAN</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>Autorizada</td><td>autorización de embarque</td><td>mensaje MUISCA</td><td>DIAN</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>Embarcada</td><td>el buque zarpa con la carga</td><td>BL / confirmación naviera</td><td>naviera</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>DEX consolidado</td><td>se firma el Formulario 600</td><td>DEX transmitido</td><td>declarante</td><td><span class="pill ok">DIAN</span></td></tr>
+          <tr><td>Documentos entregados</td><td>expediente final al cliente</td><td>entrega registrada FT-06</td><td>operación</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>Cerrada</td><td>todo liquidado y entregado</td><td>cierre en FT-05</td><td>operación</td><td><span class="pill">Negocio</span></td></tr>
+          <tr><td>Cancelada</td><td>el cliente desiste</td><td>desistimiento gestionado</td><td>operación</td><td><span class="pill">Negocio</span></td></tr>
+          </table>
+          <div class="f05-box warn"><h4>En espera del cliente</h4><p>Falta información o documento del exportador. Tiene reloj propio y ese tiempo <b>no cuenta como tiempo de la agencia</b> en el indicador de ciclo (FT-07). Se solicita y se comunica desde FT-06; nace en F1-01.</p></div>
+          <div class="f05-box"><h4>Retenida</h4><p>La autoridad retiene la mercancía por acto administrativo. La agencia acompaña y documenta, <b>no controla los tiempos</b> (contingencia E-09). Transiciones posibles: Liberada o Aprehendida.</p></div>
+          <div class="f05-box warn"><h4>Cancelada</h4><p>El cliente desiste antes del embarque (E-13). Si ya se radicó la SAE hay que gestionar el desistimiento ante la autoridad, retirar la carga y <b>liquidar los gastos causados</b> en FT-05.</p></div>
+          <div class="note"><b>La máquina de estados de la DIAN y la de la operación no son la misma.</b> El sistema observa la primera por consulta periódica y gobierna la segunda; confundirlas produce pantallas que muestran «autorizada» cuando el cliente todavía no entregó un documento.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha"><div class="ficha-hd">Ficha del canvas</div><div class="ficha-grid">
+          <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">maquina-estados</div></div>
+          <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-flujo</div></div>
+          <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-declaraciones</div></div>
+          <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-02 manual-salida-v42</div></div>
+          <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No, refleja el estado real</div></div>
+          <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v">Elicitación conversacional</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1-03 · Clasificación arancelaria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+/* Estilos locales fXX-* de la pantalla, si los tiene.
+   Prohibido: colores literales y el token retirado --warn. Solo tokens. */
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F1-03</span>
+      <span class="ftitle">Clasificación arancelaria</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Borrador (0 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st now"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-arancel</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿Qué subpartida corresponde para los vehículos?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-arancel</span><span class="who-time">10:46</span></div>
+        <div class="msg">
+          <p>Propongo <code>8703.22.10.00</code>. La factura indica cilindrada de 1.400 cm³, que cae en el rango de la subpartida por aplicación de la RGI 1 y la nota legal 2 del Capítulo 87.</p>
+          <p>Descarté <code>8703.23.10.00</code> porque su rango arranca en 1.500 cm³, y <code>8703.21.00.00</code> porque termina en 1.000 cm³.</p>
+          <p>Necesita tu confirmación: la clasificación tiene consecuencia tributaria y sancionatoria, y no la comprometo solo.</p>
+          <div class="evid"><span class="chip">Arancel · Cap. 87 nota 2</span><span class="chip">RGI 1</span><span class="chip">Vigencia verificada</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">analizar_producto</span> → automóvil, 1400 cm³, gasolina<br>
+              <span class="n">recuperar_candidatas</span> → 3 candidatas<br>
+              <span class="n">aplicar_RGI</span> → RGI 1<br>
+              <span class="n">verificar_notas_legales</span> → Cap. 87 nota 2<br>
+              <span class="n">consultar_vigencia</span> → vigente<br>
+              <span class="n">proponer_con_cita</span> → 8703.22.10.00<br>
+              <span class="t">mcp-catalogo-arancelario · RAG-03 arancel-clasificacion</span>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Basta con que yo apruebe?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-arancel</span><span class="who-time">10:51</span></div>
+        <div class="msg">
+          <p>No, para este caso no. Es la primera vez que el cliente exporta este modelo, así que la clasificación entra en revisión de un segundo analista antes de bajar al XML.</p>
+          <p>Un error de subpartida no se corrige, se sanciona: arrastra la pérdida de la preferencia arancelaria en destino y la reclamación del comprador. Tú no puedes ser las dos firmas.</p>
+          <p>La segregación entre quien propone y quien aprueba se administra en FT-04.</p>
+          <div class="evid"><span class="chip">R-02</span><span class="chip">producto nuevo · sin antecedente</span><span class="chip">Manual Cap. 4</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">verificar_antecedente_cliente</span> → sin antecedente para este modelo<br>
+              <span class="n">determinar_capa_control</span> → requiere segundo analista<br>
+              <span class="n">asignar_revisor</span> → Carlos Rueda<br>
+              <span class="t">mcp-catalogo-arancelario · mcp-expediente</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por qué descartó una candidata…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Candidatas</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Propuesta</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Control</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Analizar producto</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Recuperar candidatas</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Aplicar RGI</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Verificar notas legales</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Aprobar subpartida</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact ">
+          <div class="band"><span>Arancel Cap. 87</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Candidatas evaluadas</div><div class="art-sub">grupo de nomenclatura 50</div></div>
+              <div class="art-sub">3 candidatas · 1 propuesta</div>
+            </div>
+            <table class="grid"><tr><th>Subpartida</th><th>Rango cilindrada</th><th>Nota legal</th><th>Resultado</th></tr>
+              <tr><td>8703.21.00.00</td><td>&le; 1.000 cm³</td><td>Cap. 87 nota 2</td><td><span class="pill bad">Descartada</span></td></tr>
+              <tr><td><b>8703.22.10.00</b></td><td>1.000 – 1.500 cm³</td><td>Cap. 87 nota 2</td><td><span class="pill ok">Propuesta</span></td></tr>
+              <tr><td>8703.23.10.00</td><td>1.500 – 3.000 cm³</td><td>Cap. 87 nota 2</td><td><span class="pill bad">Descartada</span></td></tr>
+            </table>
+            <div class="note"><b>Sin cita normativa no se emite propuesta.</b> El agente no puede proponer una subpartida que no exista en el catálogo vigente, y toda propuesta llega con la RGI aplicada y la nota legal que la sustenta.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact prop">
+          <div class="band"><span>Propuesta</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">Clasificación propuesta</div><div class="art-sub">agente-arancel</div></div></div>
+            <div class="prop-box">
+              <div class="seal">Requiere aprobación</div>
+              <div class="prop-t">Clasificar como 8703.22.10.00</div>
+              <div class="prop-d">Automóvil de turismo con motor de émbolo alternativo de encendido por chispa, cilindrada superior a 1.000 cm³ pero inferior o igual a 1.500 cm³. Unidad física: unidad. Aplica RGI 1.</div>
+              <div class="actions">
+                <button class="btn primary">Aprobar</button>
+                <button class="btn">Elegir otra</button>
+                <button class="btn ghost">Ver nota legal</button>
+                <button class="btn ghost">Rechazar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>R-02</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">Control de la clasificación</div><div class="art-sub">tres capas, no una</div></div></div>
+            <table class="grid"><tr><th>Capa</th><th>Detalle</th><th>Estado</th></tr>
+              <tr><td>Justificación documentada</td><td>RGI aplicada, nota legal y descarte razonado de candidatas, con autor y fecha</td><td><span class="pill ok">Resuelta en este canvas</span></td></tr>
+              <tr><td>Revisión por segundo analista</td><td>Producto nuevo o subpartida sin antecedente del cliente: la propuesta requiere segunda aprobación de un rol distinto al que la propuso. Revisor sugerido: Carlos Rueda</td><td><span class="pill wait">Requerida · producto nuevo</span></td></tr>
+              <tr><td>Consulta oficial ante la autoridad</td><td>En casos dudosos se solicita clasificación oficial; no aplica aquí porque la nota legal del Capítulo 87 resuelve el rango de cilindrada sin ambigüedad</td><td><span class="pill ok">No aplica</span></td></tr>
+            </table>
+            <div class="note"><b>La subpartida es la variable que dispara todo lo demás:</b> vistos buenos, preferencia arancelaria, tratamiento tributario y perfil de riesgo. Es el único dato de la declaración que justifica pagar dos revisiones.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v ">comparador-subpartidas</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v ">agente-arancel</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v ">mcp-catalogo-arancelario</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v ">RAG-03 arancel-clasificacion<br>(Arancel · notas legales · RGI)</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v ">Selección entre candidatas</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, siempre y sin excepción</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

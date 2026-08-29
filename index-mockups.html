@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockups · Exportaciones DIAN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.wrap{max-width:1060px;margin:0 auto;padding:48px 26px 64px}
+.idx-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.idx-brand{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mute)}
+.idx-h{font-size:36px;font-weight:700;letter-spacing:-.03em;margin:14px 0 12px;max-width:20ch}
+.idx-p{font-size:15px;color:var(--slate);max-width:62ch;line-height:1.65}
+.idx-meta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--mute);
+  margin-top:20px;padding-top:16px;border-top:1px solid var(--line);line-height:1.9}
+.grp{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mute);margin:36px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:10px}
+.card{display:grid;grid-template-columns:22px 1fr;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--raised);text-decoration:none;color:inherit;overflow:hidden}
+.card:hover{border-color:var(--stamp)}
+.card:hover .c-band{background:var(--stamp)}
+.card:focus-visible{outline:2px solid var(--stamp);outline-offset:2px}
+.c-band{background:var(--band-bg);display:flex;align-items:center;justify-content:center}
+.c-band span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'IBM Plex Mono',monospace;
+  font-size:8.5px;letter-spacing:.16em;color:var(--band-ink);padding:10px 0}
+.c-b{padding:13px 15px}
+.c-code{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;color:var(--stamp)}
+.c-t{font-size:15px;font-weight:600;letter-spacing:-.01em;margin:3px 0 6px}
+.c-d{font-size:12.5px;color:var(--slate);line-height:1.5}
+.c-f{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
+.c-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid var(--line-soft);
+  border-radius:var(--r);padding:1px 5px;color:var(--mute)}
+.c-tag.hit{border-color:var(--alert-bd);color:var(--alert-fg)}
+.c-tag.warn{border-color:var(--gold-bd);color:var(--gold-fg)}
+/* --- 1. MÓVIL ≤639px --- */
+@media (max-width:639px){
+  .wrap{padding:28px 16px 40px}
+  .idx-top{flex-direction:column}
+  .idx-h{font-size:26px}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+}
+/* --- 2. TABLET 640–1023px --- */
+@media (min-width:640px) and (max-width:1023px){
+  .wrap{padding:36px 22px 52px}
+  .idx-h{font-size:30px}
+}
+</style>
+</head><body><div class="wrap">
+<div class="idx-top">
+<div class="idx-brand">Exportaciones DIAN · Mockups</div>
+<!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+<div class="theme-toggle" role="group" aria-label="Selector de tema">
+  <div class="seg">
+    <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+      <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+    </button>
+    <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+      <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+    </button>
+  </div>
+</div>
+<!-- ▲ SELECTOR DE TEMA -->
+</div>
+<h1 class="idx-h">Treinta y seis pantallas, un mismo patrón.</h1>
+<p class="idx-p">Cada pantalla es la misma conversación sobre un objeto distinto. El canvas es el estado, el chat es la intención, y la propuesta es el puente entre los dos: el agente nunca compromete nada sin que alguien apruebe. FT-04 es la excepción declarada: administración directa, sin agente. F7-01, FT-05, FT-06 y FT-07 declaran explícitamente que no tienen norma DIAN detrás — son decisión de producto, no requisito aduanero.</p>
+<div class="idx-meta">Resolución 000046 de 2019 · Anexo 6, subanexos 6.1 a 6.7<br>Manual del Proceso de Salida de Mercancías V 4.2 · Cap. 3, 5, 8, 11 y 13.1 · 27 procesos (Proceso 01 a Proceso 27)<br>Acuerdos comerciales y VUCE (F2-04) · Plan Vallejo, PEX y sistemas especiales (FE-01) · régimen cambiario del Banco de la República (F7-01, fuera del alcance DIAN)<br>Ciclo de servicio de la agencia (F1-01 a FT-07): Fases 0, 1, 5 y 7 de proceso-exportacion-agencia-aduanas.md<br>Diseño: DISENO_AGENTICO_CHAT_CANVAS.md · Trazabilidad: TRAZABILIDAD_NORMATIVA.md · Ampliación de alcance: SPEC_AMPLIACION_EXPO.md, BRECHAS_ALCANCE_EXPO.md</div>
+
+<div class="grp">Acceso</div>
+<div class="cards">
+<a class="card" href="f00-ingreso.html"><div class="c-band"><span>FA-01</span></div><div class="c-b"><div class="c-code">FA-01</div><div class="c-t">Ingreso</div><div class="c-d">Autenticación, selección de NIT y mandato, estado del certificado digital.</div><div class="c-f"><span class="c-tag">exp-identity-service · reutiliza auth de DAL</span><span class="c-tag">Identity Platform / Keycloak</span></div></div></a>
+</div>
+
+<div class="grp">Cliente y apertura</div>
+<div class="cards">
+<a class="card" href="f32-vinculacion-habilitacion.html"><div class="c-band"><span>F0-01</span></div><div class="c-b"><div class="c-code">F0-01</div><div class="c-t">Vinculación y habilitación del exportador</div><div class="c-d">Conocimiento del cliente, calidad de usuario aduanero en el RUT, mandato, firma y contrato.</div><div class="c-f"><span class="c-tag">agente-vinculacion</span><span class="c-tag">Fase 0 · V-02 · V-03</span><span class="c-tag hit">Gate: habilitar cliente</span></div></div></a>
+<a class="card" href="f31-apertura-operacion.html"><div class="c-band"><span>F1-01</span></div><div class="c-b"><div class="c-code">F1-01</div><div class="c-t">Apertura de operación e instrucción de embarque</div><div class="c-d">Número único de operación, completitud de la instrucción y cronograma en reversa desde el corte documental.</div><div class="c-f"><span class="c-tag">agente-apertura</span><span class="c-tag">Fase 1 · V-01 · V-50</span><span class="c-tag hit">Gate: aceptar operación</span></div></div></a>
+</div>
+
+<div class="grp">Operación y control</div>
+<div class="cards">
+<a class="card" href="f35-indicadores.html"><div class="c-band"><span>FT-07</span></div><div class="c-b"><div class="c-code">FT-07</div><div class="c-t">Indicadores de desempeño</div><div class="c-d">Eficacia, eficiencia, calidad y relación, con la causa de cada desviación y la pantalla donde se corrige.</div><div class="c-f"><span class="c-tag">agente-indicadores</span><span class="c-tag warn">Sin norma DIAN · decisión de producto</span><span class="c-tag">Solo lectura</span></div></div></a>
+<a class="card" href="f12-bandeja-operacion.html"><div class="c-band"><span>FT-02</span></div><div class="c-b"><div class="c-code">FT-02</div><div class="c-t">Bandeja de operación y vencimientos</div><div class="c-d">Prioriza operaciones por vencimiento y riesgo, con la razón de cada urgencia.</div><div class="c-f"><span class="c-tag">agente-bandeja</span><span class="c-tag">Manual Cap. 3 · Art. 349 / 236-3</span></div></div></a>
+</div>
+
+<div class="grp">Maestros</div>
+<div class="cards">
+<a class="card" href="f13-parametricas-vigencias.html"><div class="c-band"><span>FM-01</span></div><div class="c-b"><div class="c-code">FM-01</div><div class="c-t">Paramétricas y vigencias DIAN</div><div class="c-d">Cambios de listas DIAN vigentes y su impacto en SAE que quedaron en borrador.</div><div class="c-f"><span class="c-tag">agente-parametricas</span><span class="c-tag">Anexo 6 · listas DIAN</span><span class="c-tag hit">Gate: aplicar vigencia</span></div></div></a>
+<a class="card" href="f14-terceros-mandatos.html"><div class="c-band"><span>FM-02</span></div><div class="c-b"><div class="c-code">FM-02</div><div class="c-t">Terceros y mandatos</div><div class="c-d">Valida terceros contra RUES/RUT y detecta cuándo se requiere mandato.</div><div class="c-f"><span class="c-tag">agente-terceros</span><span class="c-tag">Manual Cap. 5 · NIT y mandato</span><span class="c-tag hit">Gate: crear/actualizar</span></div></div></a>
+<a class="card" href="f15-catalogo-producto-f1340.html"><div class="c-band"><span>FM-03</span></div><div class="c-b"><div class="c-code">FM-03</div><div class="c-t">Catálogo de producto y registro F1340</div><div class="c-d">Ficha de producto y si requiere registro F1340 ante la DIAN antes de usarse.</div><div class="c-f"><span class="c-tag">agente-producto</span><span class="c-tag">Subanexo 6.6 · Formato 1340 v8</span><span class="c-tag hit">Gate: antes de registrar</span></div></div></a>
+</div>
+
+<div class="grp">Preparación de la SAE</div>
+<div class="cards">
+<a class="card" href="f01-carga-normalizacion.html"><div class="c-band"><span>F2-01</span></div><div class="c-b"><div class="c-code">F2-01</div><div class="c-t">Carga y normalización documental</div><div class="c-d">Extracción de DAL mapeada al esquema canónico del F10602 y verificada contra paramétricas.</div><div class="c-f"><span class="c-tag">agente-normalizacion</span><span class="c-tag">supporting-documents · DAL</span><span class="c-tag hit">Gate: campos bajo umbral</span></div></div></a>
+<a class="card" href="f02-clasificacion-arancelaria.html"><div class="c-band"><span>F1-03</span></div><div class="c-b"><div class="c-code">F1-03</div><div class="c-t">Clasificación arancelaria</div><div class="c-d">Candidatas de subpartida con la RGI aplicada y la nota legal que la sustenta.</div><div class="c-f"><span class="c-tag">agente-arancel</span><span class="c-tag">RAG-03 arancel</span><span class="c-tag hit">Gate: siempre</span></div></div></a>
+<a class="card" href="f03-descripcion-mercancias.html"><div class="c-band"><span>F3-01</span></div><div class="c-b"><div class="c-code">F3-01</div><div class="c-t">Descripción de mercancías</div><div class="c-d">Agrupación en t_prod, atributos comunes e individualizadores, reuso de catálogo.</div><div class="c-f"><span class="c-tag">agente-descripcion</span><span class="c-tag">Subanexo 6.2</span><span class="c-tag hit">Gate: agrupación y v_otro</span></div></div></a>
+<a class="card" href="f06-soportes-vistos-buenos.html"><div class="c-band"><span>F2-03</span></div><div class="c-b"><div class="c-code">F2-03</div><div class="c-t">Soportes y vistos buenos</div><div class="c-d">Exigibilidad por subpartida y modalidad, vigencias y consulta VUCE.</div><div class="c-f"><span class="c-tag">agente-cumplimiento</span><span class="c-tag">exp-customs-compliance</span><span class="c-tag hit">Gate: para omitir</span></div></div></a>
+</div>
+
+<div class="grp">Comercial y carga</div>
+<div class="cards">
+<a class="card" href="f16-factura-comercial.html"><div class="c-band"><span>F2-02</span></div><div class="c-b"><div class="c-code">F2-02</div><div class="c-t">Factura comercial y liquidación de valores</div><div class="c-d">Liquida FOB, fletes, seguros y gastos, y cuadra el total contra la SAE.</div><div class="c-f"><span class="c-tag">agente-factura</span><span class="c-tag">Manual Cap. 5 · totales e Incoterm</span><span class="c-tag hit">Gate: si hay descuadre</span></div></div></a>
+<a class="card" href="f17-booking-carga-contenedores.html"><div class="c-band"><span>F1-04</span></div><div class="c-b"><div class="c-code">F1-04</div><div class="c-t">Booking, carga y contenedores</div><div class="c-d">Plan de carga, contenedores, precintos y VGM cruzado con el packing list.</div><div class="c-f"><span class="c-tag">agente-carga</span><span class="c-tag">Manual Cap. 8 y 11</span><span class="c-tag hit">Gate: cerrar el plan</span></div></div></a>
+<a class="card" href="f18-inspeccion-previa.html"><div class="c-band"><span>F5-01</span></div><div class="c-b"><div class="c-code">F5-01</div><div class="c-t">Inspección previa operativa</div><div class="c-d">Checklist de inspección previa por tipo de carga y consolidación del acta.</div><div class="c-f"><span class="c-tag">agente-inspeccion</span><span class="c-tag">Manual Cap. 3 · inspección previa</span><span class="c-tag hit">Gate: firmar el acta</span></div></div></a>
+<a class="card" href="f19-certificado-origen.html"><div class="c-band"><span>F2-04</span></div><div class="c-b"><div class="c-code">F2-04</div><div class="c-t">Certificado de origen y acuerdos</div><div class="c-d">Acuerdo aplicable, criterio de origen y disponibilidad de cupo.</div><div class="c-f"><span class="c-tag">agente-origen</span><span class="c-tag">Acuerdos comerciales · VUCE</span><span class="c-tag hit">Gate: siempre</span></div></div></a>
+</div>
+
+<div class="grp">Validación y transmisión</div>
+<div class="cards">
+<a class="card" href="f04-validacion-reglas.html"><div class="c-band"><span>F2-05</span></div><div class="c-b"><div class="c-code">F2-05</div><div class="c-t">Validación y reglas</div><div class="c-d">Veredicto del rules-engine de DAL interpretado y localizado en el documento origen.</div><div class="c-f"><span class="c-tag">agente-validacion</span><span class="c-tag">rules-engine · DAL</span><span class="c-tag hit">Gate: correcciones</span></div></div></a>
+<a class="card" href="f05-flujo-logistico.html"><div class="c-band"><span>F1-02</span></div><div class="c-b"><div class="c-code">F1-02</div><div class="c-t">Flujo logístico</div><div class="c-d">Cuál de los 27 procesos de salida aplica y qué hitos vienen después.</div><div class="c-f"><span class="c-tag">agente-flujo</span><span class="c-tag">Manual Cap. 3</span></div></div></a>
+<a class="card" href="f07-transmision-muisca.html"><div class="c-band"><span>F3-02</span></div><div class="c-b"><div class="c-code">F3-02</div><div class="c-t">Transmisión a MUISCA</div><div class="c-d">Preflight, idempotencia, reconciliación por Número de Asunto y gate no omitible.</div><div class="c-f"><span class="c-tag">agente-transmision</span><span class="c-tag">Manual Cap. 13.1</span><span class="c-tag hit">Gate: bloqueante</span></div></div></a>
+</div>
+
+<div class="grp">Salida y cierre</div>
+<div class="cards">
+<a class="card" href="f08-traslados-saldos.html"><div class="c-band"><span>F3-04</span></div><div class="c-b"><div class="c-code">F3-04</div><div class="c-t">Traslados y saldos</div><div class="c-d">Planilla 1162, control de saldos con bloqueo, asignación de vehículo.</div><div class="c-f"><span class="c-tag">agente-traslados</span><span class="c-tag">Subanexo 6.3</span><span class="c-tag hit">Gate: antes de transmitir</span></div></div></a>
+<a class="card" href="f09-manifiesto-dex.html"><div class="c-band"><span>F6-01</span></div><div class="c-b"><div class="c-code">F6-01</div><div class="c-t">Manifiesto y cierre DEX</div><div class="c-d">Consolidación de varias SAE en el 1165 y firma del Formulario 600.</div><div class="c-f"><span class="c-tag">agente-manifiesto</span><span class="c-tag">Subanexo 6.7</span><span class="c-tag hit">Gate: bloqueante</span></div></div></a>
+<a class="card" href="f33-inspeccion-dian-siis.html"><div class="c-band"><span>F5-02</span></div><div class="c-b"><div class="c-code">F5-02</div><div class="c-t">Inspección DIAN y acta SIIS</div><div class="c-d">Canal de selectividad, inspección simultánea en VUCE, acta, hallazgos y precintos nuevos.</div><div class="c-f"><span class="c-tag">agente-inspeccion-dian</span><span class="c-tag">SIIS · VUCE · P5.2</span><span class="c-tag hit">Gate: acompañamiento V-53</span></div></div></a>
+<a class="card" href="f10-seguimiento-novedades.html"><div class="c-band"><span>F3-03</span></div><div class="c-b"><div class="c-code">F3-03</div><div class="c-t">Seguimiento y novedades</div><div class="c-d">Estado aduanero observado por polling, causa de la novedad y subsanación.</div><div class="c-f"><span class="c-tag">agente-seguimiento</span><span class="c-tag">RAG-05 novedades</span><span class="c-tag hit">Gate: para subsanar</span></div></div></a>
+</div>
+
+<div class="grp">Procesos especiales</div>
+<div class="cards">
+<a class="card" href="f20-regimenes-especiales-cupos.html"><div class="c-band"><span>FE-01</span></div><div class="c-b"><div class="c-code">FE-01</div><div class="c-t">Regímenes especiales y cupos</div><div class="c-d">Si aplica Plan Vallejo, PEX o drawback, y el cupo disponible.</div><div class="c-f"><span class="c-tag">agente-regimenes</span><span class="c-tag">Plan Vallejo · PEX</span><span class="c-tag hit">Gate: siempre</span></div></div></a>
+<a class="card" href="f21-embarque-fraccionado.html"><div class="c-band"><span>FE-02</span></div><div class="c-b"><div class="c-code">FE-02</div><div class="c-t">Exportación global y embarques fraccionados</div><div class="c-d">Proyecta embarques contra la SAE global y avisa el vencimiento del plazo.</div><div class="c-f"><span class="c-tag">agente-fraccionado</span><span class="c-tag">Manual Cap. 5 · embarque fraccionado</span><span class="c-tag hit">Gate: cerrar la global</span></div></div></a>
+<a class="card" href="f22-modificacion-invalidacion.html"><div class="c-band"><span>FE-03</span></div><div class="c-b"><div class="c-code">FE-03</div><div class="c-t">Modificación, invalidación y prórrogas</div><div class="c-d">Decide entre modificación (Concepto 02), invalidación o prórroga.</div><div class="c-f"><span class="c-tag">agente-modificaciones</span><span class="c-tag">Subanexo 6.1 · Concepto 02</span><span class="c-tag hit">Gate: bloqueante</span></div></div></a>
+<a class="card" href="f23-zona-franca-f1212.html"><div class="c-band"><span>FE-04</span></div><div class="c-b"><div class="c-code">FE-04</div><div class="c-t">Zona franca y depósito franco</div><div class="c-d">Arma el Formato 1212 y coordina con el operador de zona franca.</div><div class="c-f"><span class="c-tag">agente-zona-franca</span><span class="c-tag">Subanexo 6.4 · Formato 1212 v7</span><span class="c-tag hit">Gate: siempre</span></div></div></a>
+<a class="card" href="f24-trafico-postal-f1138.html"><div class="c-band"><span>FE-05</span></div><div class="c-b"><div class="c-code">FE-05</div><div class="c-t">Tráfico postal y envíos urgentes</div><div class="c-d">Consolida envíos en el Manifiesto Expreso 1138.</div><div class="c-f"><span class="c-tag">agente-postal</span><span class="c-tag">Subanexo 6.5 · Formato 1138</span><span class="c-tag hit">Gate: siempre</span></div></div></a>
+<a class="card" href="f25-reembarque-viajero.html"><div class="c-band"><span>FE-06</span></div><div class="c-b"><div class="c-code">FE-06</div><div class="c-t">Reembarque y mercancía del viajero</div><div class="c-d">Enlaza la importación previa y arma el reembarque o la salida del viajero.</div><div class="c-f"><span class="c-tag">agente-reembarque</span><span class="c-tag">Manual Cap. 3 · Procesos 11-14, 23</span><span class="c-tag hit">Gate: bloqueante</span></div></div></a>
+<a class="card" href="f30-uraba-regional.html"><div class="c-band"><span>FE-07</span></div><div class="c-b"><div class="c-code">FE-07</div><div class="c-t">Urabá, procedimiento especial regional</div><div class="c-d">Cuál de los Procesos 15 a 17 aplica en el corredor de Urabá y la guarda de zona secundaria.</div><div class="c-f"><span class="c-tag">agente-flujo</span><span class="c-tag">Manual Cap. 3 · Procesos 15-17</span><span class="c-tag hit">Gate: solicitud motivada</span></div></div></a>
+</div>
+
+<div class="grp">Cierre y back-office</div>
+<div class="cards">
+<a class="card" href="f34-portal-exportador.html"><div class="c-band"><span>FT-06</span></div><div class="c-b"><div class="c-code">FT-06</div><div class="c-t">Portal del exportador y comunicaciones</div><div class="c-d">Los ocho hitos visibles para el cliente, entrega documental con acuse y encuesta de cierre.</div><div class="c-f"><span class="c-tag">agente-comunicaciones</span><span class="c-tag warn">Sin norma DIAN · decisión de producto</span><span class="c-tag hit">Gate: enviar desviación</span></div></div></a>
+<a class="card" href="f26-expediente-digital.html"><div class="c-band"><span>FT-03</span></div><div class="c-b"><div class="c-code">FT-03</div><div class="c-t">Expediente digital y retención</div><div class="c-d">Verifica completitud del expediente y su retención documental de 5 años.</div><div class="c-f"><span class="c-tag">agente-expediente</span><span class="c-tag">Retención documental 5 años</span></div></div></a>
+<a class="card" href="f28-cierre-cambiario.html"><div class="c-band"><span>F7-01</span></div><div class="c-b"><div class="c-code">F7-01</div><div class="c-t">Cierre cambiario y reintegro de divisas</div><div class="c-d">Concilia el DEX contra el reintegro de divisas reportado por el banco.</div><div class="c-f"><span class="c-tag">agente-cambiario</span><span class="c-tag hit">Fuera del alcance DIAN</span><span class="c-tag hit">Gate: siempre</span></div></div></a>
+<a class="card" href="f29-precosteo-costos.html"><div class="c-band"><span>FT-05</span></div><div class="c-b"><div class="c-code">FT-05</div><div class="c-t">Precosteo y costos de la operación</div><div class="c-d">Precosteo y desviación contra el costo real de la operación.</div><div class="c-f"><span class="c-tag">agente-costos</span><span class="c-tag warn">Sin norma DIAN · decisión de producto</span><span class="c-tag hit">Gate: para facturar</span></div></div></a>
+</div>
+
+<div class="grp">Administración</div>
+<div class="cards">
+<a class="card" href="f11-copiloto-reglas.html"><div class="c-band"><span>FT-01</span></div><div class="c-b"><div class="c-code">FT-01</div><div class="c-t">Copiloto de reglas</div><div class="c-d">Reglas operativas en lenguaje natural, simuladas contra histórico antes de publicar.</div><div class="c-f"><span class="c-tag">agente-copiloto-reglas</span><span class="c-tag">rules-engine · DAL</span><span class="c-tag hit">Gate: publicación</span></div></div></a>
+<a class="card" href="f27-administracion.html"><div class="c-band"><span>FT-04</span></div><div class="c-b"><div class="c-code">FT-04</div><div class="c-t">Administración: usuarios, mandatos, certificados</div><div class="c-d">Usuarios, mandatos, certificados digitales y consecutivos de envío.</div><div class="c-f"><span class="c-tag">sin agente</span><span class="c-tag">Manual Cap. 13.1 · firma y consecutivos</span></div></div></a>
+</div>
+
+</div></body></html>

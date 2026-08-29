@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FT-07 · Indicadores de desempeño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f35-scroll{overflow-x:auto}
+.f35-scope{border-left:2px solid var(--gold-bd);padding:10px 0 10px 13px;margin:0 0 16px;font-size:12px;color:var(--slate);background:var(--gold-wash);border-radius:0 var(--r) var(--r) 0}
+.f35-scope b{color:var(--gold-fg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:3px}
+.f35-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line-soft);
+  border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.f35-kpi{background:var(--raised);padding:11px 13px}
+.f35-kpi-n{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;color:var(--ink)}
+.f35-kpi-n.alert{color:var(--alert)}
+.f35-kpi-n.warn{color:var(--gold-fg)}
+.f35-kpi-l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin-top:3px}
+.f35-two{display:grid;grid-template-columns:1fr 1.3fr;gap:16px;align-items:start}
+.f35-chan{display:flex;flex-direction:column;gap:9px}
+.f35-chan-row{display:grid;grid-template-columns:56px 1fr 46px;gap:9px;align-items:center}
+.f35-chan-l{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--slate)}
+.f35-chan-bar{height:10px;background:var(--paper);border:1px solid var(--line-soft);border-radius:2px;overflow:hidden}
+.f35-chan-bar i{display:block;height:100%}
+.f35-chan-bar i.g{background:var(--seal)}
+.f35-chan-bar i.a{background:var(--gold-fg)}
+.f35-chan-bar i.r{background:var(--alert)}
+.f35-chan-n{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink)}
+.f35-sub{font-size:11.5px;color:var(--slate);margin-bottom:9px}
+@media (max-width:1023px){.f35-two{grid-template-columns:1fr}}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">Agosto 2026</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">FT-07</span>
+      <span class="ftitle">Indicadores de desempeño</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ ÁMBITO PROPIO DE FT-07 · sustituye la tira de estados según §7.4 -->
+  <div class="states-wrap">
+    <div class="scope" aria-label="Cierre del periodo">
+      <div class="sc"><span class="sc-v">121</span><span class="sc-k">SAE radicadas</span></div>
+      <div class="sc"><span class="sc-v">22</span><span class="sc-k">Indicadores</span></div>
+      <div class="sc alert"><span class="sc-v">1</span><span class="sc-k">Fuera de meta</span></div>
+      <div class="sc warn"><span class="sc-v">94,2%</span><span class="sc-k">Aceptación en primera</span></div>
+      <div class="sc"><span class="sc-v">11,3</span><span class="sc-k">Días ciclo</span></div>
+    </div>
+  </div>
+  <!-- ▲ ÁMBITO PROPIO DE FT-07 -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-indicadores</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿Cómo cerramos agosto?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-indicadores</span><span class="who-time">17:20</span></div>
+        <div class="msg">
+          <p><b>4 de los 5 indicadores de eficacia</b> están en meta. El que falla es la <b>tasa de SAE aceptadas en primera radicación: 94,2% contra una meta de 98%</b>. Son 7 rechazos sobre 121 radicaciones.</p>
+          <p>Aislé la causa: <b>5 de los 7 rechazos son el mismo código</b>, <code>RCH-027</code> — visto bueno vencido al momento de retransmitir. Todos en operaciones donde la vigencia se validó contra la fecha de radicación y no contra la fecha proyectada de embarque. Es exactamente el riesgo <b>R-03</b>.</p>
+          <p>Mi propuesta concreta: <b>subir la severidad de la regla de vigencia</b> para que compare siempre contra la fecha de embarque. Eso se edita en <b>FT-01</b>, no aquí.</p>
+          <p>Aclaro que no calculo nada: los indicadores salen de una proyección de lectura sobre los eventos del dominio; yo solo los ordeno, los comparo con la meta y explico de dónde viene la desviación.</p>
+          <p>Una advertencia honesta: el tiempo de espera imputable al cliente creció de 9 a 14 horas promedio. Ese tiempo no es de la agencia, pero sí afecta el ciclo total que el cliente percibe. Conviene informarlo en la revisión trimestral y no discutirlo al final.</p>
+          <div class="evid"><span class="chip">121 SAE · agosto 2026</span><span class="chip">RCH-027 · 5 de 7 rechazos</span><span class="chip">R-03</span></div>
+          <details class="trace"><summary>Traza del agente</summary><div class="trace-body">
+            <span class="n">consolidar_periodo</span> → 121 SAE, 118 embarques<br>
+            <span class="n">calcular_indicadores</span> → 22 indicadores<br>
+            <span class="n">comparar_contra_meta</span> → 1 fuera de meta<br>
+            <span class="n">aislar_causa</span> → RCH-027 en 5 de 7<br>
+            <span class="n">correlacionar_con_riesgo</span> → R-03 vigencia contra fecha equivocada<br>
+            <span class="t">mcp-analitica (solo lectura) · exp-worklist-read-model</span>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por un indicador o por su tendencia…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Eficacia</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Eficiencia</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Calidad</button>
+      <button class="tab" role="tab" id="t-4" aria-controls="p-4" aria-selected="false" data-p="p-4" tabindex="-1">Mejora</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="f35-scope"><b>Sin norma DIAN · decisión de producto</b>Ningún anexo de la Resolución 000046 exige medir este proceso. Este tablero existe porque el acuerdo de servicio compromete niveles de servicio (§17.4) y porque sin medición los ciclos de mejora de §19.3 no tienen insumo. Queda registrado como ADR en <code>TRAZABILIDAD_NORMATIVA.md</code>.</div>
+
+        <div class="f35-kpis">
+          <div class="f35-kpi"><div class="f35-kpi-n">121</div><div class="f35-kpi-l">SAE radicadas</div></div>
+          <div class="f35-kpi"><div class="f35-kpi-n alert">1</div><div class="f35-kpi-l">Indicador fuera de meta</div></div>
+          <div class="f35-kpi"><div class="f35-kpi-n warn">94,2%</div><div class="f35-kpi-l">Aceptación en primera</div></div>
+          <div class="f35-kpi"><div class="f35-kpi-n">11,3</div><div class="f35-kpi-l">Días ciclo promedio</div></div>
+        </div>
+
+        <div class="artifact">
+          <div class="band"><span>§21.1</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Indicadores de eficacia</div><div class="art-sub">exp-analytics-read-model · agosto 2026</div></div>
+              <div class="art-sub">1 fuera de meta · agosto 2026</div>
+            </div>
+            <div class="f35-scroll">
+            <table class="grid">
+              <tr><th>Indicador</th><th>Definición</th><th>Resultado</th><th>Meta</th><th>Estado</th></tr>
+              <tr><td>Tasa de SAE aceptadas en primera radicación</td><td>SAE aceptadas sin rechazo / SAE radicadas</td><td>94,2%</td><td>≥ 98%</td><td><span class="pill bad">Fuera de meta</span></td></tr>
+              <tr><td>Tasa de operaciones sin hallazgo en inspección</td><td>Sin novedad / inspeccionadas</td><td>96,1%</td><td>≥ 95%</td><td><span class="pill ok">En meta</span></td></tr>
+              <tr><td>Tasa de embarques en la ventana planeada</td><td>En el buque o vuelo previsto / total</td><td>97,5%</td><td>≥ 97%</td><td><span class="pill ok">En meta</span></td></tr>
+              <tr><td>Tasa de DEX consolidados dentro del plazo</td><td>DEX en plazo / DEX totales</td><td>100%</td><td>100%</td><td><span class="pill ok">En meta</span></td></tr>
+              <tr><td>Tasa de expedientes completos al cierre</td><td>Sin faltantes / cerrados</td><td>100%</td><td>100%</td><td><span class="pill ok">En meta</span></td></tr>
+            </table>
+            </div>
+            <div class="note"><b>La meta de los dos últimos es 100% y no admite lectura estadística.</b> Un DEX fuera de plazo es una infracción aduanera (<b>V-43</b>) y un expediente incompleto deja a la agencia sin con qué responder un requerimiento (<b>R-07</b>).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>§21.2</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">Indicadores de eficiencia</div><div class="art-sub">exp-analytics-read-model · agosto vs. julio 2026</div></div></div>
+            <div class="f35-scroll">
+            <table class="grid">
+              <tr><th>Indicador</th><th>Definición</th><th>Agosto</th><th>Julio</th><th>Tendencia</th></tr>
+              <tr><td>Tiempo de ciclo total</td><td>Días entre instrucción y DEX aceptado</td><td>11,3</td><td>11,9</td><td><span class="pill ok">Mejora</span></td></tr>
+              <tr><td>Tiempo de preparación documental</td><td>Horas entre aceptación e instrucción validada</td><td>6,2</td><td>5,8</td><td><span class="pill bad">Se deteriora</span></td></tr>
+              <tr><td>Tiempo de permanencia en zona primaria</td><td>Horas entre ingreso y autorización de embarque</td><td>31</td><td>38</td><td><span class="pill ok">Mejora</span></td></tr>
+              <tr><td>Tiempo de espera imputable al cliente</td><td>Horas en estado <i>En espera del cliente</i></td><td>14</td><td>9</td><td><span class="pill bad">Se deteriora</span></td></tr>
+              <tr><td>Costo de almacenaje por operación</td><td>Costo de almacenaje / operación</td><td>COP 412.000</td><td>COP 505.000</td><td><span class="pill ok">Mejora</span></td></tr>
+              <tr><td>Sobrecosto por reproceso</td><td>Costos no cotizados por errores internos</td><td>COP 1.870.000</td><td>COP 1.240.000</td><td><span class="pill bad">Se deteriora</span></td></tr>
+            </table>
+            </div>
+            <div class="note"><b>Separar el tiempo imputable al cliente no es una excusa, es un dato del contrato.</b> El estado <i>En espera del cliente</i> tiene reloj propio desde <b>F1-01</b>, y es lo que permite discutir un incumplimiento de plazo con evidencia en vez de con memoria.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>§21.3</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">Calidad y riesgo</div><div class="art-sub">exp-analytics-read-model · agosto 2026</div></div></div>
+            <div class="f35-two">
+              <div>
+                <div class="f35-sub">Distribución de canal</div>
+                <div class="f35-chan">
+                  <div class="f35-chan-row"><span class="f35-chan-l">Verde</span><div class="f35-chan-bar"><i class="g" style="width:78%"></i></div><span class="f35-chan-n">78%</span></div>
+                  <div class="f35-chan-row"><span class="f35-chan-l">Ámbar</span><div class="f35-chan-bar"><i class="a" style="width:15%"></i></div><span class="f35-chan-n">15%</span></div>
+                  <div class="f35-chan-row"><span class="f35-chan-l">Rojo</span><div class="f35-chan-bar"><i class="r" style="width:7%"></i></div><span class="f35-chan-n">7%</span></div>
+                </div>
+              </div>
+              <div class="f35-scroll">
+              <table class="grid">
+                <tr><th>Indicador</th><th>Definición</th><th>Resultado</th></tr>
+                <tr><td>Densidad de inconsistencias documentales</td><td>Inconsistencias / documentos validados</td><td>3,1%</td></tr>
+                <tr><td>Origen de la inconsistencia</td><td>Exportador vs. agencia</td><td>62% / 38%</td></tr>
+                <tr><td>Correcciones de declaración</td><td>Corregidas / presentadas</td><td>5,8%</td></tr>
+                <tr><td>Requerimientos de la autoridad atendidos en término</td><td>Atendidos en término / totales</td><td>4 de 4</td></tr>
+                <tr><td>Reclamaciones de clientes</td><td>Reclamaciones / operaciones</td><td>1 / 121</td></tr>
+              </table>
+              </div>
+            </div>
+            <div class="note"><b>El reparto del origen de la inconsistencia es el indicador político del tablero.</b> Dice qué parte del retrabajo se corrige educando al cliente y qué parte corrigiendo el proceso propio; sin él, toda conversación de calidad termina en opinión.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-4" role="tabpanel" aria-labelledby="t-4" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>§19.3</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">De la desviación a la acción</div><div class="art-sub">ciclo de mejora · agosto 2026</div></div></div>
+            <div class="f35-scroll">
+            <table class="grid">
+              <tr><th>Fuente</th><th>Qué alimenta</th><th>Acción abierta</th></tr>
+              <tr><td>Rechazos de la SAE</td><td>Ajuste de las reglas de validación previas a la radicación</td><td><b>Subir la severidad de la regla de vigencia de visto bueno · FT-01</b> <span class="pill bad">Abierta</span></td></tr>
+              <tr><td>Hallazgos de inspección</td><td>Refuerzo de la validación documental y de la clasificación</td><td>Sin acción abierta</td></tr>
+              <tr><td>Desviaciones de cronograma</td><td>Recalibración de los tiempos objetivo</td><td>Revisar el objetivo de preparación documental, 4 h no se está cumpliendo <span class="pill bad">Abierta</span></td></tr>
+              <tr><td>Costos no previstos</td><td>Ajuste de la cotización y de la comunicación de riesgos</td><td><b>Ajustar la tarifa de flete interno · FT-05</b> <span class="pill bad">Abierta</span></td></tr>
+              <tr><td>Reclasificaciones arancelarias</td><td>Actualización del maestro de productos</td><td>Sin acción abierta</td></tr>
+              <tr><td>Requerimientos de la autoridad</td><td>Revisión de la calidad del archivo</td><td>Sin acción abierta</td></tr>
+            </table>
+            </div>
+            <div class="note"><b>Un indicador sin acción abierta es decoración.</b> Cada desviación del tablero apunta a la pantalla donde se corrige — las reglas en FT-01, las tarifas en FT-05, los plazos en el acuerdo de servicio de F0-01 — y no a un informe.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">tablero-indicadores</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-indicadores</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-analitica (solo lectura)</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v no">Sin RAG · cálculo determinista</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No, es una proyección de lectura</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v no">No aplica, solo lectura</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

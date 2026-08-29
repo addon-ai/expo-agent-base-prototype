@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exportaciones DIAN · Acceso a agentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.wrap{max-width:1060px;margin:0 auto;padding:34px 26px 64px}
+.idx-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.idx-brand{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mute)}
+.idx-h{font-size:30px;font-weight:700;letter-spacing:-.03em;margin:16px 0 20px;max-width:28ch}
+.grp{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mute);margin:36px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:10px}
+.card{display:grid;grid-template-columns:34px 1fr;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--raised);text-decoration:none;color:inherit;overflow:hidden}
+.card:hover{border-color:var(--stamp)}
+.card:hover .c-band{background:var(--stamp)}
+.card:focus-visible{outline:2px solid var(--stamp);outline-offset:2px}
+.c-band{background:var(--band-bg);display:flex;align-items:flex-start;justify-content:center;padding-top:14px}
+.c-band svg{width:15px;height:15px;fill:none;stroke:var(--band-ink);stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;transition:stroke .15s}
+.card:hover .c-band svg{stroke:var(--on-accent)}
+.c-b{padding:13px 15px}
+.c-code{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;color:var(--stamp)}
+.c-t{font-size:15px;font-weight:600;letter-spacing:-.01em;margin:3px 0 6px}
+.c-d{font-size:12.5px;color:var(--slate);line-height:1.5}
+.c-f{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
+.c-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid var(--line-soft);
+  border-radius:var(--r);padding:1px 5px;color:var(--mute)}
+.c-tag.hit{border-color:var(--alert-bd);color:var(--alert-fg)}
+.c-tag.warn{border-color:var(--gold-bd);color:var(--gold-fg)}
+/* ▼ BADGE HITL · intervención humana. Violeta, frente al verde del agente. */
+.c-tag.agent{cursor:pointer}
+.c-tag.agent:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.c-tag.norma,.c-tag.rag{
+  display:inline-flex;align-items:center;gap:4px;cursor:pointer;background:transparent;
+}
+.c-tag.norma svg,.c-tag.rag svg{width:10px;height:10px;flex:0 0 auto;fill:none;stroke:currentColor;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.c-tag.norma{border-color:var(--gold-bd);color:var(--gold-fg)}
+.c-tag.rag{border-color:var(--line);color:var(--slate)}
+.c-tag.norma:focus-visible,.c-tag.rag:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.hitl-tip.modo-norma b{color:var(--gold-fg)}
+.hitl-tip.modo-rag b{color:var(--slate)}
+.c-tag.tipo{
+  display:inline-flex;align-items:center;gap:4px;cursor:pointer;
+  border-color:var(--tipo-bd);color:var(--tipo-fg);background:transparent;
+  text-transform:lowercase;
+}
+.c-tag.tipo svg{width:10px;height:10px;flex:0 0 auto;fill:none;stroke:currentColor;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.c-tag.tipo:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.hitl-tip.modo-tipo b{color:var(--tipo-fg);text-transform:lowercase}
+.c-tag.hitl{
+  display:inline-flex;align-items:center;gap:4px;cursor:pointer;
+  border-color:var(--stamp-bd);color:var(--stamp-fg);background:transparent;
+}
+.c-tag.hitl svg{width:10px;height:10px;flex:0 0 auto;fill:none;stroke:currentColor;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.c-tag.hitl:hover{border-color:var(--stamp)}
+.c-tag.hitl:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.hitl-tip{
+  position:absolute;z-index:60;max-width:290px;
+  background:var(--raised-2);           /* respaldo si no hay color-mix */
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--shadow);padding:12px 13px;font-size:12.5px;line-height:1.55;color:var(--ink-2);
+}
+/* Vidrio: translúcido lo justo para que se intuya la card debajo, sin perder lectura */
+@supports (backdrop-filter:blur(1px)) and (background:color-mix(in srgb,red 50%,transparent)){
+  .hitl-tip{
+    background:color-mix(in srgb,var(--raised-2) 62%,transparent);
+    border-color:color-mix(in srgb,var(--line) 55%,transparent);
+    backdrop-filter:blur(20px) saturate(190%);
+    -webkit-backdrop-filter:blur(20px) saturate(190%);
+    /* filo de vidrio: una luz interior arriba, sombra proyectada abajo */
+    box-shadow:inset 0 1px 0 color-mix(in srgb,var(--raised) 60%,transparent),var(--shadow);
+  }
+}
+.hitl-tip[hidden]{display:none}
+.hitl-tip.modo-agente b{color:var(--agent-fg)}
+.hitl-tip .tip-r1[hidden],.hitl-tip .tip-r2[hidden]{display:none}
+.hitl-tip b{display:flex;align-items:center;gap:5px;color:var(--stamp-fg);
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;margin-bottom:6px}
+.hitl-tip b svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.hitl-row{display:grid;grid-template-columns:64px 1fr;gap:9px;margin-top:7px}
+.hitl-k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mute);padding-top:2px}
+.hitl-v{color:var(--ink-2)}
+/* ▲ BADGE HITL */
+
+/* ─── BUSCADOR ────────────────────────────────────────────── */
+.idx-search{margin:26px 0 14px;display:flex;flex-direction:column;gap:10px}
+.idx-field{display:flex;align-items:center;gap:8px;
+  border:1px solid var(--line);border-radius:999px;background:var(--field-bg);
+  padding:9px 14px;box-shadow:var(--shadow-sm)}
+.idx-field:focus-within{outline:2px solid var(--accent);outline-offset:1px}
+.idx-field svg{width:15px;height:15px;flex:0 0 auto;fill:var(--mute)}
+.idx-field input{flex:1;min-width:0;border:none;background:transparent;outline:none;
+  font-family:var(--font);font-size:14px;color:var(--ink)}
+.idx-field input::placeholder{color:var(--mute)}
+.idx-field input::-webkit-search-cancel-button{display:none}
+.idx-clear{border:none;background:transparent;cursor:pointer;color:var(--mute);
+  font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:var(--r);
+  transition:background .15s,color .15s}
+.idx-clear:hover{background:var(--hairline);color:var(--ink)}
+.idx-clear:focus-visible{outline:2px solid var(--stamp);outline-offset:1px}
+.idx-clear[hidden]{display:none}
+/* El atributo hidden debe ganar a los display: propios de .card, .cards y .idx-scrim */
+.card[hidden],.cards[hidden],.grp[hidden],.idx-scrim[hidden]{display:none}
+.idx-count{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* ─── CHIPS DE CATEGORÍA ──────────────────────────────────── */
+.idx-cats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.idx-cat{font-family:var(--mono);font-size:10px;letter-spacing:.04em;
+  border:1px solid var(--line);background:var(--raised);color:var(--slate);
+  padding:4px 10px;border-radius:999px;cursor:pointer;
+  transition:border-color .15s,color .15s,background .15s}
+.idx-cat:hover{border-color:var(--stamp-bd);color:var(--stamp-fg)}
+.idx-cat:focus-visible{outline:2px solid var(--stamp);outline-offset:2px}
+.idx-cat[aria-pressed="true"]{border-color:var(--stamp-bd);color:var(--stamp-fg);
+  background:var(--stamp-wash);font-weight:600}
+
+/* ─── ESTADO VACÍO ────────────────────────────────────────── */
+.idx-empty{border:1px dashed var(--line);border-radius:var(--r-lg);
+  background:var(--raised-2);padding:26px 20px;text-align:center;margin-top:18px}
+.idx-empty p{font-size:13.5px;color:var(--slate);margin-bottom:12px}
+.idx-empty strong{color:var(--ink)}
+.idx-empty[hidden]{display:none}
+
+/* ─── LAUNCHER DEL ORQUESTADOR ────────────────────────────── */
+.idx-chat-btn{position:fixed;right:22px;bottom:22px;z-index:40;
+  display:inline-flex;align-items:center;gap:8px;
+  border:none;border-radius:999px;cursor:pointer;
+  padding:11px 17px;color:var(--on-accent);background:var(--grad);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;box-shadow:var(--shadow);
+  transition:transform .12s,filter .12s}
+.idx-chat-btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.idx-chat-btn:active{transform:scale(.97)}
+.idx-chat-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.idx-chat-btn svg{width:15px;height:15px;fill:currentColor}
+
+/* ─── VELO (sólo móvil/landscape) ─────────────────────────── */
+.idx-scrim{position:fixed;inset:0;z-index:45;background:var(--hd-wash-3);
+  opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s}
+.idx-scrim.on{opacity:1;visibility:visible}
+
+/* ─── DRAWER ──────────────────────────────────────────────── */
+.idx-chat{
+  position:fixed;top:0;right:0;bottom:0;z-index:50;
+  width:396px;max-width:100vw;
+  display:flex;flex-direction:column;min-height:0;
+  background:var(--raised);border-left:1px solid var(--line);
+  box-shadow:var(--shadow);
+  transform:translateX(100%);            /* estado cerrado */
+  visibility:hidden;
+  transition:transform .24s cubic-bezier(.22,.61,.36,1),visibility .24s;
+}
+.idx-chat.on{transform:translateX(0);visibility:visible}   /* estado abierto */
+/* Con el drawer lateral abierto el catalogo cede el ancho, no queda debajo */
+@media (min-width:1024px){
+  /* El drawer reserva su ancho, pero el catalogo conserva su margen izquierdo
+     en vez de recentrarse: asi las cards no saltan al abrir o cerrar el chat. */
+  body.idx-chat-abierto{padding-right:396px}
+  body.idx-chat-abierto .wrap{
+    max-width:min(1060px, calc(100vw - 396px - 52px));
+    margin-left:clamp(26px, calc((100vw - 1060px) / 2), calc(100vw - 1060px - 396px - 26px));
+    margin-right:auto;
+  }
+  body.idx-chat-abierto .idx-chat-btn{display:none}
+}
+.idx-chat .thread{flex:1;min-height:0}
+.idx-close{border:none;background:transparent;cursor:pointer;color:var(--chrome-slate);
+  width:26px;height:26px;display:grid;place-items:center;border-radius:6px;
+  transition:background .15s,color .15s}
+.idx-close:hover{background:var(--hd-wash-2);color:var(--chrome-ink)}
+.idx-close:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.idx-close svg{width:14px;height:14px;fill:currentColor}
+.idx-chat .evid .chip{text-decoration:none}
+.idx-sugg{font-family:var(--mono)}
+
+/* ─── ANULACIÓN DE MOVIMIENTO ─────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .idx-chat{transition:none!important}
+  .idx-scrim{transition:none!important}
+}
+/* --- 1. MÓVIL ≤639px --- */
+@media (max-width:639px){
+  .wrap{padding:28px 16px 40px}
+  .idx-top{flex-direction:column}
+  .idx-h{font-size:26px}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .idx-cats{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;
+            -webkit-overflow-scrolling:touch}
+  .idx-cat{flex:0 0 auto}
+  .idx-chat{inset:0;width:100%;border-left:none}
+  .idx-chat-btn{right:16px;bottom:16px;padding:10px 14px}
+  body.idx-chat-abierto .idx-chat-btn{display:none}
+}
+/* --- 2. TABLET 640–1023px --- */
+@media (min-width:640px) and (max-width:1023px){
+  .wrap{padding:36px 22px 52px}
+  .idx-h{font-size:30px}
+  .idx-chat{width:min(420px,92vw)}
+  .idx-chat-btn{right:20px;bottom:20px}
+}
+/* --- 3. LAPTOP 1024–1439px --- */
+@media (min-width:1024px) and (max-width:1439px){
+  .idx-scrim{display:none}
+  .idx-chat{width:396px}
+}
+/* --- 4. TV ≥1920px --- */
+@media (min-width:1920px){
+  .wrap{max-width:1280px;padding:64px 32px 88px}
+  .idx-h{font-size:42px}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .idx-scrim{display:none}
+  .idx-chat{width:440px}
+  .idx-chat-btn{right:32px;bottom:32px;padding:13px 20px}
+}
+/* --- LANDSCAPE BAJO --- */
+@media (max-width:1023px) and (max-height:540px){
+  .wrap{padding:20px 16px 32px}
+  .idx-chat{inset:0;width:100%;border-left:none}
+  .idx-chat .chat-hd{height:38px}
+  .idx-chat .thread{padding:12px}
+  .idx-chat .composer{padding:8px 12px 10px}
+  .idx-chat .composer-tools{display:none}
+  .idx-chat-btn{right:12px;bottom:12px}
+}
+</style>
+</head><body><div class="wrap">
+<div class="idx-top">
+<div class="idx-brand">Exportaciones DIAN · Acceso a agentes</div>
+<a class="crumb" href="index.html" style="margin-left:auto;margin-right:12px">Salir</a>
+<!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+<div class="theme-toggle" role="group" aria-label="Selector de tema">
+  <div class="seg">
+    <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+      <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+    </button>
+    <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+      <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+    </button>
+  </div>
+</div>
+<!-- ▲ SELECTOR DE TEMA -->
+</div>
+<h1 class="idx-h">¿Qué necesitas hacer hoy?</h1>
+
+<!-- ▼ NUEVO · BUSCADOR -->
+<form class="idx-search" role="search" id="idx-search" onsubmit="return false">
+  <label class="idx-count" for="idx-q">Buscar flujo o agente</label>
+  <div class="idx-field">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm8.7 13.3-3.1-3.1a8 8 0 1 0-1.4 1.4l3.1 3.1a1 1 0 0 0 1.4-1.4z"/></svg>
+    <input id="idx-q" type="search" autocomplete="off" spellcheck="false"
+           placeholder="booking, arancel, MUISCA, F1-04, zona franca…"
+           aria-describedby="idx-count">
+    <button type="button" class="idx-clear" hidden>limpiar</button>
+  </div>
+  <div class="idx-cats" role="group" aria-label="Filtrar por categoría">
+      <button type="button" class="idx-cat" data-cat="" aria-pressed="true">Todas</button>
+      <button type="button" class="idx-cat" data-cat="acceso" aria-pressed="false">Acceso</button>
+      <button type="button" class="idx-cat" data-cat="fase-0" aria-pressed="false">Fase 0 · Vinculación y habilitación</button>
+      <button type="button" class="idx-cat" data-cat="fase-1" aria-pressed="false">Fase 1 · Negociación e inputs comerciales</button>
+      <button type="button" class="idx-cat" data-cat="fase-2" aria-pressed="false">Fase 2 · Preparación documental</button>
+      <button type="button" class="idx-cat" data-cat="fase-3" aria-pressed="false">Fase 3 · Trámite SAE (Formulario 602)</button>
+      <button type="button" class="idx-cat" data-cat="fase-6" aria-pressed="false">Fase 6 · Embarque y consolidación del DEX</button>
+      <button type="button" class="idx-cat" data-cat="maestros" aria-pressed="false">Maestros</button>
+      <button type="button" class="idx-cat" data-cat="transversales" aria-pressed="false">Transversales y administración</button>
+  </div>
+  <p class="idx-count" id="idx-count" aria-live="polite">17 de 17 flujos</p>
+</form>
+<!-- ▲ NUEVO -->
+
+
+<div class="grp" data-grupo="acceso">Acceso</div>
+<div class="cards">
+<a class="card" href="f00-ingreso.html" data-codigo="FA-01" data-grupo="acceso" data-titulo="Ingreso" data-tags="exp-identity-service · reutiliza auth de DAL · Identity Platform / Keycloak" data-form="" data-keys="consulta ingreso login autenticacion entrar acceso nit mandato certificado digital firma keycloak identidad sesion"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 7a4 4 0 1 0-3.9 4.9L7 16v3h3l1-1v-2h2l1-1v-2l1.1-1.1A4 4 0 0 0 15 7z"/></svg></div><div class="c-b"><div class="c-code">FA-01</div><div class="c-t">Ingreso</div><div class="c-d">Autenticación, selección de NIT y mandato, estado del certificado digital.</div><div class="c-f"><span class="c-tag tipo c" role="button" tabindex="0" data-tipo="CONSULTA" data-just="Verifica el certificado digital vigente y el mandato antes de operar" aria-label="Proceso de consulta. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>consulta</span></div></div></a>
+</div>
+
+<div class="grp" data-grupo="fase-0">Fase 0 · Vinculación y habilitación</div>
+<div class="cards">
+<a class="card" href="f32-vinculacion-habilitacion.html" data-codigo="F0-01" data-grupo="fase-0" data-titulo="Vinculación y habilitación del exportador" data-tags="agente-vinculacion · V-02 · V-03 · HITL: habilitar cliente" data-form="" data-keys="registro vinculacion habilitacion exportador cliente nuevo conocimiento del cliente rut usuario aduanero mandato firma contrato alta"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="3.4"/><path d="M3.5 19a6.5 6.5 0 0 1 13 0"/><path d="m16 10.5 1.8 1.8 3.7-3.8"/></svg></div><div class="c-b"><div class="c-code">F0-01</div><div class="c-t">Vinculación y habilitación del exportador</div><div class="c-d">Conocimiento del cliente, calidad de usuario aduanero en el RUT, mandato, firma y contrato.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Evalúa y registra el estado de habilitación del cliente exportador" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-vinculacion" data-func="Estudia el conocimiento del cliente y propone su habilitación como usuario" aria-label="Agente agente-vinculacion. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-vinculacion</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Antes de dar de alta al exportador" data-que="Revisa el estudio de conocimiento del cliente, la calidad de exportador en el RUT y el mandato, y autoriza la habilitación." data-hitl="habilitar cliente" aria-label="Punto HITL: habilitar cliente. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>habilitar cliente</span></div></div></a>
+</div>
+
+<div class="grp" data-grupo="fase-1">Fase 1 · Negociación e inputs comerciales</div>
+<div class="cards">
+<a class="card" href="f05-flujo-logistico.html" data-codigo="F1-02" data-grupo="fase-1" data-titulo="Flujo logístico" data-tags="agente-flujo · Manual Cap. 3" data-form="" data-keys="registro flujo logistico proceso procesos hitos cual proceso aplica 27 procesos ruta manual cap 3"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="12" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M8.2 7.1 15.8 11M8.2 16.9 15.8 13"/></svg></div><div class="c-b"><div class="c-code">F1-02</div><div class="c-t">Flujo logístico</div><div class="c-d">Cuál de los 27 procesos de salida aplica y qué hitos vienen después.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Recoge modalidad, ubicación, tránsito e inspección como campos de la SAE" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-flujo" data-func="Determina qué proceso de salida de mercancías aplica y qué sigue" aria-label="Agente agente-flujo. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-flujo</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Manual Cap. 3" aria-label="Referencia normativa Manual Cap. 3. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Manual Cap. 3</span></div></div></a>
+<a class="card" href="f02-clasificacion-arancelaria.html" data-codigo="F1-03" data-grupo="fase-1" data-titulo="Clasificación arancelaria" data-tags="agente-arancel · RAG-03 arancel · HITL: siempre" data-form="" data-keys="registro clasificacion arancelaria arancel partida subpartida posicion arancelaria rgi nota legal hs codigo arancelario clasificar"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3H5a2 2 0 0 0-2 2v6l9 9 8-8-9-9z"/><circle cx="8" cy="8" r="1.4"/></svg></div><div class="c-b"><div class="c-code">F1-03</div><div class="c-t">Clasificación arancelaria</div><div class="c-d">Candidatas de subpartida con la RGI aplicada y la nota legal que la sustenta.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Asigna y aprueba la subpartida arancelaria que alimenta la declaración" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-arancel" data-func="Propone la subpartida arancelaria con su justificación normativa citada" aria-label="Agente agente-arancel. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-arancel</span><span class="c-tag rag" role="button" tabindex="0" data-rag="RAG-03 arancel" aria-label="Base de conocimiento RAG-03 arancel. Pulsa para saber qué es"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M9 7.5h6M9 11h4"/></svg>RAG · arancel</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="En cada clasificación, sin excepción" data-que="Elige la subpartida entre las candidatas y confirma la RGI y la nota legal que la sustentan." data-hitl="siempre" aria-label="Punto HITL: siempre. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>siempre</span></div></div></a>
+</div>
+
+<div class="grp" data-grupo="fase-2">Fase 2 · Preparación documental y vistos buenos</div>
+<div class="cards">
+<a class="card" href="f01-carga-normalizacion.html" data-codigo="F2-01" data-grupo="fase-2" data-titulo="Carga y normalización documental" data-tags="agente-normalizacion · supporting-documents · DAL · HITL: campos bajo umbral" data-form="" data-keys="registro carga normalizacion documental extraccion dal f10602 esquema canonico subir documentos ocr mapeo"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L8 8m4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div><div class="c-b"><div class="c-code">F2-01</div><div class="c-t">Carga y normalización documental</div><div class="c-d">Extracción de DAL mapeada al esquema canónico del F10602 y verificada contra paramétricas.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Normaliza los datos extraídos de los soportes al esquema canónico de la SAE" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-normalizacion" data-func="Mapea los datos extraídos de los documentos al formato oficial de la declaración" aria-label="Agente agente-normalizacion. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-normalizacion</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Solo en los campos que la extracción leyó con poca confianza" data-que="Corrige o confirma cada valor dudoso antes de que entre al expediente." data-hitl="campos bajo umbral" aria-label="Punto HITL: campos bajo umbral. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>campos bajo umbral</span></div></div></a>
+<a class="card" href="f06-soportes-vistos-buenos.html" data-codigo="F2-03" data-grupo="fase-2" data-titulo="Soportes y vistos buenos" data-tags="agente-cumplimiento · exp-customs-compliance · HITL: para omitir" data-form="" data-keys="consulta registro soportes vistos buenos documento soporte exigibilidad modalidad vigencia vuce permiso autorizacion cumplimiento"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m9 14 2 2 4-4"/></svg></div><div class="c-b"><div class="c-code">F2-03</div><div class="c-t">Soportes y vistos buenos</div><div class="c-d">Exigibilidad por subpartida y modalidad, vigencias y consulta VUCE.</div><div class="c-f"><span class="c-tag tipo cr" role="button" tabindex="0" data-tipo="CONSULTA/REGISTRO" data-just="Verifica exigibilidad y vigencia de soportes y permite excepcionar uno" aria-label="Proceso de consulta/registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>consulta/registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-cumplimiento" data-func="Verifica qué soportes, permisos y vistos buenos se exigen y si siguen vigentes" aria-label="Agente agente-cumplimiento. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-cumplimiento</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Solo si se va a omitir un visto bueno exigible" data-que="Justifica la omisión y asume la responsabilidad de esa decisión." data-hitl="para omitir" aria-label="Punto HITL: para omitir. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>para omitir</span></div></div></a>
+<a class="card" href="f04-validacion-reglas.html" data-codigo="F2-05" data-grupo="fase-2" data-titulo="Validación y reglas" data-tags="agente-validacion · rules-engine · DAL · HITL: correcciones" data-form="" data-keys="consulta registro validacion reglas rules engine dal veredicto error errores documento origen validar corregir"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="c-b"><div class="c-code">F2-05</div><div class="c-t">Validación y reglas</div><div class="c-d">Veredicto del rules-engine de DAL interpretado y localizado en el documento origen.</div><div class="c-f"><span class="c-tag tipo cr" role="button" tabindex="0" data-tipo="CONSULTA/REGISTRO" data-just="Muestra el veredicto de validación y aplica las correcciones a la SAE" aria-label="Proceso de consulta/registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>consulta/registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-validacion" data-func="Interpreta los errores de validación y propone cómo corregirlos" aria-label="Agente agente-validacion. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-validacion</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Cuando el motor de reglas devuelve errores" data-que="Aprueba las correcciones propuestas o corrige a mano las que no acepta." data-hitl="correcciones" aria-label="Punto HITL: correcciones. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>correcciones</span></div></div></a>
+</div>
+
+<div class="grp" data-grupo="fase-3">Fase 3 · Trámite SAE (Formulario 602)</div>
+<div class="cards">
+<a class="card" href="f03-descripcion-mercancias.html" data-codigo="F3-01" data-grupo="fase-3" data-titulo="Descripción de mercancías" data-tags="agente-descripcion · Subanexo 6.2 · HITL: agrupación y v_otro" data-form="" data-keys="registro descripcion mercancias t_prod atributos individualizadores agrupacion v_otro subanexo 6.2 describir"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h6M4 12h6M4 17h6"/><rect x="14" y="5" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></div><div class="c-b"><div class="c-code">F3-01</div><div class="c-t">Descripción de mercancías</div><div class="c-d">Agrupación en t_prod, atributos comunes e individualizadores, reuso de catálogo.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Construye la descripción de mercancías del Subanexo 6.2 para el XML" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-descripcion" data-func="Redacta la descripción de mercancías exigida por la declaración" aria-label="Agente agente-descripcion. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-descripcion</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Subanexo 6.2" aria-label="Referencia normativa Subanexo 6.2. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Subanexo 6.2</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Al agrupar mercancías o usar el campo v_otro" data-que="Valida la agrupación por t_prod y el uso del campo abierto." data-hitl="agrupación y v_otro" aria-label="Punto HITL: agrupación y v_otro. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>agrupación y v_otro</span></div></div></a>
+<a class="card" href="f07-transmision-muisca.html" data-codigo="F3-02" data-grupo="fase-3" data-titulo="Transmisión a MUISCA" data-tags="agente-transmision · Manual Cap. 13.1 · HITL: obligatoria" data-form="" data-keys="registro transmision muisca transmitir enviar dian preflight idempotencia reconciliacion numero de asunto sae radicar"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9"/><path d="M8.5 12.5 12 9l3.5 3.5"/><path d="M5.5 8a9 9 0 0 1 13 0"/><path d="M8 10.5a5.5 5.5 0 0 1 8 0"/></svg></div><div class="c-b"><div class="c-code">F3-02</div><div class="c-t">Transmisión a MUISCA</div><div class="c-d">Preflight, idempotencia, reconciliación por Número de Asunto y gate no omitible.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Firma y transmite la SAE a MUISCA y captura el número de asunto" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-transmision" data-func="Transmite la declaración a la DIAN tras verificación y aprobación humana" aria-label="Agente agente-transmision. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-transmision</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Manual Cap. 13.1" aria-label="Referencia normativa Manual Cap. 13.1. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Manual Cap. 13.1</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Antes de transmitir a MUISCA" data-que="Da la orden de envío. El agente prepara el XML pero no transmite solo." data-hitl="obligatoria" aria-label="Punto HITL: obligatoria. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>obligatoria</span></div></div></a>
+<a class="card" href="f10-seguimiento-novedades.html" data-codigo="F3-03" data-grupo="fase-3" data-titulo="Seguimiento y novedades" data-tags="agente-seguimiento · RAG-05 novedades · HITL: para subsanar" data-form="" data-keys="consulta registro seguimiento novedad novedades estado aduanero polling subsanacion rastrear en que va"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div><div class="c-b"><div class="c-code">F3-03</div><div class="c-t">Seguimiento y novedades</div><div class="c-d">Estado aduanero observado por polling, causa de la novedad y subsanación.</div><div class="c-f"><span class="c-tag tipo cr" role="button" tabindex="0" data-tipo="CONSULTA/REGISTRO" data-just="Sigue el estado aduanero y radica prórrogas o reemplazos ante novedades" aria-label="Proceso de consulta/registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>consulta/registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-seguimiento" data-func="Observa el estado aduanero, explica novedades y propone su subsanación" aria-label="Agente agente-seguimiento. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-seguimiento</span><span class="c-tag rag" role="button" tabindex="0" data-rag="RAG-05 novedades" aria-label="Base de conocimiento RAG-05 novedades. Pulsa para saber qué es"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M9 7.5h6M9 11h4"/></svg>RAG · novedades</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Cuando la DIAN reporta una novedad" data-que="Decide cómo subsanarla y aprueba la respuesta antes de enviarla." data-hitl="para subsanar" aria-label="Punto HITL: para subsanar. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>para subsanar</span></div></div></a>
+<a class="card" href="f08-traslados-saldos.html" data-codigo="F3-04" data-grupo="fase-3" data-titulo="Traslados y saldos" data-tags="agente-traslados · Subanexo 6.3 · HITL: antes de transmitir" data-form="" data-keys="registro traslado traslados saldo saldos planilla 1162 vehiculo bloqueo subanexo 6.3 mover mercancia"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h10v9H3z"/><path d="M13 10h4l4 3.5V16h-8z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></div><div class="c-b"><div class="c-code">F3-04</div><div class="c-t">Traslados y saldos</div><div class="c-d">Planilla 1162, control de saldos con bloqueo, asignación de vehículo.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Arma y transmite la Planilla de Traslado 1162 contra el saldo disponible" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-traslados" data-func="Arma la planilla de traslado y el movimiento de mercancías hacia zona franca" aria-label="Agente agente-traslados. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-traslados</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Subanexo 6.3" aria-label="Referencia normativa Subanexo 6.3. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Subanexo 6.3</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Antes de transmitir el traslado" data-que="Confirma planilla, vehículo y saldos disponibles." data-hitl="antes de transmitir" aria-label="Punto HITL: antes de transmitir. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>antes de transmitir</span></div></div></a>
+</div>
+
+<div class="grp" data-grupo="fase-6">Fase 6 · Embarque y consolidación del DEX</div>
+<div class="cards">
+<a class="card" href="f09-manifiesto-dex.html" data-codigo="F6-01" data-grupo="fase-6" data-titulo="Manifiesto y cierre DEX" data-tags="agente-manifiesto · Subanexo 6.7 · HITL: obligatoria" data-form="" data-keys="registro manifiesto dex cierre 1165 formulario 600 consolidacion varias sae subanexo 6.7 declaracion de exportacion"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17c1.5 1.3 3 1.3 4.5 0s3-1.3 4.5 0 3 1.3 4.5 0 3-1.3 4.5 0"/><path d="M5 13.5V7a1 1 0 0 1 1-1h9l4 4v3.5"/><path d="M15 6v4h4"/></svg></div><div class="c-b"><div class="c-code">F6-01</div><div class="c-t">Manifiesto y cierre DEX</div><div class="c-d">Consolidación de varias SAE en el 1165 y firma del Formulario 600.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Consolida el manifiesto de carga y firma el DEX ante la DIAN" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-manifiesto" data-func="Consolida el manifiesto de carga y gestiona el cierre hacia el DEX" aria-label="Agente agente-manifiesto. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-manifiesto</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Subanexo 6.7" aria-label="Referencia normativa Subanexo 6.7. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Subanexo 6.7</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Antes de cerrar el DEX" data-que="Aprueba la consolidación de las SAE que entran al manifiesto." data-hitl="obligatoria" aria-label="Punto HITL: obligatoria. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>obligatoria</span></div></div></a>
+</div>
+
+<div class="grp" data-grupo="maestros">Maestros</div>
+<div class="cards">
+<a class="card" href="f13-parametricas-vigencias.html" data-codigo="FM-01" data-grupo="maestros" data-titulo="Paramétricas y vigencias DIAN" data-tags="agente-parametricas · Anexo 6 · listas DIAN · HITL: aplicar vigencia" data-form="" data-keys="consulta registro parametricas vigencias listas dian tablas maestras cambios impacto borrador anexo 6"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14M5 16h14"/><circle cx="9" cy="8" r="2.2"/><circle cx="15" cy="16" r="2.2"/></svg></div><div class="c-b"><div class="c-code">FM-01</div><div class="c-t">Paramétricas y vigencias DIAN</div><div class="c-d">Cambios de listas DIAN vigentes y su impacto en SAE que quedaron en borrador.</div><div class="c-f"><span class="c-tag tipo cr" role="button" tabindex="0" data-tipo="CONSULTA/REGISTRO" data-just="Compara vigencias DIAN y aplica la nueva versión remapeando borradores" aria-label="Proceso de consulta/registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>consulta/registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-parametricas" data-func="Detecta cambios en las listas oficiales y su impacto sobre declaraciones en borrador" aria-label="Agente agente-parametricas. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-parametricas</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Anexo 6 · listas DIAN" aria-label="Referencia normativa Anexo 6 · listas DIAN. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Anexo 6 · listas DIAN</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Antes de aplicar un cambio de listas DIAN" data-que="Revisa el impacto sobre las SAE en borrador y decide si se aplica la nueva vigencia." data-hitl="aplicar vigencia" aria-label="Punto HITL: aplicar vigencia. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>aplicar vigencia</span></div></div></a>
+<a class="card" href="f14-terceros-mandatos.html" data-codigo="FM-02" data-grupo="maestros" data-titulo="Terceros y mandatos" data-tags="agente-terceros · Manual Cap. 5 · NIT y mandato · HITL: crear/actualizar" data-form="" data-keys="registro terceros mandato mandatos rues rut nit proveedor comprador consignatario representante crear tercero"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="8" r="3.2"/><path d="M3 19a5.5 5.5 0 0 1 11 0"/><path d="M16 6.5a3 3 0 0 1 0 6"/><path d="M17.5 19a5 5 0 0 0-2.5-4.3"/></svg></div><div class="c-b"><div class="c-code">FM-02</div><div class="c-t">Terceros y mandatos</div><div class="c-d">Valida terceros contra RUES/RUT y detecta cuándo se requiere mandato.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Da de alta terceros y valida la vigencia del mandato para la SAE" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-terceros" data-func="Completa y valida los terceros de la operación y detecta si se requiere mandato" aria-label="Agente agente-terceros. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-terceros</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Manual Cap. 5 · NIT y mandato" aria-label="Referencia normativa Manual Cap. 5 · NIT y mandato. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Manual Cap. 5 · NIT y mandato</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Al crear o actualizar un tercero" data-que="Valida contra RUES y RUT, y confirma si hace falta mandato." data-hitl="crear/actualizar" aria-label="Punto HITL: crear/actualizar. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>crear/actualizar</span></div></div></a>
+</div>
+
+<div class="grp" data-grupo="transversales">Transversales y administración</div>
+<div class="cards">
+<a class="card" href="f11-copiloto-reglas.html" data-codigo="FT-01" data-grupo="transversales" data-titulo="Copiloto de reglas" data-tags="agente-copiloto-reglas · rules-engine · DAL · HITL: publicación" data-form="" data-keys="registro copiloto reglas lenguaje natural simulacion historico publicar regla rules engine automatizar"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 19 8.5-8.5"/><path d="m16 4 1 2.5L19.5 8 17 9l-1 2.5L15 9l-2.5-1L15 6.5z"/><path d="m19 15 .7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7z"/></svg></div><div class="c-b"><div class="c-code">FT-01</div><div class="c-t">Copiloto de reglas</div><div class="c-d">Reglas operativas en lenguaje natural, simuladas contra histórico antes de publicar.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Traduce reglas operativas en lenguaje natural y publica su versión ejecutable" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-copiloto-reglas" data-func="Traduce reglas operativas descritas en lenguaje natural a reglas ejecutables" aria-label="Agente agente-copiloto-reglas. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-copiloto-reglas</span><span class="c-tag hitl" role="button" tabindex="0" data-cuando="Antes de publicar una regla nueva" data-que="Revisa la simulación contra histórico y autoriza que la regla entre en producción." data-hitl="publicación" aria-label="Punto HITL: publicación. Pulsa para saber qué significa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>publicación</span></div></div></a>
+<a class="card" href="f12-bandeja-operacion.html" data-codigo="FT-02" data-grupo="transversales" data-titulo="Bandeja de operación y vencimientos" data-tags="agente-bandeja · Manual Cap. 3 · Art. 349 / 236-3" data-form="" data-keys="consulta bandeja vencimientos pendientes cola prioridad urgencia riesgo mis operaciones que sigue"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13l2.5 8v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5z"/></svg></div><div class="c-b"><div class="c-code">FT-02</div><div class="c-t">Bandeja de operación y vencimientos</div><div class="c-d">Prioriza operaciones por vencimiento y riesgo, con la razón de cada urgencia.</div><div class="c-f"><span class="c-tag tipo c" role="button" tabindex="0" data-tipo="CONSULTA" data-just="Prioriza la cartera de SAE abiertas por vencimiento y riesgo sin modificarla" aria-label="Proceso de consulta. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>consulta</span><span class="c-tag agent" role="button" tabindex="0" data-agente="agente-bandeja" data-func="Prioriza las operaciones abiertas por vencimiento y riesgo, y explica la urgencia" aria-label="Agente agente-bandeja. Pulsa para ver su función"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-bandeja</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Manual Cap. 3 · Art. 349 / 236-3" aria-label="Referencia normativa Manual Cap. 3 · Art. 349 / 236-3. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Manual Cap. 3 · Art. 349 / 236-3</span></div></div></a>
+<a class="card" href="f27-administracion.html" data-codigo="FT-04" data-grupo="transversales" data-titulo="Administración: usuarios, mandatos, certificados" data-tags="sin agente · Manual Cap. 13.1 · firma y consecutivos" data-form="" data-keys="registro administracion usuarios mandatos certificados consecutivos envio firma permisos configuracion sin agente"><div class="c-band"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div><div class="c-b"><div class="c-code">FT-04</div><div class="c-t">Administración: usuarios, mandatos, certificados</div><div class="c-d">Usuarios, mandatos, certificados digitales y consecutivos de envío.</div><div class="c-f"><span class="c-tag tipo r" role="button" tabindex="0" data-tipo="REGISTRO" data-just="Administra usuarios, certificados digitales y consecutivos de envío" aria-label="Proceso de registro. Pulsa para saber por qué"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z"/></svg>registro</span><span class="c-tag">sin agente</span><span class="c-tag norma" role="button" tabindex="0" data-norma="Manual Cap. 13.1 · firma y consecutivos" aria-label="Referencia normativa Manual Cap. 13.1 · firma y consecutivos. Pulsa para ver la fuente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>Manual Cap. 13.1 · firma y consecutivos</span></div></div></a>
+</div>
+
+<!-- ▼ NUEVO · ESTADO VACÍO -->
+<div class="idx-empty" hidden>
+  <p>Ningún flujo coincide con <strong class="idx-q-eco"></strong>.</p>
+  <button type="button" class="chip idx-sugg" data-q="">Preguntar al orquestador</button>
+</div>
+<!-- ▲ NUEVO -->
+
+</div><!-- /.wrap -->
+
+<!-- ▼ NUEVO · ORQUESTADOR -->
+<button type="button" class="idx-chat-btn" aria-expanded="false" aria-controls="idx-chat">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8l-4.4 3.3A1 1 0 0 1 2 19.5V5a1 1 0 0 1 1-1z"/></svg>
+  Orquestador
+</button>
+<div class="idx-scrim" hidden></div>
+<aside class="idx-chat" id="idx-chat" aria-label="Orquestador" aria-hidden="true">
+  <div class="chat-hd">
+    <span>Orquestador</span>
+    <span class="live">conoce el proceso de exportación</span>
+    <button type="button" class="idx-close" aria-label="Cerrar el orquestador">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12 19 6.4 17.6 5 12 10.6z"/></svg>
+    </button>
+  </div>
+  <div class="thread" aria-live="polite" aria-atomic="false">
+    <div class="turn">
+      <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>orquestador</span><span class="who-time">ahora</span></div>
+      <div class="msg">
+        <p>Dime qué necesitas hacer en tu exportación y te abro el paso que corresponde.</p>
+        <div class="evid">
+          <button type="button" class="chip idx-sugg" data-q="necesito registrar el VGM">Registrar el VGM</button>
+          <button type="button" class="chip idx-sugg" data-q="clasificar arancelariamente un producto">Clasificar un producto</button>
+          <button type="button" class="chip idx-sugg" data-q="transmitir la SAE a MUISCA">Transmitir a MUISCA</button>
+          <button type="button" class="chip idx-sugg" data-q="certificado de origen y cupo">Certificado de origen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="composer">
+    <form class="composer-row" onsubmit="return false">
+      <input class="input" type="text" autocomplete="off"
+             aria-label="Escribe qué necesitas hacer"
+             placeholder="¿Qué necesitas hacer?">
+      <button type="submit" class="send-btn" aria-label="Enviar">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+      </button>
+    </form>
+  </div>
+</aside>
+<!-- ▲ NUEVO -->
+<script>
+(function(){
+'use strict';
+
+/* ── Normalización ─────────────────────────────────────────── */
+function norm(s){
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')      // strip diacríticos
+    .replace(/[^a-z0-9\s._-]/g, ' ')                    // puntuación → espacio
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/* ── Tokenización ──────────────────────────────────────────── */
+var VACIAS = ['de','del','la','el','los','las','un','una','y','o','a','en','para','por',
+              'con','que','como','donde','cual','cuales','se','me','mi','al','lo','es',
+              'quiero','necesito','hacer','puedo','debo','tengo','ir','ver','buscar','dime'];
+function tokens(q){
+  return norm(q).split(' ').filter(function(t){
+    return t.length >= 2 && VACIAS.indexOf(t) === -1;
+  });
+}
+
+/* ── Diccionario de sinónimos (§4 del diseño) ─────────────────*/
+var SINONIMOS = {
+  /* — Comercial y carga — */
+  'booking'        : ['F1-04'], 'reserva'        : ['F1-04'], 'naviera'   : ['F1-04'],
+  'vgm'            : ['F1-04'], 'peso verificado': ['F1-04'],
+  'packing'        : ['F1-04'], 'packing list'   : ['F1-04'], 'lista de empaque': ['F1-04'],
+  'contenedor'     : ['F1-04'], 'contenedores'   : ['F1-04'], 'plan de carga'  : ['F1-04'],
+  'precinto'       : ['F1-04','F5-02'], 'precintos' : ['F1-04','F5-02'], 'sello': ['F1-04','F5-02'],
+  'factura'        : ['F2-02'], 'facturacion'    : ['F2-02'], 'fob': ['F2-02'],
+  'flete'          : ['F2-02'], 'fletes'         : ['F2-02'], 'seguro': ['F2-02'], 'incoterm': ['F2-02'],
+  'inspeccion'     : ['F5-01','F5-02'], 'inspeccion previa': ['F5-01'], 'acta': ['F5-01','F5-02'],
+  'origen'         : ['F2-04'], 'certificado de origen': ['F2-04'], 'acuerdo': ['F2-04'],
+  'acuerdos'       : ['F2-04'], 'tlc': ['F2-04'], 'preferencia': ['F2-04'], 'vuce': ['F2-04','F2-03','F5-02'],
+
+  /* — Preparación de la SAE — */
+  'arancel'        : ['F1-03'], 'arancelaria': ['F1-03'], 'partida': ['F1-03'], 'subpartida': ['F1-03'],
+  'clasificacion'  : ['F1-03'], 'clasificar': ['F1-03'], 'posicion arancelaria': ['F1-03'],
+  'rgi'            : ['F1-03'], 'nota legal': ['F1-03'],
+  'descripcion'    : ['F3-01'], 'mercancia': ['F3-01','FE-06'], 'mercancias': ['F3-01'],
+  'soporte'        : ['F2-03'], 'soportes': ['F2-03'], 'visto bueno': ['F2-03'], 'vistos buenos': ['F2-03'],
+  'permiso'        : ['F2-03'], 'dal': ['F2-01','F2-05','FT-01'], 'normalizacion': ['F2-01'],
+
+  /* — Validación y transmisión — */
+  'muisca'         : ['F3-02'], 'transmitir': ['F3-02'], 'transmision': ['F3-02'],
+  'numero de asunto': ['F3-02'], 'radicar': ['F3-02'], 'enviar a la dian': ['F3-02'],
+  'validacion'     : ['F2-05'], 'reglas': ['F2-05','FT-01'], 'error': ['F2-05'], 'errores': ['F2-05'],
+  'proceso'        : ['F1-02','FE-07'], 'procesos': ['F1-02','FE-07'], 'flujo': ['F1-02'],
+
+  /* — Salida y cierre — */
+  'dex'            : ['F6-01','F7-01'], 'manifiesto': ['F6-01','FE-05'], 'formulario 600': ['F6-01'],
+  '1165'           : ['F6-01'], 'traslado': ['F3-04'], 'traslados': ['F3-04'],
+  'saldo'          : ['F3-04'], 'saldos': ['F3-04'], 'planilla': ['F3-04'], '1162': ['F3-04'],
+  'dian'           : ['F5-02','FM-01','F3-02'], 'siis': ['F5-02'], 'selectividad': ['F5-02'],
+  'novedad'        : ['F3-03'], 'novedades': ['F3-03'], 'seguimiento': ['F3-03'], 'estado': ['F3-03'],
+
+  /* — Procesos especiales — */
+  'cupo'           : ['FE-01','F2-04'], 'cupos': ['FE-01','F2-04'],
+  'plan vallejo'   : ['FE-01'], 'vallejo': ['FE-01'], 'pex': ['FE-01'], 'drawback': ['FE-01'],
+  'regimen'        : ['FE-01'], 'regimenes': ['FE-01'],
+  'zona franca'    : ['FE-04'], 'franca': ['FE-04'], 'deposito franco': ['FE-04'],
+  'postal'         : ['FE-05'], 'trafico postal': ['FE-05'], 'courier': ['FE-05'],
+  'envio urgente'  : ['FE-05'], 'envios urgentes': ['FE-05'], 'paquete': ['FE-05'],
+  'reembarque'     : ['FE-06'], 'viajero': ['FE-06'], 'equipaje': ['FE-06'],
+  'fraccionado'    : ['FE-02'], 'embarque fraccionado': ['FE-02'], 'global': ['FE-02'],
+  'modificacion'   : ['FE-03'], 'invalidacion': ['FE-03'], 'prorroga': ['FE-03'], 'anular': ['FE-03'],
+  'uraba'          : ['FE-07'], 'zona secundaria': ['FE-07'],
+
+  /* — Maestros, acceso, back-office, administración — */
+  'mandato'        : ['FM-02','FT-04','F0-01','FA-01'], 'mandatos': ['FM-02','FT-04'],
+  'tercero'        : ['FM-02'], 'terceros': ['FM-02'], 'rues': ['FM-02'], 'rut': ['FM-02','F0-01'],
+  'nit'            : ['FM-02','FA-01'],
+  'producto'       : ['FM-03'], 'catalogo': ['FM-03'], 'f1340': ['FM-03'], '1340': ['FM-03'],
+  'f1212'          : ['FE-04'], '1212': ['FE-04'], 'f1138': ['FE-05'], '1138': ['FE-05'],
+  'parametrica'    : ['FM-01'], 'parametricas': ['FM-01'], 'vigencia': ['FM-01'], 'vigencias': ['FM-01'],
+  'expediente'     : ['FT-03'], 'retencion': ['FT-03'], 'archivo': ['FT-03'],
+  'cambiario'      : ['F7-01'], 'divisas': ['F7-01'], 'reintegro': ['F7-01'], 'banco': ['F7-01'],
+  'costo'          : ['FT-05'], 'costos': ['FT-05'], 'precosteo': ['FT-05'], 'rentabilidad': ['FT-05'],
+  'indicador'      : ['FT-07'], 'indicadores': ['FT-07'], 'kpi': ['FT-07'], 'desempeno': ['FT-07'],
+  'bandeja'        : ['FT-02'], 'vencimiento': ['FT-02','FE-02'], 'vencimientos': ['FT-02'],
+  'pendiente'      : ['FT-02'], 'pendientes': ['FT-02'],
+  'apertura'       : ['F1-01'], 'instruccion de embarque': ['F1-01'], 'nueva operacion': ['F1-01'],
+  'vinculacion'    : ['F0-01'], 'habilitacion': ['F0-01'], 'cliente nuevo': ['F0-01'],
+  'exportador'     : ['F0-01','FT-06'], 'portal': ['FT-06'], 'comunicaciones': ['FT-06'],
+  'ingreso'        : ['FA-01'], 'login': ['FA-01'], 'entrar': ['FA-01'], 'certificado digital': ['FA-01','FT-04'],
+  'usuarios'       : ['FT-04'], 'administracion': ['FT-04'], 'consecutivo': ['FT-04'],
+  'copiloto'       : ['FT-01'],
+  'sae'            : ['F3-02','FE-02','FE-03'], 'exportacion': ['F6-01','FE-02']
+};
+
+/* ── Pesos (numéricos, no reordenar) ───────────────────────── */
+var PESO = {
+  CODIGO_EXACTO : 100,
+  DICC          :  60,
+  TITULO        :  40,
+  KEYS          :  30,
+  TAGS          :  20,
+  FORM          :  20,
+  DESC          :  12,
+  GRUPO         :   6
+};
+var UMBRAL = 12;
+var TOPE   = 3;
+
+/* ── Puntuación (§5 del diseño) ────────────────────────────── */
+function puntuar(consulta, indice){
+  var q  = norm(consulta);
+  var ts = tokens(consulta);
+  if (!ts.length) return [];
+
+  var bonos = {};
+  Object.keys(SINONIMOS).forEach(function(clave){
+    var esFrase = clave.indexOf(' ') !== -1;
+    var acierta = esFrase ? (q.indexOf(clave) !== -1) : (ts.indexOf(clave) !== -1);
+    if (!acierta) return;
+    SINONIMOS[clave].forEach(function(cod){
+      bonos[cod] = (bonos[cod] || 0) + PESO.DICC;
+    });
+  });
+
+  var res = indice.map(function(it){
+    var s = bonos[it.codigo] || 0;
+    ts.forEach(function(t){
+      if (t === it.nCodigo)               s += PESO.CODIGO_EXACTO;
+      if (it.nTitulo.indexOf(t) !== -1)   s += PESO.TITULO;
+      if (it.nKeys  .indexOf(t) !== -1)   s += PESO.KEYS;
+      if (it.nTags  .indexOf(t) !== -1)   s += PESO.TAGS;
+      if (it.nForm && it.nForm.indexOf(t) !== -1) s += PESO.FORM;
+      if (it.nDesc  .indexOf(t) !== -1)   s += PESO.DESC;
+      if (it.nGrupo .indexOf(t) !== -1)   s += PESO.GRUPO;
+    });
+    return { item:it, score:s };
+  });
+
+  return res
+    .filter(function(r){ return r.score >= UMBRAL; })
+    .sort(function(a,b){
+      if (b.score !== a.score) return b.score - a.score;
+      return a.item.num - b.item.num;
+    })
+    .slice(0, TOPE);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  var nodos = document.querySelectorAll('.card');
+  if (!nodos.length) return;
+
+  /* Índice construido desde los data-* del DOM (§2 del diseño).
+     `desc` se lee de `.c-d` con querySelector en vez de duplicar
+     `data-desc` (nota (a) del diseño) — un único origen de verdad
+     para el texto visible y el indexado. */
+  var indice = [];
+  nodos.forEach(function(nodo){
+    var descNodo = nodo.querySelector('.c-d');
+    var codigo = nodo.getAttribute('data-codigo') || '';
+    var it = {
+      codigo : codigo,
+      titulo : nodo.getAttribute('data-titulo') || '',
+      desc   : descNodo ? descNodo.textContent : '',
+      tags   : nodo.getAttribute('data-tags') || '',
+      form   : nodo.getAttribute('data-form') || '',
+      keys   : nodo.getAttribute('data-keys') || '',
+      grupo  : nodo.getAttribute('data-grupo') || '',
+      href   : nodo.getAttribute('href') || '',
+      nodo   : nodo,
+      num    : parseInt(codigo.slice(1), 10) || 0
+    };
+    it.nCodigo = norm(it.codigo);
+    it.nTitulo = norm(it.titulo);
+    it.nKeys   = norm(it.keys);
+    it.nTags   = norm(it.tags);
+    it.nForm   = norm(it.form);
+    it.nDesc   = norm(it.desc);
+    it.nGrupo  = norm(it.grupo);
+    indice.push(it);
+  });
+
+  var estado = { cat: '' };
+
+  var input    = document.getElementById('idx-q');
+  var clearBtn = document.querySelector('.idx-clear');
+  var count    = document.getElementById('idx-count');
+  var empty    = document.querySelector('.idx-empty');
+  var eco      = empty ? empty.querySelector('.idx-q-eco') : null;
+  var emptyBtn = empty ? empty.querySelector('.idx-sugg') : null;
+
+  function aplicarFiltros(){
+    var qToks = input ? tokens(input.value) : [];
+    var totalVisible = 0;
+
+    indice.forEach(function(it){
+      var okCat = !estado.cat || it.grupo === estado.cat;
+      var campos = it.nCodigo + ' ' + it.nTitulo + ' ' + it.nDesc + ' ' +
+                   it.nTags + ' ' + it.nForm + ' ' + it.nKeys + ' ' + it.nGrupo;
+      var okQ = qToks.every(function(t){ return campos.indexOf(t) !== -1; });
+      var visible = okCat && okQ;
+      it.nodo.hidden = !visible;
+      if (visible) totalVisible++;
+    });
+
+    document.querySelectorAll('.grp').forEach(function(grp){
+      var cardsDiv = grp.nextElementSibling;
+      if (!cardsDiv) return;
+      var anyVisible = false;
+      cardsDiv.querySelectorAll('.card').forEach(function(c){
+        if (!c.hidden) anyVisible = true;
+      });
+      grp.hidden = !anyVisible;
+      cardsDiv.hidden = !anyVisible;
+    });
+
+    if (count){
+      count.textContent = totalVisible === 0 ? 'Ninguna coincidencia' : (totalVisible + ' de 17 flujos');
+    }
+    if (empty){
+      empty.hidden = totalVisible !== 0;
+      if (totalVisible === 0){
+        var textoLiteral = input ? input.value : '';
+        if (eco) eco.textContent = textoLiteral;
+        if (emptyBtn) emptyBtn.setAttribute('data-q', textoLiteral);
+      }
+    }
+  }
+
+  function activarCategoria(slug){
+    var chips = document.querySelectorAll('.idx-cat');
+    chips.forEach(function(c){
+      var esta = (c.getAttribute('data-cat') || '') === slug;
+      c.setAttribute('aria-pressed', esta ? 'true' : 'false');
+    });
+    estado.cat = slug;
+    aplicarFiltros();
+  }
+
+  function initBuscador(){
+    if (!input) return;
+    input.addEventListener('input', aplicarFiltros);
+    if (clearBtn){
+      clearBtn.addEventListener('click', function(){
+        input.value = '';
+        aplicarFiltros();
+        input.focus();
+      });
+    }
+    input.addEventListener('keydown', function(e){
+      if (e.key === 'Escape'){
+        input.value = '';
+        aplicarFiltros();
+      }
+    });
+  }
+
+  function initCategorias(){
+    var chips = document.querySelectorAll('.idx-cat');
+    if (!chips.length) return;
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var slug = chip.getAttribute('data-cat') || '';
+        var yaActivo = chip.getAttribute('aria-pressed') === 'true';
+        if (slug === '' || yaActivo){
+          activarCategoria('');
+        } else {
+          activarCategoria(slug);
+        }
+      });
+    });
+  }
+
+  function initOrquestador(){
+    var btn       = document.querySelector('.idx-chat-btn');
+    var scrim     = document.querySelector('.idx-scrim');
+    var aside     = document.getElementById('idx-chat');
+    var closeBtn  = document.querySelector('.idx-close');
+    var thread    = aside ? aside.querySelector('.thread') : null;
+    var composer  = aside ? aside.querySelector('.composer-row') : null;
+    var inputChat = aside ? aside.querySelector('.input') : null;
+    if (!btn || !aside || !thread || !inputChat) return;
+
+    var ultimoFoco = null;
+
+    function esMovilOTablet(){
+      return window.matchMedia('(max-width:1023px)').matches;
+    }
+
+    function abrir(opts){
+      opts = opts || {};
+      ultimoFoco = opts.origen || document.activeElement;
+      document.body.classList.add('idx-chat-abierto');
+      aside.classList.add('on');
+      aside.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      if (esMovilOTablet()){
+        if (scrim){ scrim.hidden = false; scrim.classList.add('on'); }
+        try { document.body.style.overflow = 'hidden'; } catch(e){}
+      }
+      if (opts.texto !== undefined){ inputChat.value = opts.texto; }
+      requestAnimationFrame(function(){
+        if (!opts.sinFoco){ inputChat.focus(); }
+        if (opts.enviar){ enviarConsulta(inputChat.value); }
+      });
+    }
+
+    function cerrar(){
+      document.body.classList.remove('idx-chat-abierto');
+      aside.classList.remove('on');
+      aside.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      if (scrim){ scrim.classList.remove('on'); scrim.hidden = true; }
+      try { document.body.style.overflow = ''; } catch(e){}
+      if (ultimoFoco && typeof ultimoFoco.focus === 'function'){ ultimoFoco.focus(); }
+    }
+
+    btn.addEventListener('click', function(){ abrir({ origen: btn }); });
+
+    // Abierto de entrada donde el drawer es lateral y no tapa el catalogo.
+    // En movil y tablet ocupa la pantalla completa, asi que arranca cerrado.
+    if (!esMovilOTablet()){ abrir({ origen: btn, sinFoco: true }); }
+    if (closeBtn) closeBtn.addEventListener('click', cerrar);
+    if (scrim) scrim.addEventListener('click', cerrar);
+
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && aside.classList.contains('on')){
+        cerrar();
+      }
+    });
+
+    aside.addEventListener('keydown', function(e){
+      if (e.key !== 'Tab') return;
+      if (!esMovilOTablet()) return;
+      var focables = Array.prototype.filter.call(
+        aside.querySelectorAll('button, a[href], input, [tabindex]:not([tabindex="-1"])'),
+        function(el){ return !el.disabled && !el.hidden; }
+      );
+      if (!focables.length) return;
+      var primero = focables[0];
+      var ultimo  = focables[focables.length - 1];
+      if (e.shiftKey && document.activeElement === primero){
+        ultimo.focus(); e.preventDefault();
+      } else if (!e.shiftKey && document.activeElement === ultimo){
+        primero.focus(); e.preventDefault();
+      }
+    });
+
+    if (composer){
+      composer.addEventListener('submit', function(e){
+        e.preventDefault();
+        enviarConsulta(inputChat.value);
+      });
+    }
+
+    function chipEnlace(it){
+      var a = document.createElement('a');
+      a.className = 'chip';
+      a.href = it.href;
+      a.textContent = it.titulo;
+      return a;
+    }
+
+    function construirRespuesta(consulta, resultados){
+      var turn = document.createElement('div');
+      turn.className = 'turn';
+      var who = document.createElement('div');
+      who.className = 'who';
+      var badge = document.createElement('span');
+      badge.className = 'badge';
+      badge.textContent = 'orquestador';
+      var whoTime = document.createElement('span');
+      whoTime.className = 'who-time';
+      whoTime.textContent = 'ahora';
+      who.appendChild(badge);
+      who.appendChild(whoTime);
+      turn.appendChild(who);
+
+      var msg = document.createElement('div');
+      msg.className = 'msg';
+      var p = document.createElement('p');
+      var evid = document.createElement('div');
+      evid.className = 'evid';
+
+      if (resultados.length === 1){
+        var r = resultados[0].item;
+        p.textContent = r.desc;
+        evid.appendChild(chipEnlace(r));
+      } else if (resultados.length >= 2){
+        p.textContent = 'Eso toca ' + (resultados.length === 2 ? 'dos momentos' : 'varios momentos') + ' del proceso:';
+        resultados.forEach(function(res){ evid.appendChild(chipEnlace(res.item)); });
+      } else {
+        p.textContent = 'No reconozco «' + consulta + '». Dilo por el trámite (transmitir, reembarcar, ' +
+          'nacionalizar), por el documento (packing list, DEX, certificado de origen) o por la etapa:';
+        var catChips = Array.prototype.filter.call(
+          document.querySelectorAll('.idx-cat'),
+          function(c){ return c.getAttribute('data-cat'); }
+        );
+        catChips.forEach(function(origen){
+          var slug = origen.getAttribute('data-cat');
+          var label = origen.textContent;
+          var chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'chip idx-sugg';
+          chip.textContent = label;
+          chip.addEventListener('click', function(){
+            activarCategoria(slug);
+            cerrar();
+            var destino = document.querySelector('.grp[data-grupo="' + slug + '"]');
+            if (destino && destino.scrollIntoView){ destino.scrollIntoView({ block: 'start' }); }
+          });
+          evid.appendChild(chip);
+        });
+      }
+      msg.appendChild(p);
+      msg.appendChild(evid);
+      turn.appendChild(msg);
+      return turn;
+    }
+
+    function enviarConsulta(texto){
+      var t = String(texto !== undefined ? texto : inputChat.value || '').trim();
+      if (!t){ inputChat.focus(); return; } // T5: consulta vacía, no se emite turno
+
+      var turnUser = document.createElement('div');
+      turnUser.className = 'turn user';
+      var bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = t;
+      turnUser.appendChild(bubble);
+      thread.appendChild(turnUser);
+      inputChat.value = '';
+
+      var resultados = puntuar(t, indice);
+      var turnoResp = construirRespuesta(t, resultados);
+      thread.appendChild(turnoResp);
+      thread.scrollTop = thread.scrollHeight;
+    }
+
+    var suggChips = document.querySelectorAll('.idx-sugg');
+    suggChips.forEach(function(chip){
+      var esEmptyChip = !!chip.closest('.idx-empty');
+      chip.addEventListener('click', function(){
+        var q = chip.getAttribute('data-q') || '';
+        abrir({ origen: chip, texto: q, enviar: !esEmptyChip });
+      });
+    });
+  }
+
+  initBuscador();
+  initCategorias();
+  initOrquestador();
+});
+})();
+</script>
+
+<!-- ▼ TOOLTIP · dos modos sobre la misma pieza -->
+<div class="hitl-tip" role="dialog" hidden>
+  <b class="tip-cab"><span class="tip-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg></span><span class="tip-tit"></span></b>
+  <div class="hitl-row tip-r1"><span class="hitl-k tip-k1"></span><span class="hitl-v tip-v1"></span></div>
+  <div class="hitl-row tip-r2"><span class="hitl-k tip-k2"></span><span class="hitl-v tip-v2"></span></div>
+</div>
+<!-- ▲ TOOLTIP -->
+
+<script>
+(function(){
+  'use strict';
+  var tip = document.querySelector('.hitl-tip');
+  if (!tip) return;
+  var abierto = null;
+
+  function cerrar(){
+    tip.hidden = true;
+    if (abierto){ abierto.setAttribute('aria-expanded','false'); abierto = null; }
+  }
+
+  function FUENTE(t){
+    if (/^Subanexo|^Anexo 6/.test(t))  return 'Resolución 000046 de 2019 · Anexo 6';
+    if (/^Manual Cap\./.test(t))       return 'Manual del Proceso de Salida de Mercancías V 4.2';
+    if (/^Acuerdos comerciales/.test(t)) return 'Acuerdos comerciales vigentes y ventanilla VUCE';
+    if (/^Plan Vallejo/.test(t))       return 'Sistemas especiales de importación-exportación';
+    if (/^Retención documental/.test(t)) return 'Obligación de conservación del expediente aduanero';
+    if (/^SIIS/.test(t))               return 'Inspección simultánea SIIS y ventanilla VUCE';
+    if (/^Banco de la Rep/.test(t))    return 'Régimen cambiario del Banco de la República, no normativa DIAN';
+    return 'Documentación normativa del proyecto';
+  }
+
+  var ICO_H = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>';
+  var ICO_A = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>';
+
+  function abrir(badge){
+    var esAgente = badge.classList.contains('agent');
+    var esTipo   = badge.classList.contains('tipo');
+    var esNorma  = badge.classList.contains('norma');
+    var esRag    = badge.classList.contains('rag');
+    tip.classList.toggle('modo-agente', esAgente);
+    tip.classList.toggle('modo-tipo', esTipo);
+    tip.classList.toggle('modo-norma', esNorma);
+    tip.classList.toggle('modo-rag', esRag);
+    tip.querySelector('.tip-ico').innerHTML   = (esTipo || esNorma || esRag) ? badge.querySelector('svg').outerHTML : (esAgente ? ICO_A : ICO_H);
+    tip.querySelector('.tip-tit').textContent  = esNorma ? 'Referencia normativa'
+      : esRag  ? 'Base de conocimiento'
+      : esTipo ? badge.getAttribute('data-tipo').toLowerCase()
+      : (esAgente ? badge.getAttribute('data-agente') : 'Human in the loop');
+    tip.setAttribute('aria-label', esNorma ? 'Referencia normativa' : esRag ? 'Base de conocimiento'
+      : esTipo ? 'Tipo de proceso' : (esAgente ? 'Función del agente' : 'Dónde entra la persona'));
+
+    var r1 = tip.querySelector('.tip-r1'), r2 = tip.querySelector('.tip-r2');
+    if (esNorma){
+      r1.hidden = false; r2.hidden = false;
+      tip.querySelector('.tip-k1').textContent = 'Fuente';
+      tip.querySelector('.tip-v1').textContent = badge.getAttribute('data-norma');
+      tip.querySelector('.tip-k2').textContent = 'De dónde';
+      tip.querySelector('.tip-v2').textContent = FUENTE(badge.getAttribute('data-norma'));
+    } else if (esRag){
+      r1.hidden = false; r2.hidden = false;
+      tip.querySelector('.tip-k1').textContent = 'Corpus';
+      tip.querySelector('.tip-v1').textContent = badge.getAttribute('data-rag');
+      tip.querySelector('.tip-k2').textContent = 'Qué es';
+      tip.querySelector('.tip-v2').textContent = 'Base documental que el agente consulta para sustentar lo que propone, citando la fuente';
+    } else if (esTipo){
+      r1.hidden = true;
+      r2.hidden = false;
+      tip.querySelector('.tip-k2').textContent = 'Por qué';
+      tip.querySelector('.tip-v2').textContent = badge.getAttribute('data-just') || '';
+    } else if (esAgente){
+      r1.hidden = true;
+      r2.hidden = false;
+      tip.querySelector('.tip-k2').textContent = 'Función';
+      tip.querySelector('.tip-v2').textContent = badge.getAttribute('data-func') || '';
+    } else {
+      r1.hidden = false; r2.hidden = false;
+      tip.querySelector('.tip-k1').textContent = 'Dónde';
+      tip.querySelector('.tip-v1').textContent = badge.getAttribute('data-cuando') || badge.getAttribute('data-hitl');
+      tip.querySelector('.tip-k2').textContent = 'Qué hace';
+      tip.querySelector('.tip-v2').textContent = badge.getAttribute('data-que') || '';
+    }
+    tip.hidden = false;
+    var r = badge.getBoundingClientRect();
+    var t = tip.getBoundingClientRect();
+    var x = r.left + window.scrollX;
+    var y = r.bottom + window.scrollY + 7;
+    // que no se salga por la derecha ni por abajo
+    x = Math.min(x, window.scrollX + document.documentElement.clientWidth - t.width - 12);
+    if (r.bottom + t.height + 16 > window.innerHeight) y = r.top + window.scrollY - t.height - 7;
+    tip.style.left = Math.max(12, x) + 'px';
+    tip.style.top  = y + 'px';
+    badge.setAttribute('aria-expanded','true');
+    abierto = badge;
+  }
+
+  document.addEventListener('click', function(e){
+    var badge = e.target.closest('.c-tag.hitl,.c-tag.agent,.c-tag.tipo,.c-tag.norma,.c-tag.rag');
+    if (badge){
+      e.preventDefault();          // la card es un enlace: el badge no navega
+      e.stopPropagation();
+      if (abierto === badge){ cerrar(); } else { cerrar(); abrir(badge); }
+      return;
+    }
+    if (!e.target.closest('.hitl-tip')) cerrar();
+  });
+
+  document.addEventListener('keydown', function(e){
+    var badge = e.target.closest && e.target.closest('.c-tag.hitl,.c-tag.agent,.c-tag.tipo,.c-tag.norma,.c-tag.rag');
+    if (badge && (e.key === 'Enter' || e.key === ' ')){
+      e.preventDefault(); e.stopPropagation();
+      if (abierto === badge){ cerrar(); } else { cerrar(); abrir(badge); }
+      return;
+    }
+    if (e.key === 'Escape') cerrar();
+  });
+
+  window.addEventListener('scroll', cerrar, true);
+  window.addEventListener('resize', cerrar);
+})();
+</script>
+</body></html>

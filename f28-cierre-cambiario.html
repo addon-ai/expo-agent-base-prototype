@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F7-01 · Cierre cambiario y reintegro de divisas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f28-scope{border-left:2px solid var(--alert-bd);padding:10px 0 10px 13px;margin:0 0 16px;font-size:12px;color:var(--slate);background:var(--alert-wash);border-radius:0 var(--r) var(--r) 0}
+.f28-scope b{color:var(--alert-fg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:3px}
+.f28-recon{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-bottom:14px}
+.f28-side{background:var(--raised);padding:12px 14px}
+.f28-side h4{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.f28-row{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:4px 0;border-bottom:1px dashed var(--line-soft)}
+.f28-row:last-child{border-bottom:none}
+.f28-diff{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--alert-fg);margin-bottom:14px}
+.f28-scroll{overflow-x:auto}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F7-01</span>
+      <span class="ftitle">Cierre cambiario y reintegro de divisas</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en DEX firmada (6 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st done"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st now"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-cambiario</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿Ya se reintegraron las divisas de la SAE-2026-00147 y estamos dentro del plazo?</div></div>
+      <div class="turn"><div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-cambiario</span><span class="who-time">11:20</span></div>
+        <div class="msg">
+          <p>El DEX se firmó por <b>USD 48.200,00</b>. El banco reportó un reintegro de <b>USD 47.650,00</b> el 2026-08-10. Hay una diferencia de <b>USD 550,00</b> sin explicar.</p>
+          <p>El plazo del régimen cambiario para reintegrar exportaciones vence a los 12 meses del embarque: aquí quedan <b>10 meses y 22 días</b>.</p>
+          <p>Recuerda que esto no es un requisito DIAN: es una obligación ante el Banco de la República y las entidades autorizadas del mercado cambiario. La declaración de cambio se concilia contra el DEX, no lo reemplaza ni lo modifica.</p>
+          <div class="evid"><span class="chip">Régimen cambiario · Banco de la República</span><span class="chip">exp-fx-compliance · mcp-cambiario</span></div>
+          <details class="trace"><summary>Traza del agente</summary><div class="trace-body">
+            <span class="n">recibir_dex_firmado</span> → USD 48.200,00<br>
+            <span class="n">cruzar_reintegros_bancarios</span> → USD 47.650,00 reportados<br>
+            <span class="n">detectar_diferencias</span> → USD 550,00 sin conciliar<br>
+            <span class="n">proponer_conciliacion</span> → pendiente de justificación (descuento bancario o error de digitación)<br>
+            <span class="t">mcp-cambiario · RAG-10 regimen-cambiario</span>
+          </div></details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿qué pasa si el comprador no paga?</div></div>
+      <div class="turn"><div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-cambiario</span><span class="who-time">11:27</span></div>
+        <div class="msg">
+          <p>La obligación cambiaria es del exportador y no desaparece porque el comprador incumpla. Hay que soportar la situación ante la autoridad dentro del plazo, no callar.</p>
+          <p>La agencia informa y soporta, no canaliza. El momento de prevenir esto fue la negociación del instrumento de pago en la Fase 1, no el vencimiento del plazo.</p>
+          <div class="evid"><span class="chip">E-14</span><span class="chip">R-06</span></div>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Y la devolución de IVA de esta operación?</div></div>
+      <div class="turn"><div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-cambiario</span><span class="who-time">11:34</span></div>
+        <div class="msg">
+          <p>El derecho existe porque el DEX está aceptado. Pero la solicitud <b>la presenta el exportador, no la agencia</b> — nosotros aportamos el soporte, no la tramitamos.</p>
+          <p>Esto explica por qué la exactitud del DEX importa más allá del embarque: es un documento con <b>efecto tributario diferido</b>. Un error que no se notó al firmar reaparece meses después en una solicitud de devolución rechazada.</p>
+          <p>Hoy falta un soporte: la relación de costos de producción, que le corresponde entregar al exportador.</p>
+          <div class="evid"><span class="chip">P7.2</span><span class="chip">tax-service · mcp-cambiario</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por el plazo o la diferencia…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Conciliación</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Devolución IVA</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Incumplimiento</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Recibir DEX firmado</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Cruzar reintegros bancarios</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Detectar diferencias</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Proponer conciliación</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Marcar plazo cambiario</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="f28-scope"><b>Fuera del alcance DIAN</b>Este artefacto no tiene una norma aduanera que lo sustente: el reintegro de divisas lo regula el Banco de la República, no el Manual del Proceso de Salida de Mercancías. Se documenta en <code>DISEÑO_DOMINIOS.md</code> como subdominio <code>2.18 exp-fx-compliance</code> y en <code>TRAZABILIDAD_NORMATIVA.md</code> como decisión de producto (ADR), no como requisito normativo aduanero. No bloquea la DEX ni la SAE — es un proceso paralelo de cumplimiento cambiario.</div>
+        <div class="artifact"><div class="band" style="background:var(--alert)"><span>RÉGIMEN CAMBIARIO · FUERA DEL ALCANCE DIAN</span></div><div class="art-body">
+          <div class="art-hd">
+            <div><div class="art-title">Conciliación DEX contra reintegro</div><div class="art-sub">SAE-2026-00147 · NIT 900.123.456-7</div></div>
+            <div class="art-sub">USD 550,00 sin conciliar</div>
+          </div>
+          <div class="f28-scroll">
+            <div class="f28-recon">
+              <div class="f28-side"><h4>DEX firmado</h4>
+                <div class="f28-row"><span>Valor FOB</span><span>USD 48.200,00</span></div>
+                <div class="f28-row"><span>Fecha de embarque</span><span>2026-08-05</span></div>
+                <div class="f28-row"><span>Plazo de reintegro</span><span>2027-08-05</span></div>
+              </div>
+              <div class="f28-side"><h4>Reintegro bancario</h4>
+                <div class="f28-row"><span>Valor reportado</span><span>USD 47.650,00</span></div>
+                <div class="f28-row"><span>Fecha de reporte</span><span>2026-08-10</span></div>
+                <div class="f28-row"><span>Entidad</span><span>Banco intermediario</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="f28-diff">Diferencia sin conciliar: USD 550,00 · V-45</div>
+          <div class="f28-side"><h4>Reloj del plazo</h4>
+            <div class="f28-row"><span>Plazo de canalización</span><span>vence 2027-08-05</span></div>
+            <div class="f28-row"><span>Alerta</span><span>a 30 días del vencimiento</span></div>
+            <div class="f28-row"><span>Vigilancia</span><span>FT-02 · junto a los demás relojes · V-46</span></div>
+          </div>
+          <div class="prop-box"><div class="seal">Propuesta</div>
+            <div class="prop-t">Conciliar como descuento bancario</div>
+            <div class="prop-d">El agente sugiere registrar la diferencia como comisión de intermediación cambiaria, valor habitual para este banco. Requiere tu confirmación antes de cerrar la conciliación.</div>
+            <div class="actions"><button class="btn primary">Confirmar conciliación</button><button class="btn ghost">Marcar para investigar</button></div>
+          </div>
+          <div class="note"><b>Plazo cambiario, no aduanero.</b> Vencido el plazo sin reintegro, la consecuencia es un procedimiento sancionatorio cambiario ante la DIAN en su rol de autoridad cambiaria — distinto del trámite de la SAE.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>P7.2</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Solicitud de devolución de IVA</div><div class="art-sub">el efecto tributario diferido del DEX</div></div></div>
+          <div class="ficha"><div class="ficha-hd">Ficha de la solicitud</div><div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Entrada indispensable</div><div class="fi-v">DEX aceptada — sin ella no hay derecho</div></div>
+            <div class="fi"><div class="fi-k">Responsable</div><div class="fi-v">Exportador (la agencia soporta)</div></div>
+            <div class="fi"><div class="fi-k">Estado</div><div class="fi-v">Habilitada · DEX firmado 2026-08-05</div></div>
+            <div class="fi"><div class="fi-k">IVA soportado en insumos</div><div class="fi-v">COP 34.180.000</div></div>
+            <div class="fi"><div class="fi-k">Periodo gravable</div><div class="fi-v">Bimestre 4 de 2026</div></div>
+          </div></div>
+          <div class="f28-scroll">
+            <table class="grid"><thead><tr><th>Soporte requerido</th><th>Detalle</th><th>Estado</th></tr></thead><tbody>
+              <tr><td>Facturas de compra de insumos</td><td>18 facturas · COP 34.180.000</td><td><span class="pill ok">completo</span></td></tr>
+              <tr><td>DEX aceptado</td><td>Formulario 600 · 2026-08-05</td><td><span class="pill ok">completo</span></td></tr>
+              <tr><td>Contabilidad del periodo</td><td>entregada por el exportador</td><td><span class="pill ok">completo</span></td></tr>
+              <tr><td>Relación de costos de producción</td><td>pendiente del exportador</td><td><span class="pill wait">pendiente</span></td></tr>
+            </tbody></table>
+          </div>
+          <div class="note"><b>Dos obligaciones distintas cuelgan del mismo DEX y ninguna es aduanera.</b> El reintegro de divisas es cambiario y se responde ante el Banco de la República; la devolución de IVA es tributaria y se responde ante la DIAN en su rol fiscal. Ninguna de las dos bloquea la SAE ni el DEX, y las dos se pierden si el DEX está mal.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact"><div class="band" style="background:var(--alert)"><span>E-14 · FUERA DEL ALCANCE DIAN</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Incumplimiento del pago del comprador</div><div class="art-sub">cuando las divisas no llegan</div></div></div>
+          <div class="ficha"><div class="ficha-hd">Estado del reintegro</div><div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Valor del DEX</div><div class="fi-v">USD 48.200,00</div></div>
+            <div class="fi"><div class="fi-k">Reintegrado a la fecha</div><div class="fi-v">USD 47.650,00</div></div>
+            <div class="fi"><div class="fi-k">Pendiente</div><div class="fi-v">USD 550,00</div></div>
+            <div class="fi"><div class="fi-k">Plazo</div><div class="fi-v">vence 2027-08-05</div></div>
+            <div class="fi"><div class="fi-k">Estado</div><div class="fi-v si">dentro del plazo</div></div>
+          </div></div>
+          <div class="f28-scroll">
+            <table class="grid"><tr><th>Situación</th><th>Acción</th><th>Quién responde</th></tr>
+              <tr><td>Diferencia menor sin justificar</td><td>conciliar contra descuento bancario o error de digitación</td><td>agencia propone, exportador confirma</td></tr>
+              <tr><td>Pago parcial dentro del plazo</td><td>seguimiento y soporte documental</td><td>exportador</td></tr>
+              <tr><td>Impago al vencimiento del plazo</td><td>soportar la situación ante la autoridad cambiaria y evaluar acciones contractuales</td><td>exportador</td></tr>
+              <tr><td>Prevención</td><td>instrumentos de pago seguros negociados en la Fase 1</td><td>exportador con asesoría de la agencia (<a href="f31-apertura-operacion.html" style="color:var(--stamp-fg);text-decoration:none;border-bottom:1px dotted var(--stamp-fg)">F1-01 →</a>)</td></tr>
+            </table>
+          </div>
+          <div class="issue warn"><div class="issue-hd"><span class="code">R-06</span><span class="issue-t">Incumplimiento de la obligación cambiaria</span></div>
+            <div class="issue-d">Genera un proceso sancionatorio independiente del aduanero, con la DIAN actuando como autoridad de control cambiario. Su causa típica es el desconocimiento del exportador, y su control es informar y hacer seguimiento explícito en el cierre — que es lo que hace esta pantalla y lo que se comunica desde FT-06.</div>
+            <div class="origin">Origen: §20.1 · R-06 · seguimiento comunicado en <a href="f34-portal-exportador.html" style="color:var(--stamp-fg);text-decoration:none;border-bottom:1px dotted var(--stamp-fg)">FT-06 →</a></div>
+          </div>
+          <div class="note"><b>El reintegro no es un trámite de la agencia y aun así es su problema.</b> El exportador que descubre tarde la obligación cambiaria culpa al que le llevó la exportación; informarlo por escrito en el cierre es tan control de riesgo como de relación.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha"><div class="ficha-hd">Ficha del canvas</div><div class="ficha-grid">
+          <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">conciliacion-cambiaria</div></div>
+          <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-cambiario</div></div>
+          <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-cambiario</div></div>
+          <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-10 regimen-cambiario</div></div>
+          <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No, salvo la conciliación propuesta</div></div>
+          <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para cerrar la conciliación</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

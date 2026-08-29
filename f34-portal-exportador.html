@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FT-06 · Portal del exportador y comunicaciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f34-scope{border-left:2px solid var(--gold-bd);padding:10px 0 10px 13px;margin:0 0 16px;font-size:12px;
+  color:var(--slate);background:var(--gold-wash);border-radius:0 var(--r) var(--r) 0}
+.f34-scope b{color:var(--gold-fg);font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;display:block;margin-bottom:3px}
+.f34-draft{border:1px solid var(--line-soft);border-radius:var(--r);background:var(--raised);
+  padding:12px 14px;font-size:12.5px;color:var(--slate);line-height:1.6;margin-bottom:14px}
+.f34-draft b{color:var(--ink)}
+.f34-fb{border:1px solid var(--line-soft);border-radius:var(--r);background:var(--paper);padding:10px 12px;margin-bottom:10px}
+.f34-fb h4{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:5px}
+.f34-fb p{font-size:12px;color:var(--slate)}
+.f34-fb .n{font-family:var(--mono);font-size:12.5px;color:var(--stamp-fg);font-weight:600}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">OP-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">FT-06</span>
+      <span class="ftitle">Portal del exportador y comunicaciones</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Embarcada (5 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st done"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st now"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-comunicaciones</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">La 00152 salió a canal rojo. ¿Ya se lo dijimos al cliente?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-comunicaciones</span><span class="who-time">11:32</span></div>
+        <div class="msg">
+          <p>Todavía no, y el nivel de servicio comprometido es <b>30 minutos desde que se conoce el canal</b>. Van 12.</p>
+          <p>Redacté el aviso con la plantilla del hito «Canal asignado», que exige tres cosas: <b>el canal, la expectativa de tiempo y la implicación de costo</b>. Sin la tercera el cliente se entera del sobrecosto en la factura, y eso es lo que rompe la confianza.</p>
+          <p>No lo envío solo: comunicar una desviación compromete a la agencia frente al cliente, así que el texto pasa por aprobación.</p>
+          <p>Recuerda que el envío va por el <b>canal oficial único con registro</b>, no por chat personal: sin registro no hay evidencia ante una controversia (riesgo <b>R-10</b>).</p>
+          <div class="evid"><span class="chip">Hito · Canal asignado</span><span class="chip">SLA 30 min · 12 transcurridos</span><span class="chip">R-10 canal oficial</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">detectar_hito</span> → canal rojo asignado a SAE-2026-00152<br>
+              <span class="n">seleccionar_plantilla</span> → hito 05 · canal asignado<br>
+              <span class="n">calcular_impacto</span> → +2 días estimados, cuadrilla y movilización<br>
+              <span class="n">redactar_borrador</span> → listo<br>
+              <span class="n">solicitar_aprobacion_humana</span> → interrupt()<br>
+              <span class="t">mcp-notificaciones · mcp-declaraciones</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por un hito o edita el borrador…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Hitos</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Aviso</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Entrega</button>
+      <button class="tab" role="tab" id="t-4" aria-controls="p-4" aria-selected="false" data-p="p-4" tabindex="-1">Feedback</button>
+      <button class="tab" role="tab" id="t-5" aria-controls="p-5" aria-selected="false" data-p="p-5" tabindex="-1">Canal</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Detectar hito</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Redactar con plantilla</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Aprobación humana</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Enviar por canal oficial</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Registrar acuse</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="f34-scope"><b>Sin norma DIAN · decisión de producto</b>Este artefacto no está sustentado en el Manual ni en la Resolución 000046 de 2019. Existe porque el acuerdo de servicio lo compromete (§17.2, §19.1) y porque la comunicación proactiva es lo que separa una agencia de un buzón. Queda como ADR en <code>TRAZABILIDAD_NORMATIVA.md</code>. No bloquea la SAE ni el DEX.</div>
+
+        <div class="artifact"><div class="band"><span>§17.2</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Hitos visibles para el exportador</div><div class="art-sub">OP-2026-00147</div></div><div class="art-sub">OP-2026-00147 · aviso pendiente</div></div>
+          <table class="grid"><thead><tr><th>Hito</th><th>Qué se comunica</th><th>Estado</th></tr></thead><tbody>
+            <tr><td>Operación aceptada</td><td>Número de operación y responsable asignado</td><td><span class="pill ok">Enviado 14/08 09:12</span></td></tr>
+            <tr><td>Documentación pendiente</td><td>Qué falta, quién lo entrega y para cuándo</td><td><span class="pill ok">Enviado 16/08 10:04</span></td></tr>
+            <tr><td>SAE aceptada</td><td>Número, fecha y fecha límite de ingreso a zona primaria</td><td><span class="pill ok">Enviado 08/09 11:35</span></td></tr>
+            <tr><td>Carga ingresada al terminal</td><td>Confirmación de recepción y bultos verificados</td><td><span class="pill ok">Enviado 10/09 16:02</span></td></tr>
+            <tr><td>Canal asignado</td><td>Canal, expectativa de tiempo e implicación de costo</td><td><span class="pill wait">Pendiente · 12 min</span></td></tr>
+            <tr><td>Inspección finalizada</td><td>Resultado y novedades</td><td><span class="pill wait">Pendiente del acto</span></td></tr>
+            <tr><td>Autorización de embarque</td><td>Habilitación para cargue</td><td><span class="pill wait">Pendiente</span></td></tr>
+            <tr><td>Embarque confirmado</td><td>Buque o vuelo y fecha real de salida</td><td><span class="pill wait">Pendiente</span></td></tr>
+          </tbody></table>
+          <div class="note"><b>Cada hito registra fecha y hora, actor, resultado, evidencia y responsable de la siguiente acción.</b> El cliente no pregunta por el estado: lo recibe. El indicador que mide esto es la proporción de desviaciones informadas antes de que el cliente pregunte.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact gate"><div class="band"><span>Aprobación</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Enviar el aviso de canal asignado</div><div class="art-sub">OP-2026-00152</div></div></div>
+          <div class="prop-box block"><div class="seal">Requiere aprobación</div>
+            <div class="prop-t">Aviso de canal rojo listo para enviar</div>
+            <div class="f34-draft">«Su operación OP-2026-00152 fue seleccionada por la DIAN para <b>inspección física (canal rojo)</b>. La inspección simultánea quedó programada para el 11/09 a las 08:00 en el terminal de Cartagena. <b>Impacto estimado en tiempo:</b> 2 días adicionales sobre el cronograma, con riesgo sobre la ventana de zarpe del 14/09. <b>Impacto estimado en costo:</b> movilización a inspección y cuadrilla, entre COP 850.000 y COP 1.400.000 según la duración. El canal lo asigna el sistema de riesgo de la DIAN y no es apelable. Los acompañará María Gómez en el acto.»</div>
+            <div class="actions">
+              <button class="btn primary">Aprobar y enviar</button>
+              <button class="btn">Editar el texto</button>
+              <button class="btn danger">No enviar</button>
+            </div>
+          </div>
+          <div class="note"><b>La plantilla obliga a decir el costo.</b> Un aviso de canal sin implicación económica cumple la forma y falla el propósito: la sorpresa llega igual, solo que en la factura.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>P6.4</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Entrega documental y acuses</div><div class="art-sub">destinatarios de cierre</div></div></div>
+          <table class="grid"><thead><tr><th>Destinatario</th><th>Documentos</th><th>Propósito</th><th>Acuse</th></tr></thead><tbody>
+            <tr><td>Exportador</td><td>DEX aceptada, documento de transporte, acta de inspección, liquidación de gastos</td><td>Soporte contable, tributario y cambiario</td><td><span class="pill wait">Pendiente del DEX</span></td></tr>
+            <tr><td>Comprador internacional</td><td>Factura, packing list, documento de transporte original o telex release, certificado de origen, certificados sanitarios</td><td>Nacionalización en destino y arancel preferencial</td><td><span class="pill wait">Pendiente</span></td></tr>
+            <tr><td>Intermediario del mercado cambiario</td><td>Soporte de la operación</td><td>Canalización de divisas</td><td><span class="pill wait">Pendiente</span></td></tr>
+          </tbody></table>
+          <div class="note"><b>La entrega no termina en el envío, termina en el acuse.</b> El estado <i>Documentos entregados</i> (§17.1, estado 20) exige acuse de recibo registrado; la verificación de completitud del expediente vive en FT-03 y el cierre cambiario en F7-01.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-4" role="tabpanel" aria-labelledby="t-4" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>§19.2</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Feedback del exportador hacia la agencia</div><div class="art-sub">tres instrumentos</div></div></div>
+          <div class="f34-fb"><h4>Encuesta de cierre</h4><p>Por operación, detección temprana de insatisfacción. Última respuesta <span class="n">4,6 / 5</span> en OP-2026-00139.</p></div>
+          <div class="f34-fb"><h4>Revisión de desempeño</h4><p>Trimestral con clientes recurrentes, próxima 2026-10-01. Ajusta niveles de servicio y tarifas.</p></div>
+          <div class="f34-fb"><h4>Registro de reclamaciones</h4><p>Continuo. 1 abierta sobre OP-2026-00131 por demora en la entrega documental, en análisis de causa raíz.</p></div>
+          <div class="note"><b>La encuesta no es cortesía, es instrumento.</b> Alimenta el indicador de satisfacción por operación y el análisis de causa raíz que retroalimenta las reglas de FT-01.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-5" role="tabpanel" aria-labelledby="t-5" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>R-10</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Canal oficial único</div><div class="art-sub">registro de comunicaciones</div></div></div>
+          <p style="font-size:12.5px;color:var(--slate);margin-bottom:13px">Toda comunicación con el cliente queda registrada contra el número de operación, con autor, fecha, contenido y adjunto.</p>
+          <div class="tl">
+            <div class="tl-i done"><div class="tl-t">09/09 11:20</div><div class="tl-n">agente-comunicaciones detecta canal rojo</div></div>
+            <div class="tl-i now"><div class="tl-t">09/09 11:32</div><div class="tl-n">Borrador redactado, esperando aprobación</div></div>
+            <div class="tl-i"><div class="tl-t">—</div><div class="tl-n">Envío por canal oficial</div></div>
+            <div class="tl-i"><div class="tl-t">—</div><div class="tl-n">Acuse del cliente</div></div>
+          </div>
+          <div class="note"><b>Sin registro no hay evidencia.</b> Es el control de R-10: la comunicación informal con el cliente —mensajes por canales personales, que ante una controversia simplemente no existen— es un riesgo documentado, no una costumbre inocente.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha"><div class="ficha-hd">Ficha del canvas</div><div class="ficha-grid">
+          <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">bitacora-cliente</div></div>
+          <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-comunicaciones</div></div>
+          <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-notificaciones · mcp-declaraciones · mcp-expediente</div></div>
+          <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">Sin RAG · plantillas por hito</div></div>
+          <div class="fi"><div class="fi-k">Editable</div><div class="fi-v si">Sí, el texto antes de enviar</div></div>
+          <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para enviar una desviación</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F4-02 · Movimientos en terminal y reloj de costos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f37-scroll{overflow-x:auto}
+.f37-hito-hd{display:grid;grid-template-columns:100px 1fr 110px 90px;gap:11px;padding:0 11px 6px;
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.f37-hito{display:grid;grid-template-columns:100px 1fr 110px 90px;gap:11px;align-items:center;
+  padding:9px 11px;border:1px solid var(--line-soft);border-radius:var(--r);background:var(--paper);margin-bottom:6px}
+.f37-hito.pend{opacity:.55;border-style:dashed}
+.f37-hito-t{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--slate)}
+.f37-hito-n{font-size:12px}
+.f37-hito-c{font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-align:right}
+.f37-clock{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:14px}
+.f37-cc{border:1px solid var(--line-soft);border-radius:var(--r);background:var(--paper);padding:10px 12px}
+.f37-cc-k{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+.f37-cc-v{font-size:15px;font-weight:600;color:var(--ink);margin-top:3px}
+.f37-cc-d{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--slate);margin-top:3px}
+.f37-cc.warn{border-color:var(--gold-bd);background:var(--gold-wash)}
+.f37-cc.warn .f37-cc-v{color:var(--gold-fg)}
+@media (max-width:639px){
+  .f37-hito-hd,.f37-hito{grid-template-columns:1fr}
+}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F4-02</span>
+      <span class="ftitle">Movimientos en terminal y reloj de costos</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Autorizada (4 .done), igual que F4-01/F5-01: los movimientos y costos corren mientras la SAE espera pasar a Autorizada -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st done"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st now"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-costos</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿Qué está pasando con los contenedores dentro del terminal y cuánto llevamos gastado?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-costos</span><span class="who-time">09:20</span></div>
+        <div class="msg">
+          <p>Con el aviso de ingreso ya reportado, el terminal empezó los movimientos internos. El contenedor <code>MSCU-7741205</code> no fue seleccionado para inspección y ya está en patio de exportación (<i>stacking</i>), esperando el cargue al buque.</p>
+          <p>El contenedor <code>MSCU-7741206</code> sí fue asignado a canal rojo por el motor de riesgo de la DIAN — ver <a href="f33-inspeccion-dian-siis.html" style="color:var(--stamp-fg);text-decoration:none;border-bottom:1px dotted var(--stamp-fg)">F5-02 →</a> — y a las 09:05 se trasladó al PARE (Punto de Análisis y Reconocimiento). La cuadrilla de inspección ya está asignada.</p>
+          <p>Costos que corren ahora mismo: uso de instalaciones (fijo, ya facturado), almacenamiento (variable por día, corre desde el aviso de las 08:14), movilización a inspección (evento, se facturó al mover el contenedor al PARE) y cuadrilla de inspección (por hora, corriendo desde las 09:05).</p>
+          <div class="evid"><span class="chip">P4.2</span><span class="chip">P4.3</span><span class="chip">Manual Cap. 8</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">registrar_movimiento</span> → MSCU-7741205 a patio de exportación, sin inspección<br>
+              <span class="n">registrar_movimiento</span> → MSCU-7741206 al PARE, 09:05<br>
+              <span class="n">iniciar_reloj_costo</span> → almacenamiento desde 08:14<br>
+              <span class="n">facturar_evento</span> → movilización a inspección, MSCU-7741206<br>
+              <span class="n">iniciar_reloj_costo</span> → cuadrilla de inspección desde 09:05<br>
+              <span class="t">mcp-costos · mcp-carga · mcp-terceros (terminal)</span>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Qué pasa si la inspección se demora o el trámite documental se atrasa?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-costos</span><span class="who-time">09:24</span></div>
+        <div class="msg">
+          <p>El almacenamiento es el driver de costo más sensible al retraso documental: corre por día mientras la carga permanece en el terminal, así que cualquier demora en corregir un hallazgo o completar un requisito lo multiplica directamente.</p>
+          <p>Si el contenedor supera el tiempo libre que otorga la naviera, empiezan las demoras del contenedor (variable por día). Y si el aforo o la corrección documental no terminan antes del corte del buque, se pierde la ventana de embarque y entra la reprogramación de zarpe — es excepcional, pero es el costo más alto de esta fase.</p>
+          <p>La salida de esta fase se completa cuando la carga queda físicamente en zona primaria, con el aviso de ingreso reportado (ya ocurrió en F4-01) y el estado sistémico actualizado con el resultado de estos movimientos.</p>
+          <div class="evid"><span class="chip">P4.3</span><span class="chip">Criterio de salida Fase 4</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">proyectar_costo_almacenamiento</span> → sensibilidad alta a retraso documental<br>
+              <span class="n">evaluar_tiempo_libre_naviera</span> → dentro del tiempo libre, sin demora aún<br>
+              <span class="n">evaluar_riesgo_zarpe</span> → ventana de embarque vigente, sin reprogramación<br>
+              <span class="t">mcp-costos</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por un movimiento o por el costo acumulado…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Movimientos</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Reloj de costos</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Asignación de canal</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Traslado al PARE</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Consolidación / llenado</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Traslado a patio de exportación</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Almacenamiento hasta cargue</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact">
+          <div class="band"><span>P4.2</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Movimientos internos del terminal</div><div class="art-sub">MSCU-7741205 / MSCU-7741206</div></div>
+              <div class="art-sub">2 contenedores · 1 en PARE</div>
+            </div>
+            <div class="f37-scroll">
+              <div class="f37-hito-hd"><span>Hora</span><span>Movimiento</span><span>Contenedor</span><span>Estado</span></div>
+              <div class="f37-hito"><div class="f37-hito-t">08:14</div><div class="f37-hito-n">Aviso de ingreso reportado</div><div class="f37-hito-c">ambos</div><div class="f37-hito-c">completado</div></div>
+              <div class="f37-hito"><div class="f37-hito-t">08:45</div><div class="f37-hito-n">Traslado a patio de exportación (<i>stacking</i>)</div><div class="f37-hito-c">MSCU-7741205</div><div class="f37-hito-c">completado</div></div>
+              <div class="f37-hito"><div class="f37-hito-t">09:05</div><div class="f37-hito-n">Traslado al PARE, canal rojo</div><div class="f37-hito-c">MSCU-7741206</div><div class="f37-hito-c">en curso</div></div>
+              <div class="f37-hito pend"><div class="f37-hito-t">—</div><div class="f37-hito-n">Consolidación / llenado del contenedor</div><div class="f37-hito-c">MSCU-7741206</div><div class="f37-hito-c">proyectado</div></div>
+              <div class="f37-hito pend"><div class="f37-hito-t">—</div><div class="f37-hito-n">Traslado a patio de exportación</div><div class="f37-hito-c">MSCU-7741206</div><div class="f37-hito-c">proyectado</div></div>
+              <div class="f37-hito pend"><div class="f37-hito-t">—</div><div class="f37-hito-n">Almacenamiento hasta cargue</div><div class="f37-hito-c">ambos</div><div class="f37-hito-c">proyectado</div></div>
+            </div>
+            <div class="note"><b>El movimiento a PARE lo determina el canal de selectividad, no este agente.</b> Este agente solo registra el movimiento y su costo asociado; la asignación del canal la decide la DIAN en <a href="f33-inspeccion-dian-siis.html" style="color:var(--stamp-fg);text-decoration:none;border-bottom:1px dotted var(--stamp-fg)">F5-02 →</a>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>P4.3</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Reloj de costos de la fase</div><div class="art-sub">costos y tiempos corriendo desde el ingreso a zona primaria</div></div>
+              <div class="art-sub">4 de 6 conceptos activos</div>
+            </div>
+            <div class="f37-clock">
+              <div class="f37-cc"><div class="f37-cc-k">Uso de instalaciones</div><div class="f37-cc-v">Facturado</div><div class="f37-cc-d">fijo por operación</div></div>
+              <div class="f37-cc warn"><div class="f37-cc-k">Almacenamiento</div><div class="f37-cc-v">Corriendo · día 1</div><div class="f37-cc-d">variable por día desde 08:14</div></div>
+              <div class="f37-cc"><div class="f37-cc-k">Movilización a inspección</div><div class="f37-cc-v">Facturado</div><div class="f37-cc-d">evento · MSCU-7741206 al PARE</div></div>
+              <div class="f37-cc warn"><div class="f37-cc-k">Cuadrilla de inspección</div><div class="f37-cc-v">Corriendo · 09:05</div><div class="f37-cc-d">variable por hora</div></div>
+              <div class="f37-cc"><div class="f37-cc-k">Demoras del contenedor</div><div class="f37-cc-v">Sin activar</div><div class="f37-cc-d">variable por día, si excede tiempo libre</div></div>
+              <div class="f37-cc"><div class="f37-cc-k">Reprogramación de zarpe</div><div class="f37-cc-v">Sin activar</div><div class="f37-cc-d">excepcional, si se pierde la ventana</div></div>
+            </div>
+            <div class="note"><b>El almacenamiento es el driver de costo más sensible al retraso documental.</b> Corre por día mientras la carga permanece en el terminal: cualquier demora en corregir un hallazgo o completar un requisito lo multiplica directamente.</div>
+            <div class="note"><span class="tag-transversal" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.04em;color:var(--mute)">Gestión transversal</span> — la visualización del reloj de costos en tarjetas es un diseño de producto para dar visibilidad operativa; los conceptos, drivers y su naturaleza fija/variable sí provienen del Manual Cap. 8, P4.3.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">reloj-costos</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-costos</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-costos · mcp-carga · mcp-terceros (terminal)</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-02 manual-salida-v42</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No; se actualiza automáticamente con cada evento del terminal</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para autorizar reprogramación de zarpe</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

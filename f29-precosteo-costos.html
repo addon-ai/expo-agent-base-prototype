@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FT-05 · Precosteo y costos de la operación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f29-scope{border-left:2px solid var(--gold-bd);padding:10px 0 10px 13px;margin:0 0 16px;font-size:12px;color:var(--slate);background:var(--gold-wash);border-radius:0 var(--r) var(--r) 0}
+.f29-scope b{color:var(--gold-fg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:3px}
+.f29-cost{display:grid;grid-template-columns:1fr 100px 100px 90px;gap:10px;align-items:center;background:var(--raised);padding:8px 11px;font-family:'IBM Plex Mono',monospace;font-size:12px}
+.f29-costs{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-bottom:6px;min-width:460px}
+.f29-costs .f29-cost.hd{background:var(--paper);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.f29-total{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;padding:9px 11px;background:var(--paper);border:1px solid var(--line-soft);border-top:none}
+.f29-scroll{overflow-x:auto}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">FT-05</span>
+      <span class="ftitle">Precosteo y costos de la operación</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en DEX firmada (6 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st done"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st now"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-costos</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿Cómo va el costo real de la SAE-2026-00147 contra lo que precosteamos?</div></div>
+      <div class="turn"><div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-costos</span><span class="who-time">14:05</span></div>
+        <div class="msg">
+          <p>Precosteamos <b>COP 4.180.000</b> para esta operación: flete interno, agenciamiento, certificado de origen y gastos portuarios. El costo real registrado hasta hoy es <b>COP 4.512.300</b>, una desviación de <b>+7,9%</b>.</p>
+          <p>La mayor parte de la desviación está en el flete interno: se cotizó con un vehículo de 30 toneladas y terminó usándose uno más pequeño por disponibilidad, con un recargo por viaje adicional.</p>
+          <p>Esto no es un dato que la DIAN pida en ningún formulario. Lo calculamos porque el negocio lo necesita para facturar bien al cliente y para no repetir el mismo error de cotización.</p>
+          <div class="evid"><span class="chip">exp-costing-service · decisión de producto</span><span class="chip">mcp-costos</span></div>
+          <details class="trace"><summary>Traza del agente</summary><div class="trace-body">
+            <span class="n">elicitar_variables_costeo</span> → modalidad, distancia, tipo de carga, agente de aduanas<br>
+            <span class="n">calcular_precosteo</span> → COP 4.180.000<br>
+            <span class="n">registrar_costo_real</span> → COP 4.512.300, 4 partidas cerradas, 1 abierta<br>
+            <span class="n">calcular_desviacion</span> → +7,9%, concentrada en flete interno<br>
+            <span class="t">mcp-costos · sin RAG normativo, no hay fuente DIAN</span>
+          </div></details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Ya puedo facturar?</div></div>
+      <div class="turn"><div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-costos</span><span class="who-time">14:22</span></div>
+        <div class="msg">
+          <p>Todavía no. Falta el soporte del flete interno con Transportes del Norte. Facturar un reembolsable sin soporte del tercero deja a la agencia sin con qué responder si el cliente lo objeta.</p>
+          <p>La desviación de <b>COP 332.300</b> no se le traslada al cliente porque el origen fue un error propio de cotización, no una condición que él impuso. Lo correcto es absorberla y ajustar la tarifa hacia adelante — que es justo la propuesta que ya está en el canvas.</p>
+          <div class="evid"><span class="chip">P7.3</span><span class="chip">V-05 · exp-costing-service</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por una partida o la desviación…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Precosteo</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Cierre</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Elicitar variables de costeo</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Calcular precosteo</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Registrar costo real</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Calcular desviación</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Proponer ajuste de facturación</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="f29-scope"><b>Sin norma DIAN · decisión de producto</b>Este artefacto no está sustentado en el Manual ni en ningún anexo de la Resolución 000046. Existe porque el negocio lo necesita para precostear y facturar, no porque la DIAN lo exija. Se documenta en <code>DISEÑO_DOMINIOS.md</code> como subdominio genérico <code>2.17 exp-costing-service</code> y queda registrado como ADR en <code>TRAZABILIDAD_NORMATIVA.md</code> bajo la sección de artefactos sin norma DIAN, para no violar la regla de gobierno de que ningún artefacto existe sin una referencia que lo justifique.</div>
+        <div class="artifact"><div class="band" style="background:var(--gold)"><span>GESTIÓN TRANSVERSAL</span></div><div class="art-body">
+          <div class="art-hd">
+            <div><div class="art-title">Precosteo vs. costo real</div><div class="art-sub">SAE-2026-00147 · NIT 900.123.456-7</div></div>
+            <div class="art-sub">Desviación +7,9%</div>
+          </div>
+          <div class="f29-scroll">
+            <div class="f29-costs">
+              <div class="f29-cost hd"><span>Partida</span><span>Precosteo</span><span>Real</span><span>Estado</span></div>
+              <div class="f29-cost"><span>Flete interno</span><span>1.400.000</span><span>1.780.000</span><span class="pill bad">+27%</span></div>
+              <div class="f29-cost"><span>Agenciamiento aduanero</span><span>950.000</span><span>950.000</span><span class="pill ok">igual</span></div>
+              <div class="f29-cost"><span>Certificado de origen</span><span>180.000</span><span>180.000</span><span class="pill ok">igual</span></div>
+              <div class="f29-cost"><span>Gastos portuarios</span><span>1.150.000</span><span>1.102.300</span><span class="pill ok">-4%</span></div>
+              <div class="f29-cost"><span>Inspección previa</span><span>500.000</span><span>500.000</span><span class="pill wait">abierta</span></div>
+            </div>
+          </div>
+          <div class="f29-total"><span>Total</span><span>COP 4.180.000 → 4.512.300</span></div>
+          <div class="prop-box"><div class="seal">Propuesta</div>
+            <div class="prop-t">Ajustar la tarifa de flete interno para la próxima cotización</div>
+            <div class="prop-d">El agente propone subir el estimado de flete interno un 20% para operaciones similares hasta que se confirme disponibilidad de vehículo de 30 toneladas con el transportador habitual.</div>
+            <div class="actions"><button class="btn primary">Aprobar ajuste de tarifa</button><button class="btn ghost">Descartar</button></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact"><div class="band" style="background:var(--gold)"><span>P7.3</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Cierre financiero de la operación</div><div class="art-sub">OP-2026-00147 · liquidación y facturación</div></div></div>
+
+          <div class="f29-scope" style="margin-bottom:14px"><b>Gastos reembolsables</b>Un gasto sin soporte del tercero no se factura al cliente: se asume o se sustenta, no hay tercera opción.</div>
+          <div class="f29-scroll">
+            <table class="grid"><thead><tr><th>Concepto</th><th>Tercero</th><th>Valor</th><th>Soporte</th></tr></thead><tbody>
+              <tr><td>Movilización a inspección</td><td>Terminal de Cartagena</td><td>COP 380.000</td><td><span class="pill ok">factura FT-9921</span></td></tr>
+              <tr><td>Cuadrilla de inspección</td><td>Terminal de Cartagena</td><td>COP 500.000</td><td><span class="pill ok">factura FT-9922</span></td></tr>
+              <tr><td>Almacenaje 3 días</td><td>Terminal de Cartagena</td><td>COP 412.000</td><td><span class="pill ok">factura FT-9930</span></td></tr>
+              <tr><td>Flete interno</td><td>Transportes del Norte</td><td>COP 1.780.000</td><td><span class="pill bad">pendiente de soporte</span></td></tr>
+            </tbody></table>
+          </div>
+          <div class="f29-total"><span>Total reembolsable</span><span>COP 3.072.000</span></div>
+
+          <div class="art-hd" style="margin-top:18px"><div><div class="art-title" style="font-size:13px">Conciliación a tres columnas</div><div class="art-sub">cotizado · ejecutado · facturado</div></div></div>
+          <div class="f29-scroll">
+            <table class="grid"><thead><tr><th>Cotizado</th><th>Ejecutado</th><th>Facturado</th><th>Desviación</th></tr></thead><tbody>
+              <tr><td>COP 4.180.000</td><td>COP 4.512.300</td><td>pendiente de emisión</td><td><span class="pill bad">+7,9%</span></td></tr>
+            </tbody></table>
+          </div>
+          <p style="font-size:12px;color:var(--slate);margin:8px 0 10px">La desviación está en el flete interno: se cotizó con vehículo de 30 toneladas y terminó usándose uno más pequeño por disponibilidad, con recargo por viaje adicional.</p>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Imputable al cliente</div><div class="fi-v">COP 0</div></div>
+            <div class="fi"><div class="fi-k">Imputable a error interno de cotización</div><div class="fi-v">COP 332.300</div></div>
+          </div>
+          <p style="font-size:12px;color:var(--slate);margin:8px 0 14px">Ese segundo número es el que alimenta el indicador de sobrecosto por reproceso en FT-07.</p>
+
+          <div class="art-hd" style="margin-top:4px"><div><div class="art-title" style="font-size:13px">Facturación y cartera</div><div class="art-sub">V-05 · verificación de cupo</div></div></div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Factura de servicio</div><div class="fi-v">pendiente de emisión</div></div>
+            <div class="fi"><div class="fi-k">Condiciones pactadas</div><div class="fi-v">30 días</div></div>
+            <div class="fi"><div class="fi-k">Cartera corriente del cliente</div><div class="fi-v">COP 8.400.000</div></div>
+            <div class="fi"><div class="fi-k">Límite autorizado</div><div class="fi-v">COP 40.000.000</div></div>
+            <div class="fi"><div class="fi-k">Estado</div><div class="fi-v"><span class="pill ok">dentro del límite</span></div></div>
+          </div>
+          <div class="note"><b>Conciliar no es sumar.</b> El valor del cierre financiero está en separar la desviación imputable al cliente de la imputable a la agencia; sin esa separación, cada operación termina en una negociación y no en una factura. La regla V-05, severidad crítica, se evalúa al abrir la operación en F1-01 — revisar la cartera cuando ya se prestó el servicio no sirve de nada.</div>
+          <div class="note"><b>El cierre financiero no termina aquí.</b> El informe de cierre con hitos, tiempos comprometidos contra reales, incidencias y costos se entrega al cliente desde FT-06, y la encuesta de cierre alimenta los indicadores de relación de FT-07.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha"><div class="ficha-hd">Ficha del canvas</div><div class="ficha-grid">
+          <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">tablero-costos</div></div>
+          <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-costos</div></div>
+          <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-costos</div></div>
+          <div class="fi"><div class="fi-k">RAG</div><div class="fi-v no">Sin RAG · sin fuente normativa DIAN</div></div>
+          <div class="fi"><div class="fi-k">Editable</div><div class="fi-v si">Sí, tarifas y partidas</div></div>
+          <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para facturar</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

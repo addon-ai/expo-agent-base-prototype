@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F3-02 · Transmisión a MUISCA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f07-check{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-bottom:14px}
+.f07-ci{background:var(--raised);padding:9px 13px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.f07-ci-t{font-size:12.5px}
+.f07-ci-t .m{color:var(--mute);font-family:'IBM Plex Mono',monospace;font-size:10.5px;display:block;margin-top:1px}
+.f07-bar{border:1.5px solid var(--seal-bd);background:var(--seal-wash);border-radius:var(--r);padding:8px 13px;margin-bottom:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--seal-fg);text-transform:uppercase;letter-spacing:.04em}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F3-02</span>
+      <span class="ftitle">Transmisión a MUISCA</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Por transmitir (2 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st done"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st done"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st now"><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-transmision</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">Ya renové el certificado. Transmite.</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-transmision</span><span class="who-time">11:20</span></div>
+        <div class="msg">
+          <p>Preflight en verde: XSD conforme, 47 reglas sin bloqueantes, 4 soportes vigentes.</p>
+          <p>Consulté MUISCA por Número de Asunto antes de nada: no existe transmisión previa para esta clave, así que no hay riesgo de duplicar.</p>
+          <p><b>No transmito sin tu aprobación.</b> Revisa el resumen en el canvas; el botón está a tu lado, no al mío.</p>
+          <div class="evid"><span class="chip">preflight · 3 de 3</span><span class="chip">idempotencia · sin duplicado</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">preflight</span> → XSD + reglas + soportes OK<br>
+              <span class="n">verificar_idempotencia</span> → clave nueva<br>
+              <span class="n">reconciliar_por_asunto</span> → sin transmisión previa<br>
+              <span class="n">resumir_para_aprobacion</span> → listo<br>
+              <span class="n">solicitar_aprobacion_humana</span> → interrupt() bloqueante<br>
+              <span class="t">mcp-muisca-gateway · mcp-firma</span>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿El preflight es lo mismo que el checklist de radicación?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-transmision</span><span class="who-time">11:21</span></div>
+        <div class="msg">
+          <p>El preflight es ese checklist, ejecutado por máquina. Las ocho verificaciones del Anexo C se corresponden con reglas del motor y con consultas deterministas, y por eso el resultado es reproducible y defendible.</p>
+          <p>Hay una excepción honesta: el punto del certificado de origen no es bloqueante. Su ausencia no detiene el embarque, solo le cuesta al comprador el arancel. Por eso pasa en verde con el trámite todavía abierto.</p>
+          <div class="evid"><span class="chip">Anexo C</span><span class="chip">Manual Cap. 13.1</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">ejecutar_checklist_anexo_c</span> → 8 de 8 puntos<br>
+              <span class="n">clasificar_bloqueantes</span> → certificado de origen no bloqueante<br>
+              <span class="t">mcp-expediente · mcp-vuce · mcp-muisca-gateway</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Revisa el resumen antes de aprobar…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Checklist</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Preflight</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Gate</button>
+      <button class="tab" role="tab" id="t-4" aria-controls="p-4" aria-selected="false" data-p="p-4" tabindex="-1">Cronología</button>
+      <button class="tab" role="tab" id="t-5" aria-controls="p-5" aria-selected="false" data-p="p-5" tabindex="-1">Contingencia</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Preflight</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Verificar idempotencia</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Reconciliar por asunto</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Aprobación humana</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Firmar y transmitir</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">06</div></div><div class="sp-label">Capturar asunto</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact"><div class="band"><span>Anexo C</span></div><div class="art-body">
+          <div class="art-hd">
+            <div><div class="art-title">Checklist previo a radicar la SAE</div><div class="art-sub">ocho verificaciones · lo que el preflight comprueba</div></div>
+            <div class="art-sub">Esperando aprobación humana</div>
+          </div>
+          <div class="f07-bar">8 de 8 · listo para radicar</div>
+          <div class="f07-check">
+            <div class="f07-ci"><div class="f07-ci-t">1. Factura comercial emitida y validada<span class="m">FE-1042</span></div><span class="pill ok">Conforme</span></div>
+            <div class="f07-ci"><div class="f07-ci-t">2. Packing list completo y coherente con la factura<span class="m">V-20 conforme</span></div><span class="pill ok">Conforme</span></div>
+            <div class="f07-ci"><div class="f07-ci-t">3. Vistos buenos obtenidos y vigentes a la fecha proyectada de embarque<span class="m">renovado · V-28</span></div><span class="pill ok">Conforme</span></div>
+            <div class="f07-ci"><div class="f07-ci-t">4. Carta de responsabilidad Antinarcóticos cuando aplique<span class="m">VB-ANT</span></div><span class="pill ok">Conforme</span></div>
+            <div class="f07-ci"><div class="f07-ci-t">5. Certificado de origen gestionado o descartado con decisión documentada<span class="m">en trámite VUCE · F2-04</span></div><span class="pill ok">Conforme</span></div>
+            <div class="f07-ci"><div class="f07-ci-t">6. Validaciones cruzadas ejecutadas sin inconsistencias abiertas<span class="m">47 reglas · 0 bloqueantes</span></div><span class="pill ok">Conforme</span></div>
+            <div class="f07-ci"><div class="f07-ci-t">7. Mandato e instrumento de firma vigentes<span class="m">V-02 · V-04</span></div><span class="pill ok">Conforme</span></div>
+            <div class="f07-ci"><div class="f07-ci-t">8. Datos de transporte y terminal confirmados<span class="m">BKG-88213</span></div><span class="pill ok">Conforme</span></div>
+          </div>
+          <div class="note"><b>El preflight no es una cortesía del sistema, es el Anexo C hecho código.</b> La tasa de aceptación en primera radicación (meta ≥ 98 %, medida en FT-07) es la medida directa de si este checklist funciona.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>Manual Cap. 13.1</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Resumen de preflight</div><div class="art-sub">SAE-2026-00147 · Concepto 01 Inserción</div></div></div>
+          <div class="fields">
+            <div class="f wide"><div class="f-k">Archivo</div><div class="f-v">Dmuisca_011060207202600000147.xml</div></div>
+            <div class="f wide"><div class="f-k">Clave idempotencia</div><div class="f-v">a4f1…9c2e (saeId+concepto+numEnvio+nit)</div></div>
+            <div class="f wide"><div class="f-k">Validación XSD</div><div class="f-v">Conforme · Subanexo 6.1</div></div>
+            <div class="f wide"><div class="f-k">Reglas</div><div class="f-v">47 evaluadas · 0 bloqueantes</div></div>
+            <div class="f wide"><div class="f-k">Soportes</div><div class="f-v">4 de 4 vigentes al 14/09/2026</div></div>
+            <div class="f wide"><div class="f-k">Asunto previo</div><div class="f-v">No existe · sin riesgo de duplicado</div></div>
+            <div class="f wide"><div class="f-k">Firma</div><div class="f-v">Pendiente · ADR-01 sin resolver</div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact gate"><div class="band"><span>Aprobación</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">HITL obligatorio</div><div class="art-sub">agente-transmision</div></div></div>
+          <div class="prop-box block"><div class="seal">No omitible</div><div class="prop-t">Transmitir la SAE a MUISCA</div><div class="prop-d">Al aprobar, el XML se firma y se carga en MUISCA. La operación queda registrada a nombre del declarante y no es reversible: una corrección posterior exige un Concepto 02 Reemplazo con nuevo número de envío.</div><div class="actions"><button class="btn danger">Firmar y transmitir</button><button class="btn">Revisar el XML</button><button class="btn ghost">Cancelar</button></div></div>
+          <div class="note"><b>Este agente no tiene autonomía.</b> No existe modo desatendido. Nunca reintenta a ciegas: ante un fallo consulta por Número de Asunto antes de reenviar, porque un reintento ciego puede generar una SAE duplicada.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-4" role="tabpanel" aria-labelledby="t-4" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>Seguimiento</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Línea de tiempo</div><div class="art-sub">estado observado por consulta periódica</div></div></div>
+          <div class="tl"><div class="tl-i done"><div class="tl-t">11:18</div><div class="tl-n">Preflight superado</div></div><div class="tl-i now"><div class="tl-t">11:20</div><div class="tl-n">Esperando aprobación humana</div></div><div class="tl-i"><div class="tl-t">—</div><div class="tl-n">Firma digital</div></div><div class="tl-i"><div class="tl-t">—</div><div class="tl-n">Carga en MUISCA</div></div><div class="tl-i"><div class="tl-t">—</div><div class="tl-n">Número de Asunto</div></div><div class="tl-i"><div class="tl-t">—</div><div class="tl-n">Autorización de embarque</div></div></div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-5" role="tabpanel" aria-labelledby="t-5" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>E-02</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Contingencia: SAE rechazada por el sistema</div><div class="art-sub">respuesta y prevención</div></div></div>
+          <p style="font-size:12.5px;color:var(--slate);margin-bottom:8px">Si MUISCA rechaza la radicación, la respuesta trae el motivo, se corrige y se re-radica el mismo día. La prevención es exactamente el checklist del Anexo C anterior.</p>
+          <p style="font-size:12.5px;color:var(--slate)">El patrón de rechazos por código se ve agregado en FT-02; el caso puntual de un rechazo se sigue en F3-03.</p>
+        </div></div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha"><div class="ficha-hd">Ficha del canvas</div><div class="ficha-grid">
+          <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">linea-tiempo-transmision</div></div>
+          <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-transmision</div></div>
+          <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-muisca-gateway · mcp-firma</div></div>
+          <div class="fi"><div class="fi-k">RAG</div><div class="fi-v no">Ninguno, deliberadamente</div></div>
+          <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No</div></div>
+          <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Bloqueante y no omitible</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

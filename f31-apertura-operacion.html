@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1-01 · Apertura de operación e instrucción de embarque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f31-tl-rev{display:flex;flex-direction:column-reverse}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">OP-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F1-01</span>
+      <span class="ftitle">Apertura de operación e instrucción de embarque</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Borrador (0 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st now"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-apertura</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">Automotores Andinos manda 100 vehículos a Miami, quieren embarcar el 14 de septiembre.</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-apertura</span><span class="who-time">08:05</span></div>
+        <div class="msg">
+          <p>Registré la instrucción y asigné el número único de operación <code>OP-2026-00147</code>. Será la clave de trazabilidad de todo lo que venga después — el mismo hilo que luego lleva la SAE, el manifiesto y el expediente.</p>
+          <p>El cliente está <b>habilitado y sin restricciones de cartera</b> (regla <b>V-01</b> conforme, <b>V-05</b> conforme: cartera corriente COP 8.4 M bajo el límite de COP 40 M).</p>
+          <p>De los 14 datos de la instrucción, <b>faltan 2</b>: la ficha técnica del producto (sin ella no se puede clasificar en F1-03 — regla <b>V-10</b>) y las condiciones de pago.</p>
+          <p><b>No acepto la instrucción incompleta.</b> Toda instrucción que se acepta "para no frenar al cliente" se convierte en retrabajo aguas abajo; el criterio de aceptación tiene que ser explícito.</p>
+          <p>Construí el <b>cronograma en reversa</b> desde la fecha de corte documental del transportista, no desde la fecha de zarpe: el corte es el 2026-09-10 y el zarpe el 2026-09-14, así que la radicación de la SAE tiene que ocurrir a más tardar el 2026-09-08 (regla <b>V-50</b>).</p>
+          <p>Los vistos buenos se inician en paralelo con esta fase, no después, porque tienen tiempos propios que la agencia no controla.</p>
+          <div class="evid"><span class="chip">OP-2026-00147</span><span class="chip">V-01 · V-05 conformes</span><span class="chip">Corte documental 2026-09-10</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">registrar_instruccion</span> → 12 de 14 campos<br>
+              <span class="n">verificar_habilitacion_cliente</span> → habilitado, sin restricción de cartera<br>
+              <span class="n">validar_completitud</span> → 2 faltantes<br>
+              <span class="n">construir_cronograma_reversa</span> → corte 2026-09-10<br>
+              <span class="n">estimar_servicio</span> → cotización COP 4.180.000<br>
+              <span class="n">marcar_para_revision</span> → ficha técnica, condiciones de pago<br>
+              <span class="t">mcp-terceros · mcp-declaraciones · mcp-costos</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pide completar un dato o revisar el cronograma…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Instrucción</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Checklist</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Cronograma</button>
+      <button class="tab" role="tab" id="t-4" aria-controls="p-4" aria-selected="false" data-p="p-4" tabindex="-1">Aceptar</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Recibir instrucción</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Verificar habilitación</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Validar completitud</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Cronograma en reversa</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Aceptar operación</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact"><div class="band"><span>P1.1</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Instrucción de embarque OP-2026-00147</div><div class="art-sub">Automotores Andinos S.A. · 900.123.456-7</div></div><div class="art-sub">OP-2026-00147 · 12 de 14 campos</div></div>
+          <div class="fields">
+            <div class="f wide"><div class="f-k">Exportador</div><div class="f-v">Automotores Andinos S.A. · 900.123.456-7</div></div>
+            <div class="f wide"><div class="f-k">Comprador</div><div class="f-v">Andes Trading Corp · Miami, FL</div></div>
+            <div class="f wide"><div class="f-k">País de destino</div><div class="f-v">Estados Unidos</div></div>
+            <div class="f wide"><div class="f-k">Mercancía</div><div class="f-v">Automóvil de turismo, 1.400 cm³</div></div>
+            <div class="f wide"><div class="f-k">Cantidad</div><div class="f-v">100 unidades</div></div>
+            <div class="f wide"><div class="f-k">Peso bruto estimado</div><div class="f-v">12.540,00 kg</div></div>
+            <div class="f wide"><div class="f-k">Valor declarado</div><div class="f-v">USD 1.842.000,00</div></div>
+            <div class="f wide"><div class="f-k">Incoterm</div><div class="f-v">FOB · Cartagena</div></div>
+            <div class="f wide"><div class="f-k">Modo</div><div class="f-v">Marítimo</div></div>
+            <div class="f wide"><div class="f-k">Fecha requerida de embarque</div><div class="f-v">2026-09-14</div></div>
+            <div class="f wide"><div class="f-k">Orden de compra</div><div class="f-v">PO-AT-77120</div></div>
+            <div class="f wide"><div class="f-k">Lugar de entrega</div><div class="f-v">Puerto de Cartagena</div></div>
+            <div class="f wide low"><div class="f-k">Ficha técnica</div><div class="f-v">Pendiente del exportador</div></div>
+            <div class="f wide low"><div class="f-k">Condiciones de pago</div><div class="f-v">Pendiente del exportador</div></div>
+          </div>
+          <div class="note"><b>El número único de operación se asigna aquí y no cambia.</b> SAE, planilla, manifiesto, DEX y expediente cuelgan de él; es lo que hace que la bitácora sea una sola historia y no seis.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>Anexo B</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Checklist de apertura de operación</div><div class="art-sub">Anexo B · ocho puntos</div></div></div>
+          <table class="grid"><tr><th>Punto</th><th>Estado</th></tr>
+          <tr><td>Instrucción de embarque completa</td><td><span class="pill bad">2 faltantes</span></td></tr>
+          <tr><td>Cliente habilitado y sin restricciones de cartera</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>Producto con subpartida asignada y justificada</td><td><span class="pill wait">Depende de la ficha técnica → F1-03</span></td></tr>
+          <tr><td>Vistos buenos identificados con plazo suficiente de gestión</td><td><span class="pill wait">Se identifican al clasificar → F2-03</span></td></tr>
+          <tr><td>Incoterm definido con lugar preciso</td><td><span class="pill ok">FOB Cartagena</span></td></tr>
+          <tr><td>Booking confirmado con fecha de corte conocida</td><td><span class="pill ok">BKG-88213</span></td></tr>
+          <tr><td>Cronograma construido en reversa desde el corte</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>Cotización aprobada por el cliente</td><td><span class="pill wait">Enviada, sin respuesta</span></td></tr>
+          </table>
+          <div class="note"><b>El criterio de aceptación es explícito y se aplica.</b> Una operación con faltantes queda en estado <i>Solicitada</i>, no <i>Aceptada</i>; el reloj de servicio no arranca hasta que esté completa.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>V-50</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Cronograma en reversa</div><div class="art-sub">desde el corte documental, no desde el zarpe</div></div></div>
+          <div class="tl">
+            <div class="tl-i done"><div class="tl-t">2026-08-14</div><div class="tl-n">Instrucción recibida</div></div>
+            <div class="tl-i now"><div class="tl-t">2026-08-16</div><div class="tl-n">Ficha técnica y condiciones de pago</div><div class="tl-d">Pendiente del exportador, bloquea la clasificación</div></div>
+            <div class="tl-i"><div class="tl-t">2026-08-18</div><div class="tl-n">Clasificación arancelaria aprobada · F1-03</div></div>
+            <div class="tl-i"><div class="tl-t">2026-08-20</div><div class="tl-n">Vistos buenos radicados en VUCE · F2-03</div><div class="tl-d">Tiempo de gestión no controlado por la agencia</div></div>
+            <div class="tl-i"><div class="tl-t">2026-09-04</div><div class="tl-n">Expediente documental validado · F2-05</div></div>
+            <div class="tl-i"><div class="tl-t">2026-09-08</div><div class="tl-n">Radicación de la SAE · F3-02</div><div class="tl-d">Límite: 2 días antes del corte documental</div></div>
+            <div class="tl-i"><div class="tl-t">2026-09-10</div><div class="tl-n">Corte documental del transportista</div><div class="tl-d">Fijado por la naviera, no negociable</div></div>
+            <div class="tl-i"><div class="tl-t">2026-09-12</div><div class="tl-n">Ingreso a zona primaria</div></div>
+            <div class="tl-i"><div class="tl-t">2026-09-14</div><div class="tl-n">Zarpe MSC ALTAIR</div></div>
+          </div>
+          <div class="note"><b>El cronograma se construye desde el corte documental, no desde el zarpe.</b> El corte del transportista siempre es anterior a la salida; planear desde la fecha de zarpe es la causa raíz de E-06, la pérdida de la ventana de embarque.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-4" role="tabpanel" aria-labelledby="t-4" aria-hidden="true">
+        <div class="artifact prop"><div class="band"><span>Propuesta</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Aceptar la operación OP-2026-00147</div><div class="art-sub">agente-apertura</div></div></div>
+          <div class="prop-box"><div class="seal">Requiere aprobación</div><div class="prop-t">Pasar de Solicitada a Aceptada con 2 faltantes declarados</div><div class="prop-d">Al aceptar se compromete el número de operación, el responsable asignado (María Gómez) y los niveles de servicio del contrato. Los dos faltantes quedan como <b>estado 04 · En espera del cliente</b>, con su reloj propio; ese tiempo no cuenta como tiempo de la agencia en el indicador de ciclo.</div>
+          <div class="actions"><button class="btn primary">Aceptar y notificar al cliente</button><button class="btn">Solicitar faltantes primero</button><button class="btn danger">Rechazar la instrucción</button></div></div>
+          <div class="note"><b>Aceptar es un acto con consecuencia.</b> De aquí sale la confirmación con número de operación y responsable que el cliente ve en FT-06, y el reloj de los niveles de servicio empieza a contar.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha"><div class="ficha-hd">Ficha del canvas</div><div class="ficha-grid">
+          <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">instruccion-embarque</div></div>
+          <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-apertura</div></div>
+          <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-terceros · mcp-declaraciones · mcp-costos</div></div>
+          <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-02 manual-salida-v42</div></div>
+          <div class="fi"><div class="fi-k">Editable</div><div class="fi-v">Sí, campos de la instrucción</div></div>
+          <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para aceptar la operación</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

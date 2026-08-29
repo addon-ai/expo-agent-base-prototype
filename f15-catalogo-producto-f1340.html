@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FM-03 · Catálogo de producto y registro F1340</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f15-dep{display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+  background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r);padding:10px 13px;margin-bottom:14px}
+.f15-dep .arw{color:var(--mute)}
+.f15-dep .ok{color:var(--seal);font-weight:600}
+.f15-dep .bad{color:var(--alert);font-weight:600}
+.f15-dm{margin-top:14px}
+.f15-dm-hd{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;font-weight:600;margin-bottom:6px}
+.f15-dm-src{font-weight:400;opacity:.65;font-size:11px}
+.f15-mt{margin-top:18px}
+.f15-dm-t{width:100%;border-collapse:collapse;font-size:12px}
+.f15-dm-t th{text-align:left;font-weight:600;opacity:.7;padding:5px 8px;border-bottom:1px solid rgba(128,128,128,.28)}
+.f15-dm-t td{padding:5px 8px;border-bottom:1px solid rgba(128,128,128,.14);vertical-align:top}
+.f15-dm-t code{font-size:11px}
+.f15-var{opacity:.6;font-style:italic}
+.f15-tag{display:inline-block;padding:1px 7px;border-radius:9px;font-size:10.5px;font-weight:600;white-space:nowrap}
+.f15-tag.com{background:rgba(94,124,224,.16);color:var(--accent-fg)}
+.f15-tag.ind{background:rgba(150,110,210,.16);color:var(--stamp-fg)}
+.f15-tag.ok{background:rgba(60,160,110,.16);color:var(--seal-fg)}
+.f15-tag.pend{background:rgba(210,150,60,.18);color:var(--gold-fg)}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">FM-03</span>
+      <span class="ftitle">Catálogo de producto y registro F1340</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Borrador (0 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st now"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-producto</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">Quiero agregar "Café verde en grano, excelso" al catálogo para usarlo en esta SAE.</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-producto</span><span class="who-time">10:03</span></div>
+        <div class="msg">
+          <p>Antes de crear el ítem en <code>t_prod_cat</code> tengo que revisar si el producto ya tiene <b>registro previo del Formato 1340 v8</b> ante la DIAN, porque <code>t_prod_cat</code> depende de ese registro: sin F1340 aprobado, el catálogo no puede referenciarlo.</p>
+          <p>Busqué por descripción y partida arancelaria: <b>no existe registro F1340 vigente</b> para este producto con esta partida. Sí existe uno similar, pero con otra subpartida (0901.11.90 vs. la que aplica, 0901.11.10).</p>
+          <p>No puedo crear el ítem del catálogo todavía. Preparé el borrador del F1340 para que lo radiques; el ítem de catálogo queda en espera hasta que la DIAN confirme el registro.</p>
+          <div class="evid"><span class="chip">Subanexo 6.6 · Formato 1340 v8</span><span class="chip">t_prod_cat depende de F1340</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">verificar_registro_f1340</span> → sin registro vigente para esta subpartida<br>
+              <span class="n">proponer_ficha_producto</span> → borrador generado<br>
+              <span class="n">vincular_t_prod_cat</span> → bloqueado, requiere F1340 aprobado<br>
+              <span class="n">validar_completitud</span> → 5 de 6 campos<br>
+              <span class="t">mcp-catalogo-productos · exp-product-catalog 2.11</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pide radicar el F1340 o consultar otro producto…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Dependencia</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Descripciones</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Bloqueo</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Verificar registro F1340</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Proponer ficha de producto</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Vincular t_prod_cat</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Validar completitud</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Confirmar alta</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact">
+          <div class="band"><span>Subanexo 6.6</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Dependencia del catálogo con el F1340</div><div class="art-sub">exp-product-catalog 2.11 · no responsable de clasificación arancelaria (2.3)</div></div>
+              <div class="art-sub">Café verde en grano, excelso · sin F1340 vigente</div>
+            </div>
+            <div class="f15-dep"><span>Registro Formato 1340 v8 ante la DIAN</span><span class="arw">→</span><span class="bad">sin aprobar</span><span class="arw">→</span><span>t_prod_cat</span><span class="arw">→</span><span class="bad">no se puede crear el ítem</span></div>
+            <table class="grid"><tr><th>Campo</th><th>Valor</th><th>Estado</th></tr>
+            <tr><td>Descripción</td><td>Café verde en grano, excelso</td><td><span class="pill ok">Completo</span></td></tr>
+            <tr><td>Subpartida arancelaria</td><td>0901.11.10</td><td><span class="pill ok">Completo</span></td></tr>
+            <tr><td>Unidad comercial</td><td>Kilogramo</td><td><span class="pill ok">Completo</span></td></tr>
+            <tr><td>Registro F1340 v8</td><td>Sin registro vigente para esta subpartida</td><td><span class="pill bad">Bloqueante</span></td></tr>
+            <tr><td>t_prod_cat</td><td>No creado</td><td><span class="pill wait">En espera del F1340</span></td></tr>
+            </table>
+            <div class="note"><b>El catálogo del exportador no reemplaza la clasificación arancelaria.</b> <code>t_prod_cat</code> es el catálogo propio del exportador (2.11), pero cada ítem solo se activa cuando existe registro F1340 v8 aprobado por la DIAN para esa subpartida. La partida en sí la determina el agente de arancel (2.3, F1-03); esta pantalla solo verifica el registro previo.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>Subanexo 6.2</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">Descripciones mínimas y variedades del producto</div><div class="art-sub">precalculadas por subpartida · evitan redescribir la mercancía en cada SAE</div></div></div>
+            <div class="f15-dm">
+              <div class="f15-dm-hd"><span>Descripción mínima exigida para 0901.11.10</span><span class="f15-dm-src">Subanexo 6.2 · <code>cod_desc</code></span></div>
+              <table class="f15-dm-t">
+                <thead><tr><th><code>cod_desc</code></th><th>Atributo exigido</th><th>Tipo</th><th>Valor precalculado</th><th>Origen</th></tr></thead>
+                <tbody>
+                  <tr><td><code>112</code></td><td>Especie botánica</td><td><span class="f15-tag com">Común</span></td><td>Coffea arabica</td><td>Catálogo</td></tr>
+                  <tr><td><code>118</code></td><td>Grado de preparación</td><td><span class="f15-tag com">Común</span></td><td>Verde, sin tostar, sin descafeinar</td><td>Catálogo</td></tr>
+                  <tr><td><code>124</code></td><td>Calidad / tipo</td><td><span class="f15-tag com">Común</span></td><td>Excelso</td><td>Catálogo</td></tr>
+                  <tr><td><code>131</code></td><td>Marca o denominación</td><td><span class="f15-tag ind">Individualizador</span></td><td class="f15-var">por variedad</td><td>Variedad</td></tr>
+                  <tr><td><code>147</code></td><td>Presentación y empaque</td><td><span class="f15-tag ind">Individualizador</span></td><td class="f15-var">por variedad</td><td>Variedad</td></tr>
+                </tbody>
+              </table>
+              <div class="f15-dm-hd f15-mt"><span>Variedades registradas del producto</span><span class="f15-dm-src">3 activas · comparten los atributos comunes</span></div>
+              <table class="f15-dm-t">
+                <thead><tr><th>Código</th><th>Variedad</th><th>Marca</th><th>Presentación</th><th>Estado F1340</th></tr></thead>
+                <tbody>
+                  <tr><td><code>CAF-EXC-60</code></td><td>Excelso EP 60 kg</td><td>Hubemar</td><td>Saco de fique 60 kg</td><td><span class="f15-tag ok">Aprobado</span></td></tr>
+                  <tr><td><code>CAF-EXC-70</code></td><td>Excelso EP 70 kg</td><td>Hubemar</td><td>Saco de fique 70 kg</td><td><span class="f15-tag ok">Aprobado</span></td></tr>
+                  <tr><td><code>CAF-EXC-GC</code></td><td>Excelso GrainPro</td><td>Hubemar</td><td>Saco con liner 69 kg</td><td><span class="f15-tag pend">En espera de F1340</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note"><b>Los atributos comunes se resuelven una vez, no en cada declaración.</b> Los <code>cod_desc</code> marcados como comunes viajan en <code>i_comun</code> y se heredan a todas las variedades; solo los individualizadores bajan a <code>item</code>. Esto es lo que hace rentable a <code>t_prod_cat</code>: sin catálogo, A3 <code>agente-descripcion</code> vuelve a resolver la descripción mínima en caliente en cada SAE, y cada resolución es una oportunidad de discrepancia.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact gate">
+          <div class="band"><span>Bloqueo</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">No se puede crear el ítem de catálogo</div><div class="art-sub">agente-producto</div></div></div>
+            <div class="prop-box block">
+              <div class="seal">HITL obligatorio</div>
+              <div class="prop-t">Radicar el Formato 1340 v8 antes de continuar</div>
+              <div class="prop-d">El borrador del F1340 está listo con los datos capturados. Hasta que la DIAN confirme el registro, <code>t_prod_cat</code> no puede vincular este producto y la SAE no podrá usarlo en la descripción de mercancías.</div>
+              <div class="actions">
+                <button class="btn primary">Radicar F1340 (borrador)</button>
+                <button class="btn">Buscar registro existente</button>
+                <button class="btn ghost">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">ficha-producto</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-producto</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-catalogo-productos</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-01 (Subanexo 6.6)</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v">Descripción, subpartida, unidad</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, siempre antes de registrar</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

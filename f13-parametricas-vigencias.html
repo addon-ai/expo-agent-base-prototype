@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FM-01 · Paramétricas y vigencias DIAN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f13-list{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.f13-item{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;background:var(--raised);padding:9px 13px}
+.f13-nom{font-size:12.5px;font-weight:500}
+.f13-cod{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--mute);margin-top:1px}
+.f13-vig{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--slate);white-space:nowrap}
+.f13-affected{border:1px solid var(--line-soft);border-radius:var(--r);background:var(--paper);padding:8px 11px;margin-bottom:6px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.f13-affected .sae{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600}
+.f13-affected .campo{font-size:11.5px;color:var(--slate)}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">Lugares de embarque · v12</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">FM-01</span>
+      <span class="ftitle">Paramétricas y vigencias DIAN</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ VIGENCIA DE LA LISTA · f13 no lleva tira .states (no pertenece a una SAE) · §7.4 -->
+  <div class="states-wrap">
+    <div class="scope" aria-label="Vigencia de la lista">
+      <div class="sc"><span class="sc-v">v12</span><span class="sc-k">Versión vigente</span></div>
+      <div class="sc"><span class="sc-v">Anexo 6</span><span class="sc-k">Fuente normativa</span></div>
+      <div class="sc"><span class="sc-v">2.3</span><span class="sc-k">exp-tariff-catalog</span></div>
+      <div class="sc warn"><span class="sc-v">3</span><span class="sc-k">SAE en borrador afectadas</span></div>
+    </div>
+  </div>
+  <!-- ▲ VIGENCIA DE LA LISTA -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-parametricas</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">La DIAN publicó una nueva versión de lugares de embarque, ¿nos afecta?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-parametricas</span><span class="who-time">07:40</span></div>
+        <div class="msg">
+          <p>Sí. La lista <b>Lugares de embarque v12</b> quedó vigente hoy y reemplaza la v11, que pasa a <b>superada</b>. La v12 retira el código <code>05CTG-014</code> (muelle antiguo, Cartagena) y lo reemplaza por <code>05CTG-021</code>.</p>
+          <p>Encontré <b>2 SAE en borrador</b> que todavía usan el código retirado: <code>SAE-2026-00147</code> y <code>SAE-2026-00158</code>. Si las transmites así, MUISCA las va a rechazar por código no vigente.</p>
+          <p>No las corrijo solo: te dejo la propuesta para que apruebes el remapeo antes de que sigan.</p>
+          <div class="evid"><span class="chip">Anexo 6 · Lugares de embarque v12</span><span class="chip">DIAN Resolución vigencia 2026</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">detectar_cambio_lista</span> → v12 publicada, reemplaza v11<br>
+              <span class="n">comparar_versiones</span> → 1 código retirado, 1 código nuevo<br>
+              <span class="n">identificar_borradores_afectados</span> → 2 SAE en borrador<br>
+              <span class="n">explicar_impacto</span> → riesgo de rechazo MUISCA<br>
+              <span class="t">mcp-parametricas (solo lectura) · exp-tariff-catalog 2.3</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por otra lista o pide aplicar la vigencia…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Paramétricas</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Requisitos</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Afectadas</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Detectar cambio de lista</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Comparar versiones</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Identificar borradores afectados</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Explicar impacto</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Aplicar nueva vigencia</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact">
+          <div class="band"><span>Anexo 6</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Listas paramétricas con vigencia versionada</div><div class="art-sub">exp-tariff-catalog 2.3</div></div>
+              <div class="art-sub">Lugares de embarque · v12 vigente</div>
+            </div>
+            <div class="f13-list">
+              <div class="f13-item"><div><div class="f13-nom">Aduanas</div><div class="f13-cod">v08</div></div><div class="f13-vig">Vigente desde 2025-01-15</div><span class="pill ok">Vigente</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Lugares de embarque</div><div class="f13-cod">v12</div></div><div class="f13-vig">Vigente desde 2026-08-14</div><span class="pill ok">Vigente</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Lugares de embarque</div><div class="f13-cod">v11</div></div><div class="f13-vig">Vigente hasta 2026-08-13</div><span class="pill bad">Superada</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Depósitos habilitados</div><div class="f13-cod">v05</div></div><div class="f13-vig">Vence en 6 días</div><span class="pill wait">Próxima a vencer</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Acuerdos comerciales</div><div class="f13-cod">v03</div></div><div class="f13-vig">Vigente desde 2024-11-01</div><span class="pill ok">Vigente</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Regímenes especiales</div><div class="f13-cod">v02</div></div><div class="f13-vig">Vigente desde 2023-06-10</div><span class="pill ok">Vigente</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Naturaleza de transacción</div><div class="f13-cod">v04</div></div><div class="f13-vig">Vigente desde 2025-03-01</div><span class="pill ok">Vigente</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Formas de pago</div><div class="f13-cod">v03</div></div><div class="f13-vig">Vigente desde 2025-03-01</div><span class="pill ok">Vigente</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Incoterms</div><div class="f13-cod">v2020</div></div><div class="f13-vig">Vigente desde 2020-01-01</div><span class="pill ok">Vigente</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Tasa de cambio</div><div class="f13-cod">TRM diaria</div></div><div class="f13-vig">Actualiza 2026-08-14</div><span class="pill ok">Vigente</span></div>
+              <div class="f13-item"><div><div class="f13-nom">Requisitos por país de destino</div><div class="f13-cod">v07</div></div><div class="f13-vig">Vigente desde 2026-06-01</div><span class="pill ok">Vigente</span></div>
+            </div>
+            <div class="note"><b>Las paramétricas vigentes nunca las decide el LLM.</b> Se consultan por <code>mcp-parametricas</code>, de solo lectura, directo sobre la tabla versionada del dominio <code>exp-tariff-catalog</code>. El agente solo explica el cambio y su impacto sobre SAE en borrador.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>§15.1</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Requisitos por país de destino</div><div class="art-sub">maestro propio · no lo publica la DIAN</div></div>
+            </div>
+            <table class="grid">
+              <tr><th>País</th><th>Acuerdo aplicable</th><th>Documentos exigidos en destino</th><th>Restricciones</th><th>Última verificación</th></tr>
+              <tr><td>Estados Unidos</td><td>TLC Colombia–EE.UU.</td><td>certificado de origen autocertificado, registro previo del establecimiento para alimentos</td><td>requisitos de la autoridad sanitaria de destino</td><td>2026-08-01</td></tr>
+              <tr><td>Unión Europea</td><td>Acuerdo Multipartes</td><td>certificado de origen con validación de la autoridad, certificado fitosanitario</td><td>normas de embalaje de madera</td><td>2026-07-15</td></tr>
+              <tr><td>Panamá</td><td>—</td><td>factura consularizada según producto</td><td>—</td><td>2026-05-20</td></tr>
+              <tr><td>México</td><td>Acuerdo de Complementación Económica</td><td>certificado de origen del acuerdo</td><td>cupos por contingente en algunas subpartidas</td><td>2026-08-10</td></tr>
+              <tr><td>Ecuador</td><td>Comunidad Andina</td><td>certificado de origen CAN</td><td>—</td><td>2026-06-30</td></tr>
+            </table>
+            <div class="note"><b>Este maestro no lo publica ninguna autoridad colombiana.</b> Se mantiene por investigación propia contra fuentes oficiales del país de destino, y por eso lleva fecha de última verificación: un requisito de destino desactualizado no produce un rechazo de la DIAN, produce una mercancía varada en el puerto del comprador. Su fuente de cambio es §19.4.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact prop">
+          <div class="band"><span>Propuesta</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">SAE en borrador afectadas por el cambio de vigencia</div><div class="art-sub">agente-parametricas</div></div>
+            </div>
+            <div class="f13-affected"><span class="sae">SAE-2026-00147</span><span class="campo">Campo lugar de embarque: <code>05CTG-014</code> → <code>05CTG-021</code></span></div>
+            <div class="f13-affected"><span class="sae">SAE-2026-00158</span><span class="campo">Campo lugar de embarque: <code>05CTG-014</code> → <code>05CTG-021</code></span></div>
+            <div class="prop-box">
+              <div class="seal">Requiere aprobación</div>
+              <div class="prop-t">Aplicar la vigencia v12 y remapear los 2 borradores afectados</div>
+              <div class="prop-d">Si no se aprueba, las SAE en borrador quedan con el código retirado y MUISCA las rechazará al transmitir. Las SAE ya transmitidas no se tocan: la vigencia solo aplica hacia adelante.</div>
+              <div class="actions">
+                <button class="btn primary">Aplicar vigencia y remapear</button>
+                <button class="btn">Revisar borrador por borrador</button>
+                <button class="btn ghost">Posponer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">tabla-parametrica</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-parametricas</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-parametricas (solo lectura)</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">Ninguno · vigentes van por MCP determinista</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No, la publica la DIAN</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para aplicar nueva vigencia</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

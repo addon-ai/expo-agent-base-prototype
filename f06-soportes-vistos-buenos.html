@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F2-03 · Soportes y vistos buenos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+/* Estilos locales fXX-* de la pantalla, si los tiene.
+   Prohibido: colores literales y el token retirado --warn. Solo tokens. */
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F2-03</span>
+      <span class="ftitle">Soportes y vistos buenos</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Borrador (0 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st now"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-cumplimiento</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿Me faltan documentos soporte?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-cumplimiento</span><span class="who-time">10:58</span></div>
+        <div class="msg">
+          <p>Para la subpartida <code>8703.22.10.00</code> en modalidad marítima se exigen 4 soportes. Están los 4, pero uno tiene problema de vigencia.</p>
+          <p>El certificado de emisiones vence el 09/09 y el embarque está proyectado para el 14/09. Conviene renovarlo antes de transmitir, porque MUISCA valida vigencia a la fecha de embarque.</p>
+          <p>La Resolución de Facturación sí está y es la vigente: MUISCA la valida automáticamente y su ausencia genera rechazo.</p>
+          <div class="evid"><span class="chip">VUCE · consulta 11:02</span><span class="chip">Manual Cap. 5</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">determinar_soportes_exigidos</span> → 4 por subpartida y modalidad<br>
+              <span class="n">verificar_presencia</span> → 4 de 4<br>
+              <span class="n">verificar_vigencia</span> → 1 vence antes del embarque<br>
+              <span class="n">consultar_vuce</span> → estado confirmado<br>
+              <span class="n">reportar_brechas</span> → 1 brecha<br>
+              <span class="t">mcp-supporting-documents (DAL) · mcp-vuce · mcp-catalogo-arancelario</span>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Y la carta de Antinarcóticos, la necesito?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-cumplimiento</span><span class="who-time">11:04</span></div>
+        <div class="msg">
+          <p>Sí. La exige el terminal de Cartagena para esta operación, aunque sea marítima. La firma el representante legal del exportador.</p>
+          <p>La validación es de fecha, no solo de existencia: los terminales aceptan un rango de vigencia corto y una carta emitida con demasiada anticipación se rechaza en portería.</p>
+          <p>El punto de inspección antinarcóticos físico del contenedor es otra cosa distinta y vive en <a href="f18-inspeccion-previa.html" style="color:var(--stamp-fg);text-decoration:none;border-bottom:1px dotted var(--stamp-fg)">F5-01 →</a>.</p>
+          <div class="evid"><span class="chip">§14.2</span><span class="chip">P2.5</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">determinar_exigibilidad_condicional</span> → VB-ANT exigido por terminal<br>
+              <span class="n">verificar_vigencia</span> → emitida 2026-08-12, dentro de rango<br>
+              <span class="t">mcp-supporting-documents (DAL) · mcp-vuce</span>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Esta mercancía se puede exportar sin restricción?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-cumplimiento</span><span class="who-time">11:09</span></div>
+        <div class="msg">
+          <p>Esa pregunta no es opcional y se resuelve antes que cualquier otra cosa. Una prohibición no se subsana con un documento: si la mercancía está prohibida, la operación no existe.</p>
+          <p>La verificación la dispara la subpartida, igual que los vistos buenos. Para <code>8703.22.10.00</code> no hay prohibición ni restricción de convenio. Lo único abierto es si el país de destino maneja contingente, y eso se resuelve en F2-04 (acuerdo) y FE-01 (cupo).</p>
+          <p>No confundo prohibición con visto bueno: el visto bueno es un permiso que se obtiene, la prohibición es una puerta cerrada.</p>
+          <div class="evid"><span class="chip">V-12</span><span class="chip">listado de prohibida exportación</span><span class="chip">Manual Cap. 5</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">verificar_prohibicion_absoluta</span> → no aplica<br>
+              <span class="n">verificar_restriccion_convenio</span> → no aplica, CITES<br>
+              <span class="n">verificar_contingente_destino</span> → pendiente, ver F2-04/FE-01<br>
+              <span class="t">mcp-catalogo-arancelario · mcp-vuce</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta qué soporte falta o pide renovar uno…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Exigibilidad</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Condicional</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Prohibiciones</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Determinar exigidos</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Verificar presencia</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Verificar vigencia</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Consultar VUCE</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Reportar brechas</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact ">
+          <div class="band"><span>Manual Cap. 5</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Exigibilidad y vigencia</div><div class="art-sub">subpartida 8703.22.10.00 · marítimo</div></div>
+              <div class="art-sub">4 de 4 presentes · 1 brecha de vigencia</div>
+            </div>
+            <table class="grid"><tr><th>Soporte</th><th>Código</th><th>Vigencia</th><th>Cantidad amparada</th><th>Estado</th></tr>
+              <tr><td>Factura comercial</td><td>201</td><td>—</td><td>—</td><td><span class="pill ok">Conforme</span></td></tr>
+              <tr><td>Resolución de facturación</td><td>—</td><td>hasta 2027-03-31</td><td>—</td><td><span class="pill ok">Vigente</span></td></tr>
+              <tr><td>Certificado de emisiones</td><td>VB-042</td><td>hasta 2026-09-09</td><td>100 de 100 unidades amparadas</td><td><span class="pill bad">Vence antes</span></td></tr>
+              <tr><td>Mandato de agencia</td><td>—</td><td>hasta 2026-12-31</td><td>—</td><td><span class="pill ok">Vigente</span></td></tr>
+              <tr><td>Carta de responsabilidad Antinarcóticos</td><td>VB-ANT</td><td>emitida 2026-08-12</td><td>—</td><td><span class="pill ok">Vigente</span></td></tr>
+              <tr><td colspan="5" style="font-size:11px;color:var(--mute);padding:4px 10px 12px;border-top:none">La exige el terminal según el modo de transporte y el perfil de la operación, no la subpartida.</td></tr>
+            </table>
+            <div class="note"><b>V-29 no es solo vigencia, es cantidad.</b> El visto bueno VB-042 debe amparar una cantidad igual o mayor a la que se va a embarcar, no solo estar vigente a la fecha de embarque; hoy ampara 100 de 100 unidades, conforme. La exigibilidad la fija V-13, la vigencia la controla V-28, la cantidad la controla V-29: las tres se verifican juntas antes de dar por cerrado un visto bueno.</div>
+            <div class="note"><b>Este dominio no procesa documentos.</b> La extracción la resuelve <code>supporting-documents</code> de DAL; <code>exp-customs-compliance</code> determina cuáles se exigen según subpartida y modalidad, y si siguen vigentes a la fecha de embarque.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>§14.2</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">Exigibilidad condicional por naturaleza y modo</div><div class="art-sub">P2.5 · documentos que dependen de la operación, no de la subpartida</div></div></div>
+            <table class="grid"><tr><th>Documento</th><th>Condición que lo hace exigible</th><th>Emisor</th><th>Validación clave</th></tr>
+              <tr><td>Carta de responsabilidad Antinarcóticos</td><td>envíos aéreos, courier y según exigencia del terminal</td><td>Exportador</td><td>firma del representante legal y fecha dentro del rango que acepta el terminal</td></tr>
+              <tr><td>Certificado de fumigación o tratamiento de embalaje</td><td>embalaje de madera</td><td>operador certificado</td><td>sello internacional de tratamiento</td></tr>
+              <tr><td>Certificado fitosanitario o zoosanitario de destino</td><td>requisito del país importador</td><td>ICA</td><td>requisitos específicos del país de destino</td></tr>
+              <tr><td>Registro previo ante autoridad de destino</td><td>requisito del país importador para ciertos mercados</td><td>autoridad extranjera</td><td>vigencia del registro del establecimiento</td></tr>
+              <tr><td>Póliza de seguro</td><td>Incoterm que obliga al vendedor: CIF, CIP, DDP</td><td>aseguradora</td><td>cobertura, valor asegurado y vigencia</td></tr>
+              <tr><td>Lista de precintos</td><td>carga contenerizada</td><td>terminal o transportador</td><td>números coincidentes con el acta y el informe</td></tr>
+            </table>
+            <div class="note"><b>La exigibilidad no la decide el declarante.</b> La dispara la subpartida, el modo de transporte, el Incoterm, el embalaje y el país de destino; el agente solo la deriva de esas cinco variables y verifica vigencia contra la fecha proyectada de embarque, nunca contra la de radicación (regla V-28, riesgo R-03).</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>V-12</span></div>
+          <div class="art-body">
+            <div class="art-hd"><div><div class="art-title">Prohibiciones y restricciones de exportación</div><div class="art-sub">derivadas de la subpartida 8703.22.10.00</div></div></div>
+            <table class="grid"><tr><th>Control</th><th>Aplica</th><th>Fuente</th><th>Estado</th></tr>
+              <tr><td>Prohibición absoluta de exportación</td><td>No aplica</td><td>listado de mercancías de prohibida exportación</td><td><span class="pill ok">Conforme</span></td></tr>
+              <tr><td>Restricción por convenio internacional (CITES)</td><td>No aplica</td><td>ANLA · MinAmbiente</td><td><span class="pill ok">Conforme</span></td></tr>
+              <tr><td>Patrimonio cultural de la Nación</td><td>No aplica</td><td>MinCultura</td><td><span class="pill ok">Conforme</span></td></tr>
+              <tr><td>Sustancias controladas y precursores químicos</td><td>No aplica</td><td>autoridad competente</td><td><span class="pill ok">Conforme</span></td></tr>
+              <tr><td>Material bélico y de uso dual</td><td>No aplica</td><td>autoridad competente</td><td><span class="pill ok">Conforme</span></td></tr>
+              <tr><td>Contingente o cupo de exportación del país de destino</td><td>Verificar</td><td>acuerdo comercial · F2-04 y FE-01</td><td><span class="pill wait">Pendiente</span></td></tr>
+            </table>
+            <div class="note"><b>V-12 es bloqueante y se evalúa en Fase 1, no en Fase 2.</b> Descubrir una restricción cuando el expediente ya está armado significa haber gastado el trabajo documental de una operación que no podía salir.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v ">lista-soportes</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v ">agente-cumplimiento</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v ">mcp-supporting-documents (DAL)<br>mcp-vuce · mcp-catalogo-arancelario</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v ">RAG-07 doctrina-dian</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No; se adjunta o renueva el soporte</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para omitir un soporte</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

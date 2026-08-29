@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F2-02 · Factura comercial y liquidación de valores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f16-money{display:grid;grid-template-columns:1fr auto;gap:2px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:9px 0;border-bottom:1px solid var(--line-soft)}
+.f16-money:last-child{border-bottom:none}
+.f16-money .f16-k{color:var(--slate)}
+.f16-money .f16-v{color:var(--ink);font-weight:500;text-align:right}
+.f16-money.f16-total .f16-k,.f16-money.f16-total .f16-v{font-weight:700;color:var(--ink);font-size:13px}
+.f16-cuadre{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-bottom:14px}
+.f16-cc{background:var(--raised);padding:11px 13px}
+.f16-cc-k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:5px}
+.f16-cc-v{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600}
+.f16-cc.f16-bad{background:var(--alert-wash)}
+.f16-cc.f16-bad .f16-cc-v{color:var(--alert-fg)}
+.f16-inc{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+  border:1px solid var(--stamp-bd);color:var(--stamp-fg);background:var(--stamp-wash);padding:3px 9px;border-radius:var(--r);margin-bottom:12px}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F2-02</span>
+      <span class="ftitle">Factura comercial y liquidación de valores</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Borrador (0 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st now"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-factura</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿La factura FC-4021 cuadra con lo que llevamos declarado en la SAE?</div></div>
+      <div class="turn"><div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-factura</span><span class="who-time">11:14</span></div><div class="msg">
+        <p>No. La factura FC-4021 liquida <b>USD 41.850,00</b> en valor FOB y la SAE-2026-00147 trae registrado <b>USD 40.900,00</b>. Hay un descuadre de <b>USD 950,00</b>.</p>
+        <p>Revisé los 3 ítems de la factura contra la tasa de cambio del día de embarque (COP 4.012,50 por USD, TRM Banco de la República) y el Incoterm <b>FOB Buenaventura</b>. El componente de flete y seguro no entra al FOB porque el Incoterm es FOB, así que no explica la diferencia.</p>
+        <p>La diferencia coincide con el ítem 2 (Bomba centrífuga 3HP): la factura trae 15 unidades a USD 63,33 y la SAE trae 15 unidades al mismo valor unitario, pero el cálculo de subtotal en la SAE no recalculó tras el último ajuste de precio. Recomiendo actualizar el valor FOB de la SAE antes de transmitir.</p>
+        <div class="evid"><span class="chip">FC-4021 · 3 ítems</span><span class="chip">TRM 2026-08-14</span><span class="chip">Manual Cap. 5 · totales</span></div>
+        <details class="trace"><summary>Traza del agente</summary><div class="trace-body">
+          <span class="n">registrar_items</span> → 3 ítems, USD 41.850,00 FOB<br>
+          <span class="n">aplicar_incoterm</span> → FOB Buenaventura, fletes/seguros fuera del FOB<br>
+          <span class="n">convertir_moneda</span> → TRM 4.012,50 COP/USD<br>
+          <span class="n">cuadrar_contra_sae</span> → descuadre USD 950,00 en ítem 2<br>
+          <span class="n">reportar_descuadre</span> → 1 hallazgo, bloqueante<br>
+          <span class="t">mcp-facturas · mcp-declaraciones · RAG-07 doctrina-dian</span>
+        </div></details>
+      </div></div>
+      <div class="turn user"><div class="bubble">¿de dónde sale que son 950 dólares?</div></div>
+      <div class="turn"><div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-factura</span><span class="who-time">11:22</span></div><div class="msg">
+        <p>Esa cifra no la calculo yo. La produce la comparación determinista entre el total de la factura y el valor declarado en la SAE — regla <b>V-25</b>.</p>
+        <p>Mi trabajo es localizar el origen del descuadre — el ítem 2 — y proponer la corrección. No la resuelvo por mi cuenta: la aprobación es tuya.</p>
+        <div class="evid"><span class="chip">V-25</span></div>
+      </div></div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por un ítem o pide recalcular el cuadre…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Factura</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Cuadre</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Validaciones</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Registrar ítems</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Aplicar Incoterm</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Convertir moneda</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Cuadrar contra SAE</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Reportar descuadre</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact"><div class="band"><span>Factura</span></div><div class="art-body">
+          <div class="art-hd">
+            <div><div class="art-title">Factura comercial FC-4021</div><div class="art-sub">Comprador: Andes Trading Corp · Miami, FL</div></div>
+            <div class="art-sub">Descuadre USD 950,00</div>
+          </div>
+          <div class="f16-inc">Incoterm FOB · Buenaventura, Colombia</div>
+          <table class="grid"><tr><th>Ítem</th><th>Descripción</th><th>Cant.</th><th>V. unit. USD</th><th>Subtotal USD</th></tr>
+            <tr><td>1</td><td>Motor eléctrico 5HP</td><td>10</td><td>1.240,00</td><td>12.400,00</td></tr>
+            <tr><td>2</td><td>Bomba centrífuga 3HP</td><td>15</td><td>63,33</td><td>950,00</td></tr>
+            <tr><td>3</td><td>Repuestos varios (kit)</td><td>40</td><td>712,50</td><td>28.500,00</td></tr>
+          </table>
+          <div class="note"><b>El ítem 2 es el origen del descuadre.</b> La SAE no incorporó este subtotal tras el último ajuste de precio unitario registrado en la factura.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>Manual Cap. 5</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Cuadre contra la SAE</div><div class="art-sub">SAE-2026-00147 vs. FC-4021 · moneda USD</div></div></div>
+          <div class="f16-cuadre">
+            <div class="f16-cc"><div class="f16-cc-k">FOB en SAE</div><div class="f16-cc-v">40.900,00</div></div>
+            <div class="f16-cc"><div class="f16-cc-k">FOB en factura</div><div class="f16-cc-v">41.850,00</div></div>
+            <div class="f16-cc f16-bad"><div class="f16-cc-k">Descuadre</div><div class="f16-cc-v">950,00</div></div>
+          </div>
+          <div class="f16-money"><div class="f16-k">Valor FOB (mercancía)</div><div class="f16-v">USD 41.850,00</div></div>
+          <div class="f16-money"><div class="f16-k">Flete internacional</div><div class="f16-v">USD 1.850,00</div></div>
+          <div class="f16-money"><div class="f16-k">Seguro internacional</div><div class="f16-v">USD 210,00</div></div>
+          <div class="f16-money"><div class="f16-k">Otros gastos declarables</div><div class="f16-v">USD 0,00</div></div>
+          <div class="f16-money f16-total"><div class="f16-k">Valor CIF de referencia</div><div class="f16-v">USD 43.910,00</div></div>
+          <div class="note"><b>Cuadre contra Cap. 5 del Manual.</b> Fletes, seguros y otros gastos se declaran por separado y no alteran el FOB cuando el Incoterm es FOB. El cuadre se hace siempre sobre el valor FOB de mercancía.</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>§16.3</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Validaciones cruzadas de la factura</div><div class="art-sub">V-24 · V-25 · V-26 · V-20 · V-11 · V-27</div></div></div>
+          <table class="grid"><tr><th>Regla</th><th>Verificación</th><th>Resultado</th></tr>
+            <tr><td>V-25</td><td>valor total de la factura = valor declarado en la SAE</td><td><span class="pill bad">Descuadre USD 950,00</span></td></tr>
+            <tr><td>V-24</td><td>Incoterm de la factura = Incoterm de la SAE</td><td><span class="pill ok">Conforme · FOB Buenaventura</span></td></tr>
+            <tr><td>V-26</td><td>moneda de la factura declarada explícitamente</td><td><span class="pill ok">Conforme · USD</span></td></tr>
+            <tr><td>V-20</td><td>cantidad total en factura = cantidad total en packing list</td><td><span class="pill ok">Conforme · 65 unidades</span></td></tr>
+            <tr><td>V-11</td><td>descripción de la factura corresponde a la subpartida declarada</td><td><span class="pill ok">Conforme</span></td></tr>
+            <tr><td>V-27</td><td>comprador de la factura = consignatario del documento de transporte</td><td><span class="pill wait">Se verifica en F1-04 · borrador del BL</span></td></tr>
+          </table>
+          <div class="issue"><div class="issue-hd"><span class="code">R-01</span><span class="issue-t">Control de segregación en la corrección</span></div>
+            <div class="issue-d">El riesgo de declarar un valor distinto al real casi nunca es fraude: es una transcripción que nadie contrastó contra la factura. El control es doble verificación contra el documento origen y segregación entre quien digita y quien aprueba, administrada en FT-04. Aquí el descuadre lo detectó una regla determinista, no una persona, y aun así la corrección pasa por aprobación humana.</div>
+            <div class="origin">Origen: §16 · R-01 · segregación de funciones en <a href="f27-administracion.html" style="color:var(--stamp-fg);text-decoration:none;border-bottom:1px dotted var(--stamp-fg)">FT-04 →</a></div>
+          </div>
+          <div class="note"><b>El valor declarado es responsabilidad total de la agencia aunque el valor real sea responsabilidad del exportador.</b> Si la factura viene mal, responde el exportador; si la factura viene bien y se declara otra cosa, responde la agencia y debe indemnizar los perjuicios (§5, riesgo R-01).</div>
+        </div></div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha"><div class="ficha-hd">Ficha del canvas</div><div class="ficha-grid">
+          <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">liquidacion-valores</div></div>
+          <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-factura</div></div>
+          <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-facturas · mcp-declaraciones</div></div>
+          <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-07 doctrina-dian</div></div>
+          <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No; se corrige el ítem de origen</div></div>
+          <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, si hay descuadre</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

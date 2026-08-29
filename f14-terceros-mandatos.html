@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FM-02 · Terceros y mandatos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f14-roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin-bottom:15px}
+.f14-role{border:1px solid var(--line-soft);border-radius:var(--r);padding:8px 10px;background:var(--paper)}
+.f14-role.hit{border-color:var(--stamp);background:var(--stamp-wash);border-width:1.5px}
+.f14-role-n{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--mute)}
+.f14-role.hit .f14-role-n{color:var(--stamp);font-weight:600}
+.f14-role-t{font-size:11.5px;color:var(--slate);line-height:1.3;margin-top:2px}
+.f14-role.hit .f14-role-t{color:var(--ink);font-weight:500}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">SAE-2026-00147</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">FM-02</span>
+      <span class="ftitle">Terceros y mandatos</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Borrador (0 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st now"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-terceros</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">Necesito registrar a Andina Logística S.A.S. como agente de carga para esta SAE.</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-terceros</span><span class="who-time">09:22</span></div>
+        <div class="msg">
+          <p>Consulté el NIT <code>901.334.220-6</code> en RUES: razón social <b>Andina Logística S.A.S.</b>, estado activo, actividad CIIU 5229 (agenciamiento de carga). Coincide con el rol que pides.</p>
+          <p>El rol de <b>agente de carga</b> no exige mandato para actuar ante la DIAN, pero sí necesita un <b>contrato de servicios logísticos</b> vigente con el exportador, que aún no está cargado.</p>
+          <p>Completé la ficha con los datos de RUES. Falta que subas o confirmes el contrato antes de dar el alta.</p>
+          <div class="evid"><span class="chip">RUES · consulta en línea</span><span class="chip">Manual Cap. 5 · terceros</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">consultar_rues_rut</span> → activo, CIIU 5229<br>
+              <span class="n">detectar_rol</span> → agente de carga<br>
+              <span class="n">validar_mandato</span> → no requiere mandato, requiere contrato<br>
+              <span class="n">completar_ficha</span> → 6 de 7 campos<br>
+              <span class="t">mcp-terceros · exp-party-service 2.10</span>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Con el NIT activo basta?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-terceros</span><span class="who-time">09:31</span></div>
+        <div class="msg">
+          <p>No. Un NIT activo no es un exportador habilitado. La <b>calidad de usuario aduanero exportador</b> es un registro aparte en el RUT, y sin ella MUISCA no acepta la radicación de la SAE.</p>
+          <p>Es el error que más tarde se detecta y más caro sale: suele aparecer cuando ya hay booking y carga lista. La actualización del RUT es gratuita, pero toma 1 a 2 días hábiles.</p>
+          <p>La verificación completa de habilitación del cliente — contrato, mandato y firma — vive en F0-01. Aquí solo verifico el dato que la SAE necesita.</p>
+          <div class="evid"><span class="chip">V-03</span><span class="chip">P0.2</span><span class="chip">Manual Cap. 5</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">consultar_rut</span> → calidad de usuario aduanero exportador presente<br>
+              <span class="n">validar_bloqueante_V-03</span> → conforme<br>
+              <span class="t">mcp-terceros · exp-party-service 2.10</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pide validar otro tercero o revisar un mandato…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Roles</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">RUT</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Alta</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Consultar RUES/RUT</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Detectar rol</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Validar mandato</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Completar ficha</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Confirmar alta</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact">
+          <div class="band"><span>Manual Cap. 5</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Roles de tercero cubiertos</div><div class="art-sub">exp-party-service 2.10 · ocho roles</div></div>
+              <div class="art-sub">Andina Logística S.A.S. · agente de carga</div>
+            </div>
+            <div class="f14-roles">
+              <div class="f14-role"><div class="f14-role-n">01</div><div class="f14-role-t">Exportador / declarante</div></div>
+              <div class="f14-role"><div class="f14-role-n">02</div><div class="f14-role-t">Representante</div></div>
+              <div class="f14-role"><div class="f14-role-n">03</div><div class="f14-role-t">Comprador o consignatario en el exterior</div></div>
+              <div class="f14-role"><div class="f14-role-n">04</div><div class="f14-role-t">Transportador nacional</div></div>
+              <div class="f14-role"><div class="f14-role-n">05</div><div class="f14-role-t">Transportador internacional (línea)</div></div>
+              <div class="f14-role hit"><div class="f14-role-n">06</div><div class="f14-role-t">Agente de carga</div></div>
+              <div class="f14-role"><div class="f14-role-n">07</div><div class="f14-role-t">Depósito habilitado / operador de ZF</div></div>
+              <div class="f14-role"><div class="f14-role-n">08</div><div class="f14-role-t">Entidades de visto bueno</div></div>
+            </div>
+            <table class="grid">
+              <tr><th>Campo</th><th>Valor</th><th>Origen</th></tr>
+              <tr><td>Razón social</td><td>Andina Logística S.A.S.</td><td>RUES</td></tr>
+              <tr><td>NIT</td><td>901.334.220-6</td><td>RUES</td></tr>
+              <tr><td>Rol</td><td>Agente de carga</td><td>Detectado por conversación</td></tr>
+              <tr><td>Mandato</td><td><span class="pill">No requerido</span></td><td>Regla Manual Cap. 5</td></tr>
+              <tr><td>Contrato de servicios</td><td><span class="pill wait">Pendiente de carga</span></td><td>Requisito del rol</td></tr>
+            </table>
+            <div class="note"><b>El NIT y la existencia legal nunca se asumen.</b> Se validan contra RUES/RUT vía <code>mcp-terceros</code>. El mandato, cuando el rol lo exige (representante, declarante por mandato), se valida contra el documento vigente, no contra lo que declare el usuario.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>V-03</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Verificación en el RUT</div><div class="art-sub">Comercializadora Andina S.A.S. · NIT 900.123.456-7 · exportador</div></div>
+            </div>
+            <table class="grid">
+              <tr><th>Verificación</th><th>Resultado</th><th>Severidad</th></tr>
+              <tr><td>Estado del RUT</td><td>Activo <span class="pill ok">ok</span></td><td>—</td></tr>
+              <tr><td>Calidad de usuario aduanero exportador</td><td>Presente · código de usuario aduanero registrado <span class="pill ok">ok</span></td><td>Bloqueante</td></tr>
+              <tr><td>Actividad económica coherente con el producto</td><td>CIIU 2910 · coherente <span class="pill ok">ok</span></td><td>Advertencia (V-14)</td></tr>
+              <tr><td>Responsabilidades tributarias</td><td>sin estados que inhabiliten <span class="pill ok">ok</span></td><td>—</td></tr>
+              <tr><td>Dirección y establecimientos registrados</td><td>conformes <span class="pill ok">ok</span></td><td>—</td></tr>
+            </table>
+            <div class="note"><b>Habilitado en RUES no es habilitado ante la DIAN.</b> RUES prueba existencia legal y actividad; la calidad de usuario aduanero prueba que ese NIT puede exportar. Son dos consultas distintas y las dos son obligatorias.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact prop">
+          <div class="band"><span>Propuesta</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Alta de tercero: Andina Logística S.A.S.</div><div class="art-sub">agente-terceros</div></div>
+            </div>
+            <div class="prop-box">
+              <div class="seal">Requiere aprobación</div>
+              <div class="prop-t">Dar de alta el tercero en rol agente de carga</div>
+              <div class="prop-d">Datos verificados en RUES. Falta el contrato de servicios logísticos para completar la ficha; puedes aprobar con el contrato pendiente y completarlo después, o rechazar hasta tenerlo.</div>
+              <div class="actions">
+                <button class="btn primary">Aprobar alta</button>
+                <button class="btn">Adjuntar contrato ahora</button>
+                <button class="btn ghost">Rechazar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">ficha-tercero</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-terceros</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-terceros</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-01 (Manual Cap. 5)</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v">Rol, datos de contacto, contrato</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para crear/actualizar tercero</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

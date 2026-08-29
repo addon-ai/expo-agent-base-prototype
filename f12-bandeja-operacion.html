@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FT-02 · Bandeja de operación y vencimientos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f12-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--line-soft);
+  border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.f12-kpi{background:var(--raised);padding:11px 13px}
+.f12-kpi-n{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--ink)}
+.f12-kpi-n.alert{color:var(--alert)}
+.f12-kpi-n.warn{color:var(--gold-fg)}
+.f12-kpi-l{font-family:var(--mono);font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin-top:3px}
+.f12-row{display:grid;grid-template-columns:26px 1fr auto auto;gap:11px;align-items:center;
+  padding:9px 11px;border:1px solid var(--line-soft);border-radius:var(--r);background:var(--paper);margin-bottom:6px}
+.f12-rank{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:center}
+.f12-main .f12-sae{font-family:var(--mono);font-size:12.5px;font-weight:600}
+.f12-main .f12-cli{font-size:11.5px;color:var(--slate);margin-top:2px}
+.f12-venc{font-family:var(--mono);font-size:11px;color:var(--slate);text-align:right;white-space:nowrap}
+.f12-venc b{color:var(--ink)}
+.f12-row.crit{border-left:3px solid var(--alert)}
+.f12-row.warn2{border-left:3px solid var(--gold-bd)}
+.f12-row.ok2{border-left:3px solid var(--seal)}
+.f12-scroll{overflow-x:auto}
+.f12-nov{display:grid;grid-template-columns:90px 1fr 70px 1.4fr;gap:11px;align-items:center;
+  padding:9px 11px;border:1px solid var(--line-soft);border-radius:var(--r);background:var(--paper);margin-bottom:6px}
+.f12-nov-code{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--alert)}
+.f12-nov-t{font-size:12px}
+.f12-nov-n{font-family:var(--mono);font-size:12px;font-weight:600;text-align:center}
+.f12-nov-fix{font-size:11.5px;color:var(--slate)}
+.f12-nov-hd{display:grid;grid-template-columns:90px 1fr 70px 1.4fr;gap:11px;padding:0 11px 6px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+@media (max-width:639px){
+  .f12-nov,.f12-nov-hd{grid-template-columns:1fr;min-width:280px}
+}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">47 operaciones activas</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">FT-02</span>
+      <span class="ftitle">Bandeja de operación y vencimientos</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ ÁMBITO DE LA BANDEJA · f12 no lleva tira .states (no pertenece a una SAE) · §7.4 -->
+  <div class="states-wrap">
+    <div class="scope" aria-label="Estado de la bandeja">
+      <div class="sc alert"><span class="sc-v">5</span><span class="sc-k">Críticas ≤2 días</span></div>
+      <div class="sc warn"><span class="sc-v">9</span><span class="sc-k">En riesgo ≤7 días</span></div>
+      <div class="sc"><span class="sc-v">33</span><span class="sc-k">En curso</span></div>
+      <div class="sc"><span class="sc-v">47</span><span class="sc-k">Total bandeja</span></div>
+      <div class="sc"><span class="sc-v">8</span><span class="sc-k">Relojes vigilados</span></div>
+    </div>
+  </div>
+  <!-- ▲ ÁMBITO DE LA BANDEJA -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-bandeja</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">¿Qué operaciones debo atender hoy?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-bandeja</span><span class="who-time">08:12</span></div>
+        <div class="msg">
+          <p>Tienes <b>3 operaciones críticas</b>. La más urgente es <code>SAE-2026-00147</code>: la autorización de embarque vence en <b>2 días</b> y el plazo de traslado a zona primaria del Art. 349 E.T. se cumple mañana.</p>
+          <p>La prioricé por vencimiento y por riesgo: si no se traslada hoy, la SAE queda expuesta a pérdida de términos según el Art. 236-3 del Estatuto Aduanero. Las otras dos son por vencimiento de vigencia de vistos buenos.</p>
+          <p>No modifico nada aquí: solo leo el estado real de cada operación y lo ordeno. La acción la tomas tú en la pantalla que corresponda.</p>
+          <div class="evid"><span class="chip">Art. 349 E.T. · plazo traslado</span><span class="chip">Art. 236-3 Est. Aduanero</span><span class="chip">Manual Cap. 3</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">consultar_bandeja</span> → 47 operaciones activas<br>
+              <span class="n">calcular_vencimiento</span> → 3 en ventana crítica ≤2 días<br>
+              <span class="n">calcular_riesgo</span> → SAE-2026-00147 riesgo alto<br>
+              <span class="n">priorizar</span> → orden por vencimiento + riesgo<br>
+              <span class="n">explicar_urgencia</span> → 3 justificaciones generadas<br>
+              <span class="n">agregar_novedades_cartera</span> → 5 códigos de rechazo agregados sobre 47 operaciones<br>
+              <span class="t">mcp-bandeja (solo lectura) · exp-worklist-read-model · RAG-05 novedades-muisca</span>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="turn user"><div class="bubble">¿Por qué me aparece una operación ya embarcada como crítica?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-bandeja</span><span class="who-time">08:16</span></div>
+        <div class="msg">
+          <p>El embarque <b>no cierra la operación</b>. Queda el plazo de consolidación del DEX, que corre desde el embarque y cuyo incumplimiento es infracción aduanera (V-43). <code>SAE-2026-00162</code> vence mañana.</p>
+          <p>El reloj más caro del tablero no es normativo sino comercial: los <b>días libres de almacenaje</b>. Ese se le informa al cliente desde FT-06 antes de que se convierta en factura.</p>
+          <div class="evid"><span class="chip">§17.3 Relojes</span><span class="chip">V-43</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">consultar_reloj</span> → consolidación DEX, vence mañana<br>
+              <span class="n">consultar_reloj</span> → días libres de almacenaje, vence en 1 día<br>
+              <span class="t">mcp-bandeja (solo lectura) · mcp-costos</span>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por una operación o filtra por vencimiento…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Priorización</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Novedades</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Relojes</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Consultar bandeja</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Calcular vencimiento</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Calcular riesgo</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Priorizar</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Explicar urgencia</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="f12-kpis">
+          <div class="f12-kpi"><div class="f12-kpi-n alert">5</div><div class="f12-kpi-l">Críticas ≤2 días</div></div>
+          <div class="f12-kpi"><div class="f12-kpi-n warn">9</div><div class="f12-kpi-l">En riesgo ≤7 días</div></div>
+          <div class="f12-kpi"><div class="f12-kpi-n">33</div><div class="f12-kpi-l">En curso</div></div>
+          <div class="f12-kpi"><div class="f12-kpi-n">47</div><div class="f12-kpi-l">Total bandeja</div></div>
+        </div>
+        <div class="artifact">
+          <div class="band"><span>Manual Cap. 3</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Priorización por vencimiento y riesgo</div><div class="art-sub">exp-worklist-read-model · 3.3</div></div>
+              <div class="art-sub">5 críticas · 9 en riesgo · 33 en curso</div>
+            </div>
+            <div class="f12-row crit"><div class="f12-rank">1</div><div class="f12-main"><div class="f12-sae">SAE-2026-00147</div><div class="f12-cli">Comercializadora Andina S.A.S. · NIT 900.123.456-7</div></div><div class="f12-venc">Vence en <b>2 días</b><br>Art. 349 E.T.</div><span class="pill bad">Crítica</span></div>
+            <div class="f12-row crit"><div class="f12-rank">2</div><div class="f12-main"><div class="f12-sae">SAE-2026-00151</div><div class="f12-cli">Textiles del Caribe Ltda. · NIT 830.221.900-4</div></div><div class="f12-venc">Vence en <b>2 días</b><br>Visto bueno ICA</div><span class="pill bad">Crítica</span></div>
+            <div class="f12-row crit"><div class="f12-rank">3</div><div class="f12-main"><div class="f12-sae">SAE-2026-00152</div><div class="f12-cli">Textiles del Norte Ltda. · NIT 811.445.220-3</div></div><div class="f12-venc">Vence en <b>1 día</b><br>Días libres de almacenaje</div><span class="pill bad">Crítica</span></div>
+            <div class="f12-row crit"><div class="f12-rank">4</div><div class="f12-main"><div class="f12-sae">SAE-2026-00162</div><div class="f12-cli">Café Sierra Nevada Export S.A.S. · NIT 901.045.220-1</div></div><div class="f12-venc">Vence <b>mañana</b><br>Consolidación DEX</div><span class="pill bad">Crítica</span></div>
+            <div class="f12-row warn2"><div class="f12-rank">5</div><div class="f12-main"><div class="f12-sae">SAE-2026-00139</div><div class="f12-cli">Agroexport Cauca S.A. · NIT 900.887.221-3</div></div><div class="f12-venc">Vence en <b>4 días</b><br>Art. 236-3</div><span class="pill wait">Riesgo</span></div>
+            <div class="f12-row warn2"><div class="f12-rank">6</div><div class="f12-main"><div class="f12-sae">SAE-2026-00158</div><div class="f12-cli">Textiles del Norte Ltda. · NIT 811.445.220-3</div></div><div class="f12-venc">Vence en <b>12 días</b><br>Certificado de firma del declarante</div><span class="pill wait">Riesgo</span></div>
+            <div class="f12-row ok2"><div class="f12-rank">7</div><div class="f12-main"><div class="f12-sae">SAE-2026-00160</div><div class="f12-cli">Café Sierra Nevada Export S.A.S. · NIT 901.045.220-1</div></div><div class="f12-venc">Vence en <b>9 días</b></div><span class="pill ok">En curso</span></div>
+            <div class="note"><b>El vencimiento y el riesgo nunca los inventa el LLM.</b> Se calculan con reglas deterministas sobre las fechas del dominio de declaraciones (Art. 349 E.T., Art. 236-3 Estatuto Aduanero, vigencia de vistos buenos). El agente solo ordena y explica, en lenguaje natural, por qué una operación es urgente.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>RAG-05</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Cartera de novedades y errores de MUISCA</div><div class="art-sub">agregado por código de rechazo · 47 operaciones activas</div></div>
+            </div>
+            <div class="f12-scroll">
+              <div class="f12-nov-hd"><span>Código</span><span>Novedad</span><span>Afecta</span><span>Subsanación que funcionó</span></div>
+              <div class="f12-nov"><div class="f12-nov-code">RCH-014</div><div class="f12-nov-t">Diferencia de bultos entre acta y SAE</div><div class="f12-nov-n">9</div><div class="f12-nov-fix">Concepto 02 Reemplazo ajustando cantidad</div></div>
+              <div class="f12-nov"><div class="f12-nov-code">RCH-027</div><div class="f12-nov-t">Vencimiento de visto bueno referenciado</div><div class="f12-nov-n">6</div><div class="f12-nov-fix">Renovar visto bueno antes de retransmitir</div></div>
+              <div class="f12-nov"><div class="f12-nov-code">RCH-031</div><div class="f12-nov-t">Subpartida sin registro F1340 vigente</div><div class="f12-nov-n">4</div><div class="f12-nov-fix">Completar registro F1340 en FM-03 y reintentar</div></div>
+              <div class="f12-nov"><div class="f12-nov-code">RCH-009</div><div class="f12-nov-t">NIT de tercero sin mandato activo</div><div class="f12-nov-n">3</div><div class="f12-nov-fix">Registrar mandato en FM-02 antes de transmitir</div></div>
+              <div class="f12-nov"><div class="f12-nov-code">RCH-042</div><div class="f12-nov-t">Total factura descuadrado contra la SAE</div><div class="f12-nov-n">2</div><div class="f12-nov-fix">Reliquidar en F2-02 y volver a validar</div></div>
+            </div>
+            <div class="note"><b>Esto no duplica a F3-03.</b> F3-03 · Seguimiento y novedades muestra la novedad de <b>una</b> declaración puntual, con su cronología y su subsanación propuesta caso a caso. Esta vista de FT-02 agrega el <b>patrón</b> a través de toda la cartera: cuántas declaraciones repite cada código de rechazo y qué subsanación funcionó en casos anteriores. <a href="f10-seguimiento-novedades.html" style="color:var(--stamp-fg);text-decoration:none;border-bottom:1px dotted var(--stamp-fg)">Ver el detalle de una novedad en F3-03 →</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>§17.3</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Relojes del proceso</div><div class="art-sub">ocho relojes · alerta anticipada por cada uno</div></div>
+            </div>
+            <div class="f12-scroll">
+              <table class="grid">
+                <tr><th>Reloj</th><th>Inicia</th><th>Vence</th><th>Alerta anticipada</th><th>Consecuencia del vencimiento</th><th></th></tr>
+                <tr><td>Vigencia de la SAE</td><td>aceptación</td><td>un mes</td><td>7 y 3 días antes</td><td>debe rehacerse el trámite completo (E-01)</td><td></td></tr>
+                <tr><td>Corte documental del transportista</td><td>confirmación del booking</td><td>fecha de la naviera</td><td>48 y 24 horas antes</td><td>pérdida del espacio de embarque (E-06)</td><td></td></tr>
+                <tr><td>Vigencia de vistos buenos</td><td>emisión</td><td>según cada entidad</td><td>15 días antes</td><td>bloqueo del embarque (E-05)</td><td></td></tr>
+                <tr><td>Vigencia del mandato</td><td>otorgamiento</td><td>según el documento</td><td>30 días antes</td><td>imposibilidad de declarar (V-02)</td><td></td></tr>
+                <tr><td>Vigencia del instrumento de firma</td><td>emisión</td><td>según el certificador</td><td>30 días antes</td><td>imposibilidad de firmar el DEX con la carga ya embarcada (E-11)</td><td></td></tr>
+                <tr><td>Días libres de almacenamiento</td><td>ingreso al terminal</td><td>según el terminal</td><td>24 horas antes</td><td>cobro de almacenaje, el driver de costo más sensible al retraso</td><td><span class="pill wait">Nuevo</span></td></tr>
+                <tr><td>Plazo de consolidación del DEX</td><td>embarque</td><td>según norma</td><td>al día siguiente del embarque</td><td>infracción aduanera (V-43)</td><td><span class="pill wait">Nuevo</span></td></tr>
+                <tr><td>Plazo de canalización de divisas</td><td>según régimen cambiario</td><td>según norma</td><td>30 días antes</td><td>infracción cambiaria (V-46)</td><td><span class="pill wait">Nuevo</span></td></tr>
+              </table>
+            </div>
+            <div class="note"><b>Un reloj sin responsable nominal no es un control.</b> Cada uno de los ocho tiene alerta anticipada y dueño; el que nadie mira es el que produce R-04. Los tres marcados «Nuevo» hoy no se vigilan.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">tablero-operacion</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-bandeja</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-bandeja (solo lectura)</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-02 manual-salida-v42</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No, es una proyección de lectura</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v no">No aplica, solo lectura</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F0-01 · Vinculación y habilitación del exportador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f32-riskbox{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0;overflow-x:auto}
+.f32-rb{border:1px solid var(--line-soft);border-radius:var(--r);padding:9px 11px;background:var(--paper)}
+.f32-rb h4{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:5px}
+.f32-rb p{font-size:12.5px;color:var(--ink)}
+.f32-sumbar{display:flex;gap:14px;align-items:center;border:1px solid var(--line-soft);border-radius:var(--r);
+  background:var(--paper);padding:9px 13px;margin-bottom:14px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--slate)}
+.f32-sumbar b{color:var(--ink)}
+.f32-sumbar .warn2{color:var(--alert);font-weight:600}
+.f32-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;overflow-x:auto}
+.f32-min{font-size:12.5px;color:var(--slate);line-height:1.9}
+.f32-min li{margin-left:16px}
+.f32-sl{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:10px}
+.f32-sli{background:var(--raised);padding:7px 11px;display:flex;justify-content:space-between;font-size:11.5px}
+.f32-sli span:first-child{color:var(--slate)}
+.f32-sli span:last-child{font-family:'IBM Plex Mono',monospace;color:var(--ink)}
+@media (max-width:1023px){.f32-two{grid-template-columns:1fr}.f32-riskbox{grid-template-columns:1fr}}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">Textiles del Norte Ltda.</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">María Gómez</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">F0-01</span>
+      <span class="ftitle">Vinculación y habilitación del exportador</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · .now en Borrador (0 .done) según §7.3 -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Estado de la declaración">
+      <div class="st now"><div class="st-node"><div class="dot"></div><div class="st-label">Borrador</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-vinculacion</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+      <div class="turn user"><div class="bubble">Quiero habilitar a Textiles del Norte como exportador nuevo. ¿Qué falta?</div></div>
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-vinculacion</span><span class="who-time">08:41</span></div>
+        <div class="msg">
+          <p>La vinculación <b>ocurre una sola vez por cliente, no por embarque</b>. Hoy el cliente queda en estado <b>habilitado parcial</b>: puede cotizar, no puede operar.</p>
+          <p>El estudio de conocimiento del cliente está <b>aprobado</b> con nivel de riesgo <b>medio</b>: certificado de existencia vigente (expedido 2026-07-02), consulta en listas restrictivas sin coincidencias, actividad económica CIIU 1410 coherente con el producto a exportar.</p>
+          <p>El <b>RUT tiene un problema bloqueante</b>: no incluye la calidad de usuario aduanero exportador (regla <b>V-03, bloqueante</b>). Sin eso no se puede radicar la SAE, y si se detecta tarde cuesta un día de operación. La actualización del RUT es gratuita y toma 1 a 2 días hábiles.</p>
+          <p>El <b>mandato aduanero venció el 2026-07-30</b> y sin mandato vigente no se inicia ningún trámite: es condición de bloqueo, no advertencia (regla <b>V-02</b>).</p>
+          <p>El instrumento de firma electrónica del exportador está vigente hasta 2027-01-15, pero hay que controlarlo aunque firme la agencia: si la agencia queda suspendida a mitad de trámite, el exportador tiene que firmar el DEX él mismo (§18.1, se resuelve en FE-03).</p>
+          <p>Falta activar el <b>usuario VUCE</b> — sin él no se tramitan vistos buenos en F2-03 ni el certificado de origen en F2-04.</p>
+          <p>No habilito solo: la aprobación de un cliente nuevo compromete a la agencia en responsabilidad solidaria (riesgo <b>R-08</b>).</p>
+          <div class="evid"><span class="chip">Listas restrictivas · sin coincidencias</span><span class="chip">V-03 bloqueante</span><span class="chip">P0.1 a P0.5</span></div>
+          <details class="trace"><summary>Traza del agente</summary><div class="trace-body">
+            <span class="n">consultar_listas_restrictivas</span> → sin coincidencias<br>
+            <span class="n">verificar_existencia_representacion</span> → vigente 2026-07-02<br>
+            <span class="n">verificar_calidad_usuario_aduanero</span> → ausente en el RUT<br>
+            <span class="n">validar_mandato</span> → vencido 2026-07-30<br>
+            <span class="n">verificar_firma_y_vuce</span> → firma vigente, VUCE sin activar<br>
+            <span class="n">calcular_estado_habilitacion</span> → habilitado parcial<br>
+            <span class="t">mcp-terceros · mcp-listas-restrictivas · mcp-rut</span>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por un requisito o solicita renovar el mandato…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"  data-p="p-1" tabindex="0">Estudio</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Checklist</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Acuerdo</button>
+      <button class="tab" role="tab" id="t-4" aria-controls="p-4" aria-selected="false" data-p="p-4" tabindex="-1">Gate</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp done"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Conocimiento del cliente</div></div></div>
+        <div class="sp done"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Verificar RUT</div></div></div>
+        <div class="sp now"><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Mandato y firma</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Contrato y tarifario</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">05</div></div><div class="sp-label">Habilitar</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact"><div class="band"><span>P0.1</span></div><div class="art-body">
+          <div class="art-hd">
+            <div><div class="art-title">Estudio de conocimiento del cliente</div><div class="art-sub">Textiles del Norte Ltda. · NIT 811.445.220-3</div></div>
+            <div class="art-sub">habilitado parcial · 2 bloqueantes</div>
+          </div>
+          <table class="grid"><tr><th>Requisito</th><th>Evidencia</th><th>Estado</th></tr>
+          <tr><td>Certificado de existencia y representación legal</td><td>Vigente · 2026-07-02</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>RUT actualizado</td><td>Sin calidad de exportador</td><td><span class="pill bad">No conforme</span></td></tr>
+          <tr><td>Documento de identidad del representante legal</td><td>Verificado</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>Consulta en listas restrictivas</td><td>Sin coincidencias · 2026-08-13</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>Estados financieros y referencias</td><td>Verificado</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>Composición accionaria</td><td>Verificado</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>Visita a instalaciones</td><td>No requerida · riesgo medio</td><td><span class="pill wait">En espera</span></td></tr>
+          </table>
+          <div class="f32-riskbox">
+            <div class="f32-rb"><h4>Nivel de riesgo asignado</h4><p>Medio</p></div>
+            <div class="f32-rb"><h4>Perfil</h4><p>Primera exportación</p></div>
+            <div class="f32-rb"><h4>Decisión</h4><p>Ficha aprobada</p></div>
+          </div>
+          <div class="note"><b>La debida diligencia no es trámite; es el control de R-08.</b> La agencia responde solidariamente si se vincula a una operación ilícita.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>Anexo A</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Checklist de habilitación</div><div class="art-sub">Anexo A · nueve puntos</div></div></div>
+          <div class="f32-sumbar"><span><b>6 de 9</b> completos</span><span class="warn2">2 bloqueantes</span><span>estado: <b>habilitado parcial</b></span></div>
+          <table class="grid"><tr><th>Punto</th><th>Estado</th></tr>
+          <tr><td>Certificado de existencia</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>RUT con calidad de usuario aduanero exportador</td><td><span class="pill bad">Bloqueante</span></td></tr>
+          <tr><td>Documento de identidad del representante legal</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>Estudio de conocimiento y listas restrictivas</td><td><span class="pill ok">Conforme</span></td></tr>
+          <tr><td>Mandato aduanero suscrito y vigente</td><td><span class="pill bad">Vencido 2026-07-30</span></td></tr>
+          <tr><td>Instrumento de firma electrónica del exportador vigente</td><td><span class="pill ok">Vigente hasta 2027-01-15</span></td></tr>
+          <tr><td>Usuario VUCE activo</td><td><span class="pill wait">Sin activar</span></td></tr>
+          <tr><td>Contrato de servicio y tarifario firmados</td><td><span class="pill wait">Borrador enviado 2026-08-11</span></td></tr>
+          <tr><td>Matriz de contactos y canal oficial definidos</td><td><span class="pill ok">Conforme</span></td></tr>
+          </table>
+          <div class="note"><b>Habilitado parcial permite cotizar, no operar.</b> Los dos bloqueantes son de norma, no de proceso interno: sin calidad de exportador en el RUT no hay SAE (V-03) y sin mandato vigente la agencia no puede declarar (V-02).</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact"><div class="band"><span>P0.5</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Acuerdo de servicio y tarifario</div><div class="art-sub">contrato de servicios logísticos</div></div></div>
+          <div class="f32-two">
+            <div>
+              <ul class="f32-min">
+                <li>Servicios incluidos y excluidos</li>
+                <li>Tiempos de respuesta</li>
+                <li>Responsabilidad por demoras imputables a cada parte</li>
+                <li>Gastos reembolsables</li>
+                <li>Política de custodia documental</li>
+                <li>Procedimiento de escalamiento</li>
+              </ul>
+              <div class="f32-sl">
+                <div class="f32-sli"><span>Acuse de la instrucción</span><span>2 h hábiles</span></div>
+                <div class="f32-sli"><span>Validación de completitud</span><span>4 h</span></div>
+                <div class="f32-sli"><span>Clasificación de producto nuevo</span><span>1 día</span></div>
+                <div class="f32-sli"><span>Radicación de la SAE</span><span>4 h</span></div>
+                <div class="f32-sli"><span>Notificación de canal</span><span>30 min</span></div>
+                <div class="f32-sli"><span>Consolidación del DEX</span><span>1 día</span></div>
+                <div class="f32-sli"><span>Entrega documental</span><span>1 día</span></div>
+                <div class="f32-sli"><span>Informe de cierre</span><span>3 días</span></div>
+              </div>
+            </div>
+            <table class="grid"><tr><th>Concepto</th><th>Unidad</th><th>Valor</th></tr>
+            <tr><td>Agenciamiento aduanero</td><td>por operación</td><td>COP 950.000</td></tr>
+            <tr><td>Emisión documental</td><td>por documento</td><td>COP 85.000</td></tr>
+            <tr><td>Trámite de visto bueno</td><td>por trámite</td><td>COP 180.000</td></tr>
+            <tr><td>Certificado de origen</td><td>por certificado</td><td>COP 180.000</td></tr>
+            <tr><td>Acompañamiento de inspección</td><td>por evento</td><td>COP 500.000</td></tr>
+            <tr><td>Gastos reembolsables</td><td>al costo con soporte</td><td>—</td></tr>
+            </table>
+          </div>
+          <div class="note"><b>El tarifario y los niveles de servicio son el maestro que alimenta el precosteo de FT-05 y el informe de cierre de FT-06.</b> Sin contrato firmado, el cliente no pasa de habilitado parcial.</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-4" role="tabpanel" aria-labelledby="t-4" aria-hidden="true">
+        <div class="artifact gate"><div class="band"><span>Gate</span></div><div class="art-body">
+          <div class="art-hd"><div><div class="art-title">Habilitar a Textiles del Norte Ltda.</div><div class="art-sub">agente-vinculacion</div></div></div>
+          <div class="prop-box block"><div class="seal">No omitible</div><div class="prop-t">Aprobar habilitación con bloqueantes abiertos</div><div class="prop-d">La habilitación plena exige resolver los dos bloqueantes. Al aprobar con bloqueantes abiertos el cliente <b>queda en habilitado parcial</b> y ninguna operación suya podrá radicar SAE.</div>
+          <div class="actions"><button class="btn primary">Solicitar actualización del RUT</button><button class="btn">Renovar mandato</button><button class="btn ghost">Guardar como habilitado parcial</button></div></div>
+          <div class="note"><b>La revalidación es periódica, no eterna.</b> La ficha se revisa anualmente y ante cambios de representante legal, composición accionaria o actividad económica (§15.1).</div>
+        </div></div>
+      </div>
+
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha"><div class="ficha-hd">Ficha del canvas</div><div class="ficha-grid">
+          <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">ficha-habilitacion</div></div>
+          <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-vinculacion</div></div>
+          <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-terceros · mcp-listas-restrictivas · mcp-rut</div></div>
+          <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">RAG-07 doctrina-dian</div></div>
+          <div class="fi"><div class="fi-k">Editable</div><div class="fi-v">Sí, ficha y condiciones comerciales</div></div>
+          <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, para habilitar al cliente</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>
