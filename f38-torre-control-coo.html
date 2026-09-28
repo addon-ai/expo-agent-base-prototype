@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<!-- ▼ BOOTSTRAP DE TEMA · idéntico en los 37 archivos · no editar -->
+<script>(function(){var t;try{t=localStorage.getItem('dian-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script>
+<!-- ▲ BOOTSTRAP DE TEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FT-08 · Torre de control · Proceso de exportación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<script src="app.js" defer></script>
+<style>
+.f38-scroll{overflow-x:auto}
+.f38-flow{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:14px}
+.f38-node{display:block;text-decoration:none;color:inherit;border:1px solid var(--line-soft);border-top:3px solid var(--seal-bd);border-radius:var(--r);background:var(--paper);padding:10px 12px}
+.f38-node:hover{border-color:var(--stamp-bd)}
+.f38-node.bn{border-top-color:var(--alert-bd);background:var(--alert-wash)}
+.f38-node.hu{border-top-color:var(--gold-bd);background:var(--gold-wash)}
+.f38-k{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.f38-t{font-size:13px;font-weight:600;color:var(--ink);margin:3px 0 6px}
+.f38-ag{font-family:var(--mono);font-size:10.5px;color:var(--stamp-fg)}
+.f38-m{display:flex;justify-content:space-between;gap:8px;margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--slate)}
+.f38-m b{color:var(--ink);font-weight:600}
+.f38-leg{display:flex;flex-wrap:wrap;gap:6px 12px;margin:0 0 12px;font-size:11.5px;color:var(--slate)}
+.f38-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.f38-kpi{background:var(--raised);padding:11px 13px}
+.f38-kpi-n{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--ink)}
+.f38-kpi-n.alert{color:var(--alert)}
+.f38-kpi-n.warn{color:var(--gold-fg)}
+.f38-kpi-l{font-family:var(--mono);font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin-top:3px}
+.f38-kpi-d{font-size:11px;color:var(--slate);margin-top:3px}
+.f38-q{display:grid;grid-template-columns:70px 1fr auto;gap:11px;align-items:center;padding:10px 12px;border:1px solid var(--line-soft);border-radius:var(--r);background:var(--paper);margin-bottom:6px}
+.f38-q-t{font-size:12.5px;color:var(--ink)}
+.f38-q-s{font-family:var(--mono);font-size:10.5px;color:var(--slate);margin-top:2px}
+.f38-q-a{font-family:var(--mono);font-size:10.5px;color:var(--stamp-fg);text-align:right}
+@media (max-width:639px){.f38-q{grid-template-columns:1fr}.f38-q-a{text-align:left}}
+</style>
+</head><body>
+<div class="shell">
+
+<header>
+  <div class="hdr-top">
+    <div class="sae-id">Agosto 2026</div>
+    <div class="declarante" title="Declarante de la operación"><span class="dcl-n">Automotores Andinos S.A.</span><span class="dcl-nit">NIT 900.123.456-7</span></div>
+    <div class="usuario" title="Usuario en sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg><span class="usr-n">Laura Restrepo · COO</span></div>
+    <div class="hdr-meta">
+      <span class="fcode">FT-08</span>
+      <span class="ftitle">Torre de control · Proceso de exportación</span>
+      <span>Datos de demostración</span>
+    </div>
+    <a class="crumb" href="indice.html">Índice</a>
+    <!-- ▼ SELECTOR DE TEMA · idéntico en los 37 archivos · no editar -->
+    <div class="theme-toggle" role="group" aria-label="Selector de tema">
+      <div class="seg">
+        <button type="button" aria-pressed="true" data-theme-btn="light" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-4.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 4.2a1 1 0 0 1 1.4 0l.7.7a1 1 0 1 1-1.4 1.4l-.7-.7a1 1 0 0 1 0-1.4zm15.6 0a1 1 0 0 1 0 1.4l-.7.7a1 1 0 1 1-1.4-1.4l.7-.7a1 1 0 0 1 1.4 0zM12 20.5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM4.2 19.8a1 1 0 0 1 0-1.4l.7-.7a1 1 0 1 1 1.4 1.4l-.7.7a1 1 0 0 1-1.4 0zm15.6 0a1 1 0 0 1-1.4 0l-.7-.7a1 1 0 1 1 1.4-1.4l.7.7a1 1 0 0 1 0 1.4zM3.5 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1zm15 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <button type="button" aria-pressed="false" data-theme-btn="dark" title="Tema oscuro" aria-label="Tema oscuro">
+          <svg viewBox="0 0 24 24"><path d="M21.2 13.4A9 9 0 1 1 10.6 2.8a7.2 7.2 0 0 0 10.6 10.6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- ▲ SELECTOR DE TEMA -->
+  </div>
+
+  <!-- ▼ TIRA DE ESTADOS · vista de cartera: cuántas SAE de agosto hay en cada estado (121 en total) -->
+  <div class="states-wrap">
+    <div class="states" aria-label="Operaciones por estado de la declaración">
+      <div class="st "><div class="st-node"><div class="dot"></div><div class="st-label">Borrador · 14</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Validada · 6</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Por transmitir · 4</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Aceptada · 11</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Autorizada · 5</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">Embarcada · 7</div></div></div>
+      <div class="st "><div class="bar"></div><div class="st-node"><div class="dot"></div><div class="st-label">DEX firmada · 74</div></div></div>
+    </div>
+  </div>
+  <!-- ▲ TIRA DE ESTADOS -->
+</header>
+
+<div class="body">
+
+  <!-- ▼ RESTAURAR AMBOS · idéntico en las 35 · primer hijo de .body -->
+  <button type="button" class="restore-both" aria-hidden="true" tabindex="-1" title="Ver ambos paneles" aria-label="Ver ambos paneles">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M9 8l-2 4 2 4"/><path d="M15 8l2 4-2 4"/></svg>
+    <span>Ver ambos paneles</span>
+  </button>
+  <!-- ▲ RESTAURAR AMBOS -->
+
+  <!-- ==================== CHAT ==================== -->
+  <section class="chat" aria-label="Conversación">
+    <div class="chat-hd">
+      <span>Conversación</span>
+      <span class="live">agente-torre-control</span>
+      <!-- ▼ COLAPSAR CANVAS · idéntico en las 35 -->
+      <button type="button" class="collapse collapse-canvas" title="Mostrar solo el chat / ver ambos" aria-label="Mostrar solo el chat · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="21"/><path d="M8 8l2 4-2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CANVAS -->
+    </div>
+
+    <div class="thread">
+
+      <div class="turn user"><div class="bubble">¿Dónde se está frenando hoy el proceso?</div></div>
+
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-torre-control</span><span class="who-time">08:30</span></div>
+        <div class="msg">
+          <p>De las 49 operaciones en curso, la mayoría fluye. Veo <b>dos cuellos de botella</b> y <b>dos puntos que esperan a una persona</b>:</p>
+          <p><b>Soportes y vistos buenos:</b> 5 operaciones con espera promedio de 14 h; hay vistos buenos vencidos que <code>agente-cumplimiento</code> no puede omitir solo. <b>Zona primaria y terminal:</b> 11 operaciones, con permanencia de 31 h y el almacenamiento corriendo, por ejemplo en <code>MSCU-7741206</code>, que está en el PARE.</p>
+          <p>Esperan a una persona: los campos bajo umbral de la SAE-2026-00147 (peso bruto distinto entre factura y packing list) y la transmisión obligatoria a MUISCA.</p>
+          <p>Todas las cifras son de demostración y coinciden con los indicadores de agosto.</p>
+          <div class="evid"><span class="chip">FT-07 · indicadores agosto</span><span class="chip">F2-03 · vistos buenos</span><span class="chip">F4-02 · reloj de costos</span></div>
+          <details class="trace"><summary>Traza del agente</summary>
+            <div class="trace-body">
+              <span class="n">leer_estado_agentes</span> → 9 agentes, 7 etapas<br>
+              <span class="n">detectar_cuellos</span> → soportes (14 h), terminal (31 h)<br>
+              <span class="n">listar_esperas_humanas</span> → 6 decisiones abiertas<br>
+              <span class="t">mcp-costos · mcp-carga · mcp-supporting-documents (DAL), solo lectura</span>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="turn user"><div class="bubble">¿Qué necesita mi decisión hoy?</div></div>
+
+      <div class="turn">
+        <div class="who"><span class="badge agent"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9.5 13v1.5M14.5 13v1.5"/></svg>agente-torre-control</span><span class="who-time">08:32</span></div>
+        <div class="msg">
+          <p>Seis decisiones, ordenadas por prioridad, en la pestaña <b>Atención del COO</b>. Las dos primeras son de prioridad alta: los vistos buenos vencidos y el peso bruto sin confirmar. Ninguna la resuelvo yo; cada una la resuelve el agente de su etapa con la persona responsable.</p>
+          <div class="evid"><span class="chip">6 decisiones abiertas</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ▼ COMPOSER · estructura idéntica en las 35; solo cambia el placeholder -->
+    <div class="composer">
+      <div class="composer-row">
+        <input class="input" placeholder="Pregunta por una etapa, un agente o un cuello de botella…" aria-label="Mensaje">
+        <button class="send-btn" type="button" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </button>
+      </div>
+      <div class="composer-tools">
+        <button class="tool-btn" type="button" aria-label="Adjuntar">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="tool-btn" type="button" aria-label="Micrófono">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </button>
+        <span class="hint">Los agentes proponen · tú apruebas</span>
+      </div>
+    </div>
+    <!-- ▲ COMPOSER -->
+  </section>
+
+  <!-- ==================== CANVAS ==================== -->
+  <section class="canvas" aria-label="Canvas">
+    <div class="tabs" role="tablist" aria-label="Vistas del canvas">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true" data-p="p-1" tabindex="0">Proceso</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" data-p="p-2" tabindex="-1">Agentes</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" data-p="p-3" tabindex="-1">Atención del COO</button>
+      <button class="tab" role="tab" id="t-4" aria-controls="p-4" aria-selected="false" data-p="p-4" tabindex="-1">Indicadores</button>
+      <button class="tab" role="tab" id="t-ficha" aria-controls="p-ficha" aria-selected="false" data-p="p-ficha" tabindex="-1">Ficha</button>
+      <!-- ▼ COLAPSAR CHAT · idéntico en las 35 · SIEMPRE el último hijo de .tabs -->
+      <button type="button" class="collapse collapse-chat" title="Mostrar solo el canvas / ver ambos" aria-label="Mostrar solo el canvas · ver ambos" aria-pressed="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="14" y1="3" x2="14" y2="21"/><path d="M16 8l-2 4 2 4"/></svg></button>
+      <!-- ▲ COLAPSAR CHAT -->
+    </div>
+
+    <!-- ▼ PASOS DE PANTALLA · el .steps actual, con .sp-dot/.sp-bar ya renombrados -->
+    <div class="steps-wrap">
+      <div class="steps">
+        <div class="sp now"><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">01</div></div><div class="sp-label">Visión general</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">02</div></div><div class="sp-label">Cuellos de botella</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">03</div></div><div class="sp-label">Decisiones pendientes</div></div></div>
+        <div class="sp "><div class="sp-bar"></div><div class="sp-node"><div class="sp-top"><div class="sp-dot"></div><div class="sp-num">04</div></div><div class="sp-label">Impacto</div></div></div>
+      </div>
+    </div>
+    <!-- ▲ PASOS DE PANTALLA -->
+
+    <div class="stage">
+      <div class="panel on" id="p-1" role="tabpanel" aria-labelledby="t-1" aria-hidden="false">
+        <div class="artifact">
+          <div class="band"><span>Proceso de exportación de extremo a extremo</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Qué hace cada agente en cada etapa</div><div class="art-sub">49 operaciones en curso · demostración</div></div>
+              <div class="art-sub">2 cuellos de botella · 2 esperando humano</div>
+            </div>
+            <div class="f38-leg"><span>Cada etapa enlaza a su pantalla.</span><span>Borde rojo: cuello de botella.</span><span>Borde dorado: espera a una persona.</span></div>
+            <div class="f38-flow">
+              <a class="f38-node " href="f01-carga-normalizacion.html"><div class="f38-k">Etapa 1 · F2-01, F1-03</div><div class="f38-t">Preparación documental y clasificación</div><div class="f38-ag">agente-normalizacion · agente-arancel</div><div class="f38-m"><span><b>9</b> operaciones</span><span>6,2 h prom.</span></div><div class="f38-m"><span><span class="pill wait">Esperando humano</span></span></div></a>
+              <a class="f38-node " href="f04-validacion-reglas.html"><div class="f38-k">Etapa 2 · F2-05</div><div class="f38-t">Validación y reglas</div><div class="f38-ag">agente-validacion</div><div class="f38-m"><span><b>6</b> operaciones</span><span>1,8 h prom.</span></div><div class="f38-m"><span><span class="pill ok">Fluye</span></span></div></a>
+              <a class="f38-node bn" href="f06-soportes-vistos-buenos.html"><div class="f38-k">Etapa 3 · F2-03</div><div class="f38-t">Soportes y vistos buenos</div><div class="f38-ag">agente-cumplimiento</div><div class="f38-m"><span><b>5</b> operaciones</span><span>14 h prom.</span></div><div class="f38-m"><span><span class="pill bad">Cuello de botella</span></span></div></a>
+              <a class="f38-node hu" href="f07-transmision-muisca.html"><div class="f38-k">Etapa 4 · F3-02, F3-03</div><div class="f38-t">Transmisión a MUISCA</div><div class="f38-ag">agente-transmision · agente-seguimiento</div><div class="f38-m"><span><b>4</b> operaciones</span><span>0,5 h prom.</span></div><div class="f38-m"><span><span class="pill wait">Esperando humano</span></span></div></a>
+              <a class="f38-node bn" href="f36-ingreso-zona-primaria.html"><div class="f38-k">Etapa 5 · F4-01, F4-02</div><div class="f38-t">Zona primaria y terminal</div><div class="f38-ag">agente-terminal · agente-costos</div><div class="f38-m"><span><b>11</b> operaciones</span><span>31 h prom.</span></div><div class="f38-m"><span><span class="pill bad">Cuello de botella</span></span></div></a>
+              <a class="f38-node " href="f09-manifiesto-dex.html"><div class="f38-k">Etapa 6 · F6-01</div><div class="f38-t">Embarque y DEX</div><div class="f38-ag">agente-manifiesto</div><div class="f38-m"><span><b>12</b> operaciones</span><span>9 h prom.</span></div><div class="f38-m"><span><span class="pill ok">Fluye</span></span></div></a>
+              <a class="f38-node " href="f28-cierre-cambiario.html"><div class="f38-k">Etapa 7 · F7-01, FT-05</div><div class="f38-t">Cierre cambiario y costos</div><div class="f38-ag">agente-cambiario · agente-costos</div><div class="f38-m"><span><b>2</b> operaciones</span><span>2,4 d prom.</span></div><div class="f38-m"><span><span class="pill ok">Fluye</span></span></div></a>
+            </div>
+            <div class="note"><b>La etapa 7 cuenta operaciones que ya tienen DEX firmada</b> y esperan el cierre cambiario. Las demás etapas suman las 47 operaciones aún sin DEX. Todas las cifras son de demostración.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-2" role="tabpanel" aria-labelledby="t-2" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>Agentes</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Actividad de los agentes hoy</div><div class="art-sub">Los agentes proponen · las personas aprueban · demostración</div></div>
+              <div class="art-sub">10 agentes · 8 gates humanos abiertos</div>
+            </div>
+            <div class="f38-scroll">
+            <table class="grid">
+              <tr><th>Agente</th><th>Qué hace</th><th>Acciones hoy</th><th>Aprobadas / rechazadas</th><th>Confianza media</th><th>Gates abiertos</th></tr>
+              <tr><td><b>agente-normalizacion</b></td><td>Extrae y normaliza campos de los documentos</td><td>41</td><td>36 / 3</td><td>0,93</td><td><span class="pill wait">1</span></td></tr>
+              <tr><td><b>agente-arancel</b></td><td>Propone la clasificación arancelaria</td><td>23</td><td>19 / 2</td><td>0,88</td><td><span class="pill wait">1</span></td></tr>
+              <tr><td><b>agente-validacion</b></td><td>Valida la SAE contra las reglas</td><td>58</td><td>54 / 2</td><td>0,96</td><td>0</td></tr>
+              <tr><td><b>agente-cumplimiento</b></td><td>Verifica soportes y vistos buenos</td><td>17</td><td>12 / 3</td><td>0,90</td><td><span class="pill wait">2</span></td></tr>
+              <tr><td><b>agente-transmision</b></td><td>Prepara y transmite a MUISCA</td><td>12</td><td>10 / 0</td><td>0,97</td><td><span class="pill wait">1</span></td></tr>
+              <tr><td><b>agente-seguimiento</b></td><td>Sigue novedades y respuestas de la DIAN</td><td>26</td><td>22 / 1</td><td>0,91</td><td><span class="pill wait">1</span></td></tr>
+              <tr><td><b>agente-terminal</b></td><td>Concilia el ingreso a zona primaria</td><td>19</td><td>16 / 2</td><td>0,89</td><td><span class="pill wait">1</span></td></tr>
+              <tr><td><b>agente-costos</b></td><td>Corre el reloj de costos y precostea</td><td>33</td><td>29 / 2</td><td>0,92</td><td><span class="pill wait">1</span></td></tr>
+              <tr><td><b>agente-manifiesto</b></td><td>Consolida el manifiesto y el DEX</td><td>15</td><td>14 / 0</td><td>0,95</td><td>0</td></tr>
+              <tr><td><b>agente-cambiario</b></td><td>Prepara el cierre cambiario</td><td>6</td><td>5 / 0</td><td>0,94</td><td>0</td></tr>
+            </table>
+            </div>
+            <div class="note"><b>Aprobadas / rechazadas</b> son las propuestas que una persona ya resolvió hoy. Un gate abierto es una decisión que solo un humano puede cerrar.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-3" role="tabpanel" aria-labelledby="t-3" aria-hidden="true">
+        <div class="artifact gate">
+          <div class="band"><span>Solo un humano lo resuelve</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Atención del COO</div><div class="art-sub">Excepciones y decisiones, por prioridad · demostración</div></div>
+              <div class="art-sub">6 abiertas · 2 de prioridad alta</div>
+            </div>
+            <div class="f38-q"><div><span class="pill bad">Alta</span></div><div><div class="f38-q-t">Peso bruto distinto entre factura y packing list · SAE-2026-00147</div><div class="f38-q-s">Campos bajo umbral · agente-normalizacion</div></div><div class="f38-q-a">Confirmar el peso · F2-01</div></div>
+            <div class="f38-q"><div><span class="pill bad">Alta</span></div><div><div class="f38-q-t">Vistos buenos vencidos en 2 operaciones</div><div class="f38-q-s">Soportes · agente-cumplimiento</div></div><div class="f38-q-a">Decidir si se omite o se renueva · F2-03</div></div>
+            <div class="f38-q"><div><span class="pill wait">Media</span></div><div><div class="f38-q-t">Rechazo de la SAE por regla de vigencia de visto bueno</div><div class="f38-q-s">Novedad DIAN · agente-seguimiento</div></div><div class="f38-q-a">Autorizar la subsanación · F3-03</div></div>
+            <div class="f38-q"><div><span class="pill wait">Media</span></div><div><div class="f38-q-t">Almacenamiento corriendo en MSCU-7741206, en el PARE</div><div class="f38-q-s">Sobrecosto en terminal · agente-costos</div></div><div class="f38-q-a">Revisar el costo acumulado · F4-02</div></div>
+            <div class="f38-q"><div><span class="pill wait">Media</span></div><div><div class="f38-q-t">Diferencia de bultos en un ingreso a zona primaria</div><div class="f38-q-s">Ingreso · agente-terminal</div></div><div class="f38-q-a">Conciliar el descuadre · F4-01</div></div>
+            <div class="f38-q"><div><span class="pill ok">Baja</span></div><div><div class="f38-q-t">Transmisión a MUISCA lista para firma</div><div class="f38-q-s">Transmisión · agente-transmision</div></div><div class="f38-q-a">Aprobar el envío · F3-02</div></div>
+            <div class="note"><b>El agente de cada etapa prepara la propuesta.</b> La torre de control solo ordena la cola; la decisión y la firma quedan en la pantalla de la etapa.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-4" role="tabpanel" aria-labelledby="t-4" aria-hidden="true">
+        <div class="artifact">
+          <div class="band"><span>Indicadores ejecutivos · agosto 2026</span></div>
+          <div class="art-body">
+            <div class="art-hd">
+              <div><div class="art-title">Impacto en el negocio</div><div class="art-sub">Coherentes con <a href="f35-indicadores.html" style="color:var(--stamp-fg);text-decoration:none;border-bottom:1px dotted var(--stamp-fg)">FT-07 · Indicadores</a> · las marcadas “demo” no existen allí</div></div>
+              <div class="art-sub">Agosto 2026</div>
+            </div>
+            <div class="f38-kpis">
+              <div class="f38-kpi"><div class="f38-kpi-n">11,3</div><div class="f38-kpi-l">Días de ciclo</div><div class="f38-kpi-d">Julio: 11,9</div></div>
+              <div class="f38-kpi"><div class="f38-kpi-n warn">78%</div><div class="f38-kpi-l">Automatizado · demo</div><div class="f38-kpi-d">Sin intervención humana</div></div>
+              <div class="f38-kpi"><div class="f38-kpi-n">COP 412.000</div><div class="f38-kpi-l">Almacenaje por operación</div><div class="f38-kpi-d">Julio: COP 505.000</div></div>
+              <div class="f38-kpi"><div class="f38-kpi-n warn">6,2 h</div><div class="f38-kpi-l">Preparación documental</div><div class="f38-kpi-d">Objetivo: 4 h</div></div>
+              <div class="f38-kpi"><div class="f38-kpi-n alert">94,2%</div><div class="f38-kpi-l">Aceptación en primera</div><div class="f38-kpi-d">Meta ≥ 98%</div></div>
+              <div class="f38-kpi"><div class="f38-kpi-n">4 de 4</div><div class="f38-kpi-l">Requerimientos DIAN en término</div></div>
+            </div>
+            <div class="f38-scroll">
+            <table class="grid">
+              <tr><th>Indicador</th><th>Agosto</th><th>Julio</th><th>Tendencia</th></tr>
+              <tr><td>Permanencia en zona primaria</td><td>31 h</td><td>38 h</td><td><span class="pill ok">Mejora</span></td></tr>
+              <tr><td>Espera imputable al cliente</td><td>14 h</td><td>9 h</td><td><span class="pill bad">Se deteriora</span></td></tr>
+              <tr><td>Sobrecosto por reproceso</td><td>COP 1.870.000</td><td>COP 1.240.000</td><td><span class="pill bad">Se deteriora</span></td></tr>
+              <tr><td>Costo por operación · demo</td><td>Por conectar</td><td>Por conectar</td><td><span class="pill wait">Demo</span></td></tr>
+            </table>
+            </div>
+            <div class="note"><b>Cifras de demostración.</b> Las tomadas de FT-07 se mantienen iguales; “automatizado” y “costo por operación” son ilustrativas y no se calculan en ninguna otra pantalla.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="t-ficha" aria-hidden="true">
+        <div class="ficha">
+          <div class="ficha-hd">Ficha del canvas</div>
+          <div class="ficha-grid">
+            <div class="fi"><div class="fi-k">Artefacto</div><div class="fi-v">torre-control</div></div>
+            <div class="fi"><div class="fi-k">Produce</div><div class="fi-v">agente-torre-control (orquestador)</div></div>
+            <div class="fi"><div class="fi-k">MCP</div><div class="fi-v">mcp-costos · mcp-carga · mcp-supporting-documents (DAL), solo lectura</div></div>
+            <div class="fi"><div class="fi-k">RAG</div><div class="fi-v">Sin RAG propio; lee la salida de los agentes de cada etapa</div></div>
+            <div class="fi"><div class="fi-k">Editable</div><div class="fi-v no">No; se actualiza con la actividad de los agentes</div></div>
+            <div class="fi"><div class="fi-k">Gate humano</div><div class="fi-v si">Sí, en cada decisión de la cola de atención</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /.body -->
+</div><!-- /.shell -->
+</body></html>

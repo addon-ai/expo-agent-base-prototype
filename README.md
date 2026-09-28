@@ -10,14 +10,14 @@ El recorrido arranca en el login:
 ```
 index.html (login)  ->  f00-ingreso.html (NIT y mandato)  ->  indice.html (catálogo de flujos)
                                                                   |
-                                                                  +-> f01 … f37 (pantallas)
+                                                                  +-> f01 … f38 (pantallas)
 ```
 
 - `index.html` — pantalla de acceso. Es el punto de entrada del sitio; no
   valida credenciales, cualquier envío avanza a `f00-ingreso.html`.
 - `f00-ingreso.html` — selección de NIT, mandato y certificado.
-- `indice.html` — catálogo buscable de las 37 pantallas.
-- `f01` … `f37` — pantallas del flujo.
+- `indice.html` — catálogo buscable de las 38 pantallas.
+- `f01` … `f38` — pantallas del flujo.
 - `estilos.css`, `app.js` — estilos y comportamiento compartidos (tema,
   pestañas, colapso chat/canvas).
 - `_plantilla-shell.html` — plantilla base para nuevas pantallas, no se enlaza.
