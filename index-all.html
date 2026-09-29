@@ -11,16 +11,17 @@ document.documentElement.setAttribute('data-theme',t)})();</script>
 <title>Exportaciones DIAN · Acceso a agentes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="estilos.css">
 <script src="app.js" defer></script>
 <style>
 .wrap{max-width:1060px;margin:0 auto;padding:34px 26px 64px}
 .idx-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-.idx-brand{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+.idx-brand{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.22em;
   text-transform:uppercase;color:var(--mute)}
 .idx-h{font-size:30px;font-weight:700;letter-spacing:-.03em;margin:16px 0 20px;max-width:28ch}
-.grp{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+.grp{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--mute);margin:36px 0 12px}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:10px}
 .card{display:grid;grid-template-columns:34px 1fr;border:1px solid var(--line);border-radius:var(--r);
@@ -33,11 +34,11 @@ document.documentElement.setAttribute('data-theme',t)})();</script>
   stroke-linecap:round;stroke-linejoin:round;transition:stroke .15s}
 .card:hover .c-band svg{stroke:var(--on-accent)}
 .c-b{padding:13px 15px}
-.c-code{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;color:var(--stamp)}
+.c-code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;font-weight:600;color:var(--stamp)}
 .c-t{font-size:15px;font-weight:600;letter-spacing:-.01em;margin:3px 0 6px}
 .c-d{font-size:12.5px;color:var(--slate);line-height:1.5}
 .c-f{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
-.c-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid var(--line-soft);
+.c-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;border:1px solid var(--line-soft);
   border-radius:var(--r);padding:1px 5px;color:var(--mute)}
 .c-tag.hit{border-color:var(--alert-bd);color:var(--alert-fg)}
 .c-tag.warn{border-color:var(--gold-bd);color:var(--gold-fg)}
@@ -92,12 +93,12 @@ document.documentElement.setAttribute('data-theme',t)})();</script>
 .hitl-tip.modo-agente b{color:var(--agent-fg)}
 .hitl-tip .tip-r1[hidden],.hitl-tip .tip-r2[hidden]{display:none}
 .hitl-tip b{display:flex;align-items:center;gap:5px;color:var(--stamp-fg);
-  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.09em;
   text-transform:uppercase;margin-bottom:6px}
 .hitl-tip b svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
 .hitl-row{display:grid;grid-template-columns:64px 1fr;gap:9px;margin-top:7px}
-.hitl-k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;
+.hitl-k{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--mute);padding-top:2px}
 .hitl-v{color:var(--ink-2)}
 /* ▲ BADGE HITL */

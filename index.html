@@ -11,32 +11,33 @@ document.documentElement.setAttribute('data-theme',t)})();</script>
 <title>Acceso · Exportaciones DIAN</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="estilos.css">
 <script src="app.js" defer></script>
 <style>
 .auth{min-height:100vh;display:grid;grid-template-columns:1fr 420px}
 .auth-side{background:var(--hero-bg);color:var(--hero-ink);padding:48px 44px;display:flex;
   flex-direction:column;justify-content:space-between}
-.brand{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.62}
+.brand{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.62}
 .side-h{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1.12;margin:26px 0 16px;max-width:15ch}
 .side-p{font-size:14px;opacity:.72;max-width:44ch;line-height:1.62}
 .side-list{margin-top:30px;border-top:1px solid rgba(255,255,255,.14);padding-top:20px}
-.side-li{display:flex;gap:13px;padding:7px 0;font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:.66}
+.side-li{display:flex;gap:13px;padding:7px 0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;opacity:.66}
 .side-li b{color:var(--hero-accent);font-weight:500;min-width:34px}
-.side-f{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;opacity:.42;line-height:1.9}
+.side-f{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;opacity:.42;line-height:1.9}
 .auth-main{background:var(--raised);padding:44px 40px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
 .auth-steps{display:flex;gap:0;margin-bottom:26px}
 .as{flex:1;border-top:2px solid var(--line-soft);padding-top:8px}
 .as.done{border-top-color:var(--seal)}
 .as.now{border-top-color:var(--stamp)}
-.as-n{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--mute);letter-spacing:.08em}
-.as-l{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--mute);line-height:1.3;margin-top:2px}
+.as-n{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;color:var(--mute);letter-spacing:.08em}
+.as-l{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:var(--mute);line-height:1.3;margin-top:2px}
 .as.done .as-l{color:var(--slate)}
 .as.now .as-l{color:var(--stamp);font-weight:600}
 .auth-h{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:5px}
 .auth-sub{font-size:13px;color:var(--slate);margin-bottom:24px}
-.lab{display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;
+.lab{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--mute);margin-bottom:5px}
 .fld{margin-bottom:16px}
 .opt{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:var(--r);
@@ -46,7 +47,7 @@ document.documentElement.setAttribute('data-theme',t)})();</script>
 .radio{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--line);margin-top:2px;flex-shrink:0}
 .opt.sel .radio{border-color:var(--stamp);border-width:4px}
 .opt-n{font-size:13.5px;font-weight:500}
-.opt-d{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--slate);margin-top:2px;line-height:1.5}
+.opt-d{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:var(--slate);margin-top:2px;line-height:1.5}
 /* — */
 .nit-find{position:relative;margin-bottom:9px}
 .nit-find svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);
@@ -54,28 +55,28 @@ document.documentElement.setAttribute('data-theme',t)})();</script>
 .nit-find .input{padding-left:31px;padding-right:66px;width:100%}
 .nit-clear{position:absolute;right:9px;top:50%;transform:translateY(-50%);
   border:none;background:transparent;cursor:pointer;color:var(--mute);
-  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.06em;
   text-transform:uppercase;padding:4px 5px;border-radius:4px}
 .nit-clear:hover{color:var(--ink);background:var(--hd-wash-2)}
 .nit-clear:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .nit-clear[hidden]{display:none}
-.nit-count{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;
+.nit-count{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--mute);margin-bottom:7px}
 .nit-list{max-height:232px;overflow-y:auto;padding-right:3px}
 .opt[hidden]{display:none}
 .opt.no{opacity:.55;cursor:not-allowed}
 .opt.no:hover{border-color:var(--line)}
-.opt-w{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--alert);
+.opt-w{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;color:var(--alert);
   letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
 .nit-empty{border:1px dashed var(--line);border-radius:var(--r);padding:15px 13px;
   font-size:12.5px;color:var(--slate);text-align:center}
 .nit-empty[hidden]{display:none}
 /* ▲ BUSCADOR DE MANDANTES */
 .cert{border:1px solid var(--line);border-radius:var(--r);background:var(--paper);padding:12px 14px;margin-bottom:18px}
-.cert-r{display:flex;justify-content:space-between;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 0}
+.cert-r{display:flex;justify-content:space-between;gap:10px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;padding:3px 0}
 .cert-r span:first-child{color:var(--mute)}
 .adr{border-left:2px solid var(--gold-bd);padding:9px 0 9px 12px;margin-top:16px;font-size:12px;color:var(--slate)}
-.adr b{color:var(--gold-fg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;
+.adr b{color:var(--gold-fg);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;
   text-transform:uppercase;display:block;margin-bottom:3px}
 .auth-toggle{display:flex;justify-content:flex-end;margin-bottom:16px}
 /* --- 1. MÓVIL ≤639px --- */
@@ -100,7 +101,7 @@ document.documentElement.setAttribute('data-theme',t)})();</script>
 .pw-wrap .input{width:100%;padding-right:64px}
 .pw-ver{position:absolute;right:9px;top:50%;transform:translateY(-50%);
   border:none;background:transparent;cursor:pointer;color:var(--mute);
-  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.06em;
   text-transform:uppercase;padding:4px 5px;border-radius:4px}
 .pw-ver:hover{color:var(--ink);background:var(--field-bg)}
 .login-alt{margin-top:14px;font-size:12px;color:var(--slate);text-align:center}

@@ -10,28 +10,42 @@ html,body{height:100%}
 a{color:inherit}
 
 /* ─── 02 · TOKENS BASE (:root) · sin variante de tema ─────────────── */
+/* Sistema visual portado de dal-prototype-web-app (css/tokens.css).
+   Se conservan los nombres de token propios de este prototipo y se
+   reasignan sus valores a la paleta Addon AI (azul noche, verde, cian). */
 :root{
   --r:6px;
-  --r-lg:10px;
-  --font:'Archivo',system-ui,sans-serif;
-  --mono:'IBM Plex Mono',monospace;
+  --r-lg:12px;
+  --radius-full:9999px;
+  --font:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --font-heading:'Roboto',system-ui,-apple-system,sans-serif;
+  --font-subheading:'Noto Sans',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono','Fira Code',ui-monospace,monospace;
+  --easing-brand:cubic-bezier(0.23,1,0.32,1);
 
-  /* Acentos de marca (DIAN) — consistentes en ambos temas */
-  --stamp:#5B3E9E;
+  /* Acentos de marca — consistentes en ambos temas */
+  --stamp:#0a7c9b;
   --stamp-ink:#fff;
-  --seal:#0E6A57;
-  --alert:#A93A1C;
-  --gold:#8A6413;
+  --seal:#0a8044;
+  --alert:#c24233;
+  --gold:#854d0e;
 
-  --accent:#17B8BF;
-  --accent-2:#5E6FD8;
-  --accent-3:#8B5FD8;
+  --accent:#12d27c;
+  --accent-2:#4b7aa3;
+  --accent-3:#a78bfa;
 
   --scroll-w:10px;
 
-  /* Texto sobre superficies de acento (degradado, violeta, rojo) — mismo valor en ambos temas */
+  /* Texto sobre superficies de acento (degradado, cian, rojo) — mismo valor en ambos temas */
   --on-accent:#fff;
   --bubble-highlight:rgba(255,255,255,.25);
+
+  /* Botón primario (CTA con degradado cian -> esmeralda) */
+  --btn-grad:linear-gradient(135deg,#0a7c9b,#047d5a);
+  --btn-grad-hover:linear-gradient(135deg,#0b809f,#058560);
+
+  /* Fondo con rejilla, puntos y resplandores (css/backdrop.css de la referencia) */
+  --bg-step:60px;
 }
 
 /* Nota: --msg-fg y --live-halo se definen por tema en las secciones 03/04
@@ -41,164 +55,223 @@ a{color:inherit}
 /* ─── 03 · TEMA CLARO · [data-theme="light"], :root ───────────────── */
 :root,
 [data-theme="light"]{
+  color-scheme:light;
   /* Superficies, texto y líneas */
-  --paper:rgba(244,245,247,.86);
-  --raised:rgba(255,255,255,.90);
-  --raised-2:#FBFCFF;
-  --ink:#1A1D23;
-  --ink-2:#2B2F38;
-  --slate:#5A6270;
-  --mute:#8B93A1;
-  --line:#E2E4E9;
-  --line-soft:#ECEEF2;
-  --hairline:#F0F1F4;
+  --paper:rgba(240,244,248,.78);
+  --raised:rgba(255,255,255,.84);
+  --raised-2:#FFFFFF;
+  --ink:#163a65;
+  --ink-2:#2a4d78;
+  --slate:#477099;
+  --mute:#64748b;
+  --line:#d0dce8;
+  --line-soft:#eaf0f5;
+  --hairline:#f0f4f8;
 
   /* Washes y sombras */
-  --stamp-wash:#EFEAF8;
-  --seal-wash:#E7F2EE;
-  --alert-wash:#F9ECEA;
-  --gold-wash:#FBF3E3;
-  --shadow:0 14px 30px -16px rgba(20,30,50,.20), 0 4px 10px -6px rgba(20,30,50,.10);
-  --shadow-sm:0 2px 8px -4px rgba(20,30,50,.12);
+  --stamp-wash:#e3f4f7;
+  --seal-wash:#e4f5ec;
+  --alert-wash:#fbeceb;
+  --gold-wash:#fbf3e3;
+  --shadow:0 1px 2px rgba(22,58,101,.10), 0 8px 24px rgba(22,58,101,.10), 0 24px 48px -12px rgba(22,58,101,.06);
+  --shadow-sm:0 1px 2px rgba(22,58,101,.10), 0 6px 16px rgba(22,58,101,.06);
 
-  --trace-bg:#F7F8FA;
-  --code-bg:#F4F5F7;
+  --trace-bg:#f0f4f8;
+  --code-bg:#f1f5f9;
   --field-bg:#FFFFFF;
 
-  /* Cabecera clara */
-  --hd-bg:#FFFFFF;
-  --hd-ink:#1A1D23;
-  --hd-slate:#5A6270;
-  --hd-mute:#8B93A1;
-  --hd-line:rgba(0,0,0,.10);
-  --hd-seal:#0E6A57;
-  --hd-stamp:#5B3E9E;
-  --hd-dot-bg:rgba(0,0,0,.05);
-  --hd-stamp-halo:rgba(91,62,158,.20);
-  --hd-wash:rgba(0,0,0,.04);
-  --hd-wash-2:rgba(0,0,0,.06);
-  --hd-wash-3:rgba(0,0,0,.08);
-  --hd-now-fg:#5B3E9E;
-  --msg-fg:#1A1D23;
-  --live-halo:rgba(76,217,122,.25);
+  /* Cabecera clara (vidrio) */
+  --hd-bg:rgba(255,255,255,.84);
+  --hd-ink:#163a65;
+  --hd-slate:#477099;
+  --hd-mute:#64748b;
+  --hd-line:rgba(22,58,101,.14);
+  --hd-seal:#0a8044;
+  --hd-stamp:#0a7c9b;
+  --hd-dot-bg:rgba(22,58,101,.05);
+  --hd-stamp-halo:rgba(10,124,155,.20);
+  --hd-wash:rgba(22,58,101,.04);
+  --hd-wash-2:rgba(22,58,101,.06);
+  --hd-wash-3:rgba(22,58,101,.08);
+  --hd-now-fg:#155e75;
+  --msg-fg:#163a65;
+  --live-halo:rgba(18,210,124,.25);
 
   /* Variantes de acento por tema (§2.4 del diseño) */
-  --stamp-fg:#5B3E9E;
-  --stamp-bd:#5B3E9E;
-  --stamp-bg:#5B3E9E;
-  --stamp-hover:#4A3183;
-  --seal-fg:#0E6A57;
-  --seal-bd:#0E6A57;
-  --alert-fg:#A93A1C;
-  --alert-bd:#A93A1C;
-  --gold-fg:#8A6413;
-  --gold-bd:#8A6413;
-  --accent-fg:#3f57b5;
-  --seal-stamp:#C62828;
-  --live:#4CD97A;
+  --stamp-fg:#155e75;
+  --stamp-bd:#0a7c9b;
+  --stamp-bg:#0a7c9b;
+  --stamp-hover:#0b809f;
+  --seal-fg:#166534;
+  --seal-bd:#0a8044;
+  --alert-fg:#b91c1c;
+  --alert-bd:#c24233;
+  --gold-fg:#854d0e;
+  --gold-bd:#854d0e;
+  --accent-fg:#1d4ed8;
+  --seal-stamp:#c24233;
+  --live:#12d27c;
 
   /* Cromo (chat-hd, composer, tabs) y bandas */
-  --chrome-bg:#F3F4F6;
-  --chrome-ink:#1A1D23;
-  --chrome-slate:#5A6270;
-  --tab-ink:#6A7280;
-  --band-bg:#1A1D23;
-  --band-ink:#FBFCFF;
-  --hero-bg:#1A1D23;
-  --hero-ink:#F4F5F7;
-  --hero-accent:#C9B6F0;
-  --grad:linear-gradient(135deg,#17B8BF 0%,#5E6FD8 60%,#8B5FD8 100%);
+  --chrome-bg:rgba(234,240,245,.78);
+  --chrome-ink:#163a65;
+  --chrome-slate:#477099;
+  --tab-ink:#477099;
+  --band-bg:#163a65;
+  --band-ink:#f1f5f9;
+  --hero-bg:#0f172a;
+  --hero-ink:#f1f5f9;
+  --hero-accent:#3fe293;
+  --grad:linear-gradient(135deg,#0a7c9b 0%,#047d5a 100%);
+
+  /* Fondo de la app (claro) */
+  --bg-base:#f0f4f8;
+  --bg-glow-a:rgba(110,231,183,.30);
+  --bg-glow-b:rgba(125,211,252,.26);
+  --bg-glow-c:rgba(94,234,212,.24);
+  --bg-glow-d:rgba(167,243,208,.30);
+  --bg-grid:rgba(0,100,200,.03);
+  --bg-dot:rgba(0,100,200,.07);
+  --bg-node:rgba(0,100,200,.16);
 
   /* Scrollbars */
-  --scroll-track:rgba(10,30,40,.06);
-  --scroll-thumb:rgba(23,184,191,.55);
-  --scroll-thumb-hover:rgba(94,111,216,.85);
+  --scroll-track:rgba(22,58,101,.06);
+  --scroll-thumb:rgba(71,112,153,.45);
+  --scroll-thumb-hover:rgba(10,124,155,.75);
 
   /* Badge de agente */
-  --agent-fg:#0A7D45;
-  --agent-bd:rgba(0,214,110,.55);
+  --agent-fg:#166534;
+  --agent-bd:rgba(18,210,124,.55);
 
   /* Badge de tipo de proceso */
-  --tipo-fg:#0B6E77;
-  --tipo-bd:rgba(23,184,191,.55);
+  --tipo-fg:#155e75;
+  --tipo-bd:rgba(10,124,155,.50);
+
+  /* Logo de marca (assets/, sin recolorear) */
+  --logo:url("assets/logo-sidebar.svg");
 }
 
 /* ─── 04 · TEMA OSCURO · [data-theme="dark"] ──────────────────────── */
 [data-theme="dark"]{
-  --paper:#16181D;
-  --raised:#1F2229;
-  --raised-2:#1B1E24;
-  --ink:#E8EAF0;
-  --ink-2:#C6CBD6;
-  --slate:#9AA2B1;
-  --mute:#6E7686;
-  --line:#2C303A;
-  --line-soft:#262A32;
-  --hairline:#262A32;
+  color-scheme:dark;
+  --paper:rgba(15,23,42,.84);
+  --raised:rgba(30,41,59,.92);
+  --raised-2:#1e293b;
+  --ink:#f1f5f9;
+  --ink-2:#d0dce8;
+  --slate:#a7b5c9;
+  --mute:#94a3b8;
+  --line:#334155;
+  --line-soft:#293548;
+  --hairline:#1e293b;
 
-  --stamp-wash:#2A2338;
-  --seal-wash:#172620;
-  --alert-wash:#2B1D1A;
-  --gold-wash:#2A2113;
-  --shadow:0 16px 34px -16px rgba(0,0,0,.7), 0 5px 14px -6px rgba(0,0,0,.5);
-  --shadow-sm:0 3px 10px -4px rgba(0,0,0,.55);
+  --stamp-wash:rgba(34,211,238,.12);
+  --seal-wash:rgba(52,211,153,.12);
+  --alert-wash:rgba(251,133,133,.12);
+  --gold-wash:rgba(251,191,36,.12);
+  --shadow:0 1px 2px rgba(0,0,0,.40), 0 8px 24px rgba(0,0,0,.30), 0 24px 48px -12px rgba(0,0,0,.40);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.40), 0 6px 16px rgba(0,0,0,.30);
 
-  --trace-bg:#1B1E24;
-  --code-bg:#23262E;
-  --field-bg:#1F2229;
+  --trace-bg:#0f172a;
+  --code-bg:#0f172a;
+  --field-bg:#0f172a;
 
-  --hd-bg:#0E1013;
-  --hd-ink:#EDEFF4;
-  --hd-slate:#A9B0BC;
-  --hd-mute:#6E7686;
-  --hd-line:rgba(255,255,255,.08);
-  --hd-seal:#4CD97A;
-  --hd-stamp:#C8A7FF;
+  --hd-bg:rgba(30,41,59,.92);
+  --hd-ink:#f1f5f9;
+  --hd-slate:#a7b5c9;
+  --hd-mute:#94a3b8;
+  --hd-line:rgba(255,255,255,.14);
+  --hd-seal:#34d399;
+  --hd-stamp:#22d3ee;
   --hd-dot-bg:rgba(255,255,255,.05);
-  --hd-stamp-halo:rgba(200,167,255,.25);
+  --hd-stamp-halo:rgba(34,211,238,.25);
   --hd-wash:rgba(255,255,255,.05);
   --hd-wash-2:rgba(255,255,255,.08);
   --hd-wash-3:rgba(255,255,255,.16);
-  --hd-now-fg:#E6D6FF;
-  --msg-fg:#C6CBD6;
+  --hd-now-fg:#67e8f9;
+  --msg-fg:#d0dce8;
   --live-halo:rgba(255,255,255,.30);
 
-  --stamp-fg:#C8A7FF;
-  --stamp-bd:#6E5A9E;
-  --stamp-bg:#6E5A9E;
-  --stamp-hover:#8A73C4;
-  --seal-fg:#4CD97A;
-  --seal-bd:#175443;
-  --alert-fg:#F08878;
-  --alert-bd:#8C4636;
-  --gold-fg:#D6A24D;
-  --gold-bd:#8A6A3A;
-  --accent-fg:#8FA6FF;
-  --seal-stamp:#EF6B6B;
-  --live:#FFFFFF;
+  --stamp-fg:#22d3ee;
+  --stamp-bd:#0e7490;
+  --stamp-bg:#0a7c9b;
+  --stamp-hover:#0b809f;
+  --seal-fg:#34d399;
+  --seal-bd:#047d5a;
+  --alert-fg:#fb8585;
+  --alert-bd:#c24233;
+  --gold-fg:#fbbf24;
+  --gold-bd:#a16207;
+  --accent-fg:#60a5fa;
+  --seal-stamp:#fb8585;
+  --live:#12d27c;
 
-  --chrome-bg:#2A2E35;
-  --chrome-ink:#FFFFFF;
-  --chrome-slate:#C3D9E0;
-  --tab-ink:#D5DAE0;
-  --band-bg:#3A3F4A;
-  --band-ink:#E8EAF0;
-  --hero-bg:#0E1013;
-  --hero-ink:#EDEFF4;
-  --hero-accent:#C8A7FF;
-  --grad:linear-gradient(135deg,#13A6AD 0%,#4E5FC4 60%,#7A50C4 100%);
+  --chrome-bg:rgba(41,53,72,.92);
+  --chrome-ink:#f1f5f9;
+  --chrome-slate:#a7b5c9;
+  --tab-ink:#a7b5c9;
+  --band-bg:#293548;
+  --band-ink:#f1f5f9;
+  --hero-bg:#0b1220;
+  --hero-ink:#f1f5f9;
+  --hero-accent:#3fe293;
+  --grad:linear-gradient(135deg,#0a7c9b 0%,#047d5a 100%);
+
+  /* Fondo de la app (oscuro) */
+  --bg-base:#050a14;
+  --bg-glow-a:rgba(18,210,124,.12);
+  --bg-glow-b:rgba(6,182,212,.09);
+  --bg-glow-c:rgba(51,138,123,.14);
+  --bg-glow-d:rgba(34,197,94,.08);
+  --bg-grid:rgba(0,212,255,.018);
+  --bg-dot:rgba(0,212,255,.05);
+  --bg-node:rgba(0,212,255,.16);
 
   --scroll-track:rgba(255,255,255,.05);
-  --scroll-thumb:rgba(120,140,180,.45);
-  --scroll-thumb-hover:rgba(190,130,255,.75);
+  --scroll-thumb:rgba(148,163,184,.40);
+  --scroll-thumb-hover:rgba(34,211,238,.75);
 
   /* Badge de agente */
-  --agent-fg:#4DFF9F;
-  --agent-bd:rgba(77,255,159,.50);
+  --agent-fg:#3fe293;
+  --agent-bd:rgba(63,226,147,.50);
 
   /* Badge de tipo de proceso */
-  --tipo-fg:#4FE3E8;
-  --tipo-bd:rgba(79,227,232,.50);
+  --tipo-fg:#22d3ee;
+  --tipo-bd:rgba(34,211,238,.50);
+
+  --logo:url("assets/logo-sidebar-dark.svg");
+}
+
+/* Fondo compuesto: nodos dispersos, puntos, rejilla y resplandores (de arriba hacia abajo) */
+:root{
+  --bg-glow-a-soft:color-mix(in srgb,var(--bg-glow-a) 50%,transparent);
+  --bg-glow-b-soft:color-mix(in srgb,var(--bg-glow-b) 50%,transparent);
+  --bg-glow-c-soft:color-mix(in srgb,var(--bg-glow-c) 50%,transparent);
+  --bg-glow-d-soft:color-mix(in srgb,var(--bg-glow-d) 50%,transparent);
+  --bg-backdrop:
+    radial-gradient(circle 4px at 9% 16%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 23% 62%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 31% 9%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 38% 84%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 47% 37%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 55% 71%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 64% 12%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 72% 55%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 81% 27%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 88% 78%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 94% 44%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 4px at 4% 90%,var(--bg-node) 0,var(--bg-node) 1.5px,transparent 4px),
+    radial-gradient(circle 2px at 50% 50%,var(--bg-dot) 0,var(--bg-dot) 1px,transparent 2px)
+      calc(var(--bg-step) / -2) calc(var(--bg-step) / -2) / var(--bg-step) var(--bg-step),
+    linear-gradient(var(--bg-grid) 1px,transparent 1px) 0 0 / var(--bg-step) var(--bg-step),
+    linear-gradient(90deg,var(--bg-grid) 1px,transparent 1px) 0 0 / var(--bg-step) var(--bg-step),
+    radial-gradient(circle min(24rem,55vw) at 72% 30%,var(--bg-glow-a),var(--bg-glow-a-soft) 50%,transparent),
+    radial-gradient(circle min(19rem,45vw) at 62% 56%,var(--bg-glow-b),var(--bg-glow-b-soft) 50%,transparent),
+    radial-gradient(circle min(16rem,40vw) at 82% 62%,var(--bg-glow-c),var(--bg-glow-c-soft) 50%,transparent),
+    radial-gradient(circle min(14rem,36vw) at 56% 34%,var(--bg-glow-d),var(--bg-glow-d-soft) 50%,transparent),
+    radial-gradient(circle min(20rem,50vw) at 12% 88%,var(--bg-glow-b),var(--bg-glow-b-soft) 50%,transparent),
+    radial-gradient(circle min(16rem,40vw) at 6% 18%,var(--bg-glow-c),var(--bg-glow-c-soft) 50%,transparent),
+    var(--bg-base);
 }
 
 /* ─── 05 · SCROLLBARS PERSONALIZADOS ──────────────────────────────── */
@@ -216,9 +289,9 @@ a{color:inherit}
 }
 *::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hover);border:2px solid transparent;background-clip:content-box}
 
-/* ─── 06 · BODY Y DEGRADADO DE FONDO ──────────────────────────────── */
+/* ─── 06 · BODY Y FONDO ───────────────────────────────────────────── */
 body{
-  background:radial-gradient(circle at 50% 0%, #e9fbff 0%, #bfe6f0 40%, #f5f7f9 100%);
+  background:var(--bg-backdrop);
   background-attachment:fixed;
   color:var(--ink);
   font-family:var(--font);
@@ -226,10 +299,7 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-[data-theme="dark"] body{
-  background:radial-gradient(circle at 50% 0%, #0b4a56 0%, #041d42 45%, #01000f 100%);
-  background-attachment:fixed;
-}
+h1,h2,h3{font-family:var(--font-heading)}
 .mono,.m{font-family:var(--mono)}
 
 /* ─── 07 · SHELL ───────────────────────────────────────────────────── */
@@ -242,6 +312,13 @@ header{
   border-bottom:1px solid var(--hd-line);
   padding:14px 22px 0;
   flex-shrink:0;
+  -webkit-backdrop-filter:blur(12px) saturate(1.6);
+  backdrop-filter:blur(12px) saturate(1.6);
+}
+/* Logo Addon AI en la barra superior (SVG de marca sin recolorear; claro/oscuro por token) */
+header .hdr-top::before{
+  content:"";flex:0 0 auto;width:66px;height:28px;margin-right:6px;
+  background:var(--logo) left center/contain no-repeat;
 }
 /* Una sola escala para toda la cabecera: misma altura, mismo radio, misma tipografía.
    El único elemento con acento es el identificador de la operación. */
@@ -316,6 +393,13 @@ header{
 .seg.on-light button{color:var(--slate)}
 .theme-toggle:not(header *) .seg button[aria-pressed="true"],
 .seg.on-light button[aria-pressed="true"]{background:var(--raised);color:var(--ink)}
+
+/* Logo en el panel de marca del acceso (fondo siempre oscuro: variante para oscuro) */
+.auth-side .brand{opacity:1!important}
+.auth-side .brand::before{
+  content:"";display:block;width:132px;height:54px;margin-bottom:14px;
+  background:url("assets/logo-sidebar-dark.svg") left center/contain no-repeat;
+}
 
 /* ─── 09 · TIRA DE ESTADOS Y ÁMBITO ────────────────────────────────── */
 .states-wrap{padding-bottom:12px}
@@ -667,15 +751,15 @@ details.trace summary:hover{color:var(--stamp-fg)}
 .diff .rem{color:var(--alert-fg);text-decoration:line-through;opacity:.75}
 .actions{display:flex;gap:7px;flex-wrap:wrap}
 .btn{
-  font-family:var(--font);font-size:12.5px;font-weight:500;
-  padding:6px 14px;border-radius:var(--r);cursor:pointer;border:1px solid var(--line);
+  font-family:var(--font);font-size:12.5px;font-weight:500;letter-spacing:.1px;
+  padding:6px 16px;border-radius:var(--radius-full);cursor:pointer;border:1px solid var(--line);
   background:var(--raised);color:var(--ink);box-shadow:var(--shadow-sm);
   transition:all .15s;
 }
 .btn:hover{border-color:var(--slate);transform:translateY(-1px)}
 .btn:focus-visible{outline:2px solid var(--stamp-bd);outline-offset:1px}
-.btn.primary{background:var(--stamp-bg);border-color:var(--stamp-bd);color:var(--stamp-ink)}
-.btn.primary:hover{background:var(--stamp-hover);border-color:var(--stamp-hover)}
+.btn.primary{background:var(--btn-grad);border-color:transparent;color:var(--stamp-ink);box-shadow:0 2px 8px rgba(8,145,178,.14),0 1px 3px rgba(5,150,105,.10)}
+.btn.primary:hover{background:var(--btn-grad-hover);border-color:transparent}
 .btn.danger{background:var(--alert-bd);border-color:var(--alert-bd);color:var(--on-accent)}
 .btn.ghost{background:none;color:var(--slate);box-shadow:none}
 .btn.ghost:hover{background:var(--paper);color:var(--ink)}

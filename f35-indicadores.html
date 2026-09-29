@@ -11,30 +11,31 @@ document.documentElement.setAttribute('data-theme',t)})();</script>
 <title>FT-07 · Indicadores de desempeño</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="estilos.css">
 <script src="app.js" defer></script>
 <style>
 .f35-scroll{overflow-x:auto}
 .f35-scope{border-left:2px solid var(--gold-bd);padding:10px 0 10px 13px;margin:0 0 16px;font-size:12px;color:var(--slate);background:var(--gold-wash);border-radius:0 var(--r) var(--r) 0}
-.f35-scope b{color:var(--gold-fg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:3px}
+.f35-scope b{color:var(--gold-fg);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:3px}
 .f35-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line-soft);
   border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
 .f35-kpi{background:var(--raised);padding:11px 13px}
-.f35-kpi-n{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;color:var(--ink)}
+.f35-kpi-n{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:20px;font-weight:600;color:var(--ink)}
 .f35-kpi-n.alert{color:var(--alert)}
 .f35-kpi-n.warn{color:var(--gold-fg)}
-.f35-kpi-l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin-top:3px}
+.f35-kpi-l{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin-top:3px}
 .f35-two{display:grid;grid-template-columns:1fr 1.3fr;gap:16px;align-items:start}
 .f35-chan{display:flex;flex-direction:column;gap:9px}
 .f35-chan-row{display:grid;grid-template-columns:56px 1fr 46px;gap:9px;align-items:center}
-.f35-chan-l{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--slate)}
+.f35-chan-l{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:var(--slate)}
 .f35-chan-bar{height:10px;background:var(--paper);border:1px solid var(--line-soft);border-radius:2px;overflow:hidden}
 .f35-chan-bar i{display:block;height:100%}
 .f35-chan-bar i.g{background:var(--seal)}
 .f35-chan-bar i.a{background:var(--gold-fg)}
 .f35-chan-bar i.r{background:var(--alert)}
-.f35-chan-n{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink)}
+.f35-chan-n{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:right;color:var(--ink)}
 .f35-sub{font-size:11.5px;color:var(--slate);margin-bottom:9px}
 @media (max-width:1023px){.f35-two{grid-template-columns:1fr}}
 </style>
