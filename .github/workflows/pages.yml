@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.CI_RUNNER || 'dal-lowenv' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
